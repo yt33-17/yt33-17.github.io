@@ -282,7 +282,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2026-08-04 15:41:02 / 修改时间：15:48:37" itemprop="dateCreated datePublished" datetime="2026-08-04T15:41:02+08:00">2026-08-04</time>
+              <time title="创建时间：2026-08-04 15:41:02 / 修改时间：22:40:22" itemprop="dateCreated datePublished" datetime="2026-08-04T15:41:02+08:00">2026-08-04</time>
             </span>
 
           
@@ -290,7 +290,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>486</span>
+              <span>886</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -345,10 +345,20 @@
 <p>解决方式：</p>
 <p>1、我是由于使用魔法导致电脑地址改变，关闭魔法即可</p>
 <p>2、当然也可以将端口22改变为442</p>
-<h5 id="错误二："><a href="#错误二：" class="headerlink" title="错误二："></a>错误二：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">On branch main</span><br><span class="line">Your branch is up to date with &#x27;origin/main&#x27;</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<h4 id="错误二："><a href="#错误二：" class="headerlink" title="错误二："></a>错误二：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">On branch main</span><br><span class="line">Your branch is up to date with &#x27;origin/main&#x27;</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
 
 <p>解决方式：</p>
 <p>版本没有变化，包括空的文件夹，需要增加或者修改文件内容后上传</p>
+<h4 id="错误三："><a href="#错误三：" class="headerlink" title="错误三："></a>错误三：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF</span><br></pre></td></tr></table></figure>
+
+<p>解决方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">提交时自动地把回车（CR）和换行（LF）转换成换行（LF），而在检出代码时把换行（LF）转换成回车（CR）和换行（LF）</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">提提交时自动地把回车（CR）和换行（LF）转换成换行（LF），而在检出代码时把换行（LF）转换成回车（CR）和换行（LF）交时自动地把回车（CR）和换行（LF）转换成换行（LF），而在检出代码时把换行（LF）转换成回车（CR）和换行（LF）</span></span><br><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
+
+<h4 id="错误四："><a href="#错误四：" class="headerlink" title="错误四："></a>错误四：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename too long</span><br></pre></td></tr></table></figure>
+
+<p>解决方式：</p>
+<p>GIt使用了旧版本的Windows API，导致它限制文件名不能超过260个字符。所以Git的Windows客户端默认是禁用长名称支持的。我们开启长名称支持即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system core.longpaths true</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -401,7 +411,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-08-04 18:58:04" itemprop="dateModified" datetime="2026-08-04T18:58:04+08:00">2026-08-04</time>
+                <time title="修改时间：2026-08-04 21:24:02" itemprop="dateModified" datetime="2026-08-04T21:24:02+08:00">2026-08-04</time>
               </span>
 
           
@@ -450,27 +460,27 @@
 <p>测试</p>
 <p>在 cmd 命令下执行 npm install webpack -g ：然后 webpack 这个模块已经在我们设置默认的文件夹中了：</p>
 <h3 id="5、安装hexo"><a href="#5、安装hexo" class="headerlink" title="5、安装hexo"></a>5、安装hexo</h3><p>首先在D盘建立一个文件夹 Blog，点开 Blog 文件夹，鼠标右键打开 Git Bush Here，输入npm命令安装Hexo：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
 <p>安装完成后，输入 hexo init 命令初始化博客：然后输入 hexo g 静态部署：这时网页已经部署完成，输入 hexo s 命令可以查看：浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 就可以打开新部署的网页：看完之后 ctrl +c 停止运行服务器。</p>
 <p>现在回到我们的 Blog 文件夹，用笔记本打开 _config.yml 文件下滑到文件底部，填上如下内容：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/yt33-17/yt33-17.github.io.git  #这里要填你的仓库https地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/yt33-17/yt33-17.github.io.git  #这里要填你的仓库https地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 <p>然后回到 Blog 文件夹中，打开 Git Bash，安装Git部署插件，输入命令：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 <p>然后分别输入以下三条命令：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   #清除缓存文件 db.json 和已生成的静态文件 public</span><br><span class="line">hexo g       #生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)</span><br><span class="line">hexo d       #自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   #清除缓存文件 db.json 和已生成的静态文件 public</span><br><span class="line">hexo g       #生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)</span><br><span class="line">hexo d       #自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)</span><br></pre></td></tr></table></figure>
 
 <p>然后我们就可以通过GitHub提供的网址来进入我们的博客了：<a target="_blank" rel="noopener" href="http://yt33-17.github.io/">http://yt33-17.github.io</a></p>
 <h3 id="6、域名设置"><a href="#6、域名设置" class="headerlink" title="6、域名设置"></a>6、域名设置</h3><p>阿里云万网：<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">wanwang.aliyun.com</a></p>
 <p>第一步：登录万网，点击控制台，在你已购买的域名后点击解析添加两条解析记录：</p>
 <p>那个IPV4地址可以通过ping得到，具体方法是：打开cmd输入下面命令：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping yt33-17.github.io    #ping + 你的GitHub的网址</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping yt33-17.github.io    #ping + 你的GitHub的网址</span><br></pre></td></tr></table></figure>
 
 <p>第二步：打开 Blog 文件夹里的 source 文件夹，添加CNAME文件，可以先创建一个CNAME.txt文件，打开后写上你的域名，不要加www否则每次访问都必须加www，但如果不带有www，以后访问的时候带不带www都可以访问，保存后记得要重命名，将.txt删除</p>
 <h3 id="7、主题设置"><a href="#7、主题设置" class="headerlink" title="7、主题设置"></a>7、主题设置</h3><p>打开博客根目录Blog文件夹，右键Git Bash，输入如下命令将next主题下载到目录Blog&#x2F;themes：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>打开根目录下的_config.yml(称为<strong>站点配置文件</strong> )，修改主题</p>
 
@@ -613,7 +623,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -623,7 +633,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.7k字</span>
+  <span class="post-count">博客全站共1.9k字</span>
 </div>
 
 
