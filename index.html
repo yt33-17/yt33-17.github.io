@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2026/08/03/hello-world/" class="post-title-link" itemprop="url">我的第一篇文章</a>
+            <a href="/2026/08/03/hello-world/" class="post-title-link" itemprop="url">如何搭建个人博客</a>
         </h2>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2026-08-04 13:43:53" itemprop="dateModified" datetime="2026-08-04T13:43:53+08:00">2026-08-04</time>
+                <time title="修改时间：2026-08-04 15:10:00" itemprop="dateModified" datetime="2026-08-04T15:10:00+08:00">2026-08-04</time>
               </span>
 
           
@@ -222,13 +222,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>58</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -240,10 +240,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1、创建github账号"><a href="#1、创建github账号" class="headerlink" title="1、创建github账号"></a>1、创建github账号</h2><p>啊啊啊是否水电费归属感</p>
-<h2 id="2、下载git"><a href="#2、下载git" class="headerlink" title="2、下载git"></a>2、下载git</h2><p>发发发</p>
-<h2 id="3、下载node-js"><a href="#3、下载node-js" class="headerlink" title="3、下载node.js"></a>3、下载node.js</h2><p>发发发</p>
-<h2 id="4、安装hexo"><a href="#4、安装hexo" class="headerlink" title="4、安装hexo"></a>4、安装hexo</h2><p>发发发</p>
+          <h3 id="1、创建github账号"><a href="#1、创建github账号" class="headerlink" title="1、创建github账号"></a>1、创建github账号</h3><p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/">github.com</a></p>
+<h3 id="2、下载git"><a href="#2、下载git" class="headerlink" title="2、下载git"></a>2、下载git</h3><p> 官网地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">git-scm.com</a></p>
+<h3 id="3、git绑定github"><a href="#3、git绑定github" class="headerlink" title="3、git绑定github"></a>3、git绑定github</h3><p>我们要用git上传文件到GitHub首先得利用SSH登录远程主机，而登录方式有两种：一种是口令登录；另一种是公钥登录。口令登录每次都要输入密码十分麻烦，而公钥登录就省去了输入密码的步骤，所以我们选择公钥授权。</p>
+<p>首先我们得在 GitHub 上添加 SSH key 配置，要想生成SSH key，就要先安装 SSH，不过我们安装了 Git Bash，其应该自带了 SSH。检验一下是否安装 SSH，我们在新建的文件夹中右键打开 Git Bash：输入 ssh 命令，查看本机是否安装 SSH：</p>
+<p>如上图所示，即已安装 SSH. 然后，输入 <strong>ssh-keygen -t rsa</strong> 命令  ，表示我们指定 RSA 算法生成密钥，然后敲四次回车键，之后就就会生成两个文件，分别为秘钥 id_rsa 和公钥 id_rsa.pub.  <em><strong>（注意：git中的复制粘贴是 Ctrl+insert 和 Shift+insert.）</strong></em> 文件的位置在 Git Bash 上面都有显示，</p>
+<p>接下来我们要做的事情就是把公钥 id_rsa.pub 的内容添加到 GitHub。可以通过上面步骤显示找到 id_rsa.pub 文件的位置，用记事本打开文件复制。</p>
+<p>接下来进入我们的 GitHub 主页，先点击右上角，再点击 <em><strong>settings</strong></em> ：如下图，先点击  <em><strong>SSH and GPG keys，</strong></em> 再点击New SSH key.将复制的公钥 id_rsa.pub 的内容粘贴到 key 内，再点击  <em><strong>Add SSH key，</strong></em> 如下图：</p>
+<p>验证是否成功，我们可以通过在 Git Bash 中输入 <strong>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;">git@github.com</a></strong> 进行检验：第一次会出现这种情况，填 yes 就行，若出现下图中的情况，则表明绑定成功：</p>
+<h3 id="4、下载node-js"><a href="#4、下载node-js" class="headerlink" title="4、下载node.js"></a>4、下载node.js</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn">node.js官网</a></p>
+<p>安装完成可以用打开cmd检验一下是否安装成功，用 <strong>node -v</strong> 和 <strong>npm -v</strong> 命令检查版本</p>
+<p>设置npm在安装全局模块时的路径和环境变量因为如果不设置的话，安装模块的时候就会把模块装到C盘，占用C盘的空间，并且有可能安装好hexo后却无法使用，所以我们需要设置一下：</p>
+<p>在 nodejs 文件夹中新建两个空文件夹 node_cache、node_global</p>
+<p>打开cmd，输入如下两个命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;D:\nodejs\node_global&quot;</span><br><span class="line">npm config set cache &quot;D:\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure>
+
+<p>设置环境变量：  <strong>打开控制面板 –&gt; 系统 –&gt;高级系统设置 –&gt; 环境变量 ，</strong> 然后在系统变量中新建一个变量名为“NODE_PATH”，值为“D:\nodejs\node_global\node_modules”然后编辑用户变量里的Path，将相应npm的路径改为：D:\nodejs\node_global</p>
+<p>测试</p>
+<p>在 cmd 命令下执行 npm install webpack -g ：然后 webpack 这个模块已经在我们设置默认的文件夹中了：</p>
+<h3 id="5、安装hexo"><a href="#5、安装hexo" class="headerlink" title="5、安装hexo"></a>5、安装hexo</h3><p>首先在D盘建立一个文件夹 Blog，点开 Blog 文件夹，鼠标右键打开 Git Bush Here，输入npm命令安装Hexo：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，输入 hexo init 命令初始化博客：然后输入 hexo g 静态部署：这时网页已经部署完成，输入 hexo s 命令可以查看：浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 就可以打开新部署的网页：看完之后 ctrl +c 停止运行服务器。</p>
+<p>现在回到我们的 Blog 文件夹，用笔记本打开 _config.yml 文件下滑到文件底部，填上如下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/yt33-17/yt33-17.github.io.git  #这里要填你的仓库https地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>然后回到 Blog 文件夹中，打开 Git Bash，安装Git部署插件，输入命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后分别输入以下三条命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   #清除缓存文件 db.json 和已生成的静态文件 public</span><br><span class="line">hexo g       #生成网站静态文件到默认设置的 public 文件夹(hexo generate 的缩写)</span><br><span class="line">hexo d       #自动生成网站静态文件，并部署到设定的仓库(hexo deploy 的缩写)</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以通过GitHub提供的网址：<a target="_blank" rel="noopener" href="http://yt33-17.github.io来进入我们的博客了/">http://yt33-17.github.io来进入我们的博客了</a></p>
+<h3 id="6、域名设置"><a href="#6、域名设置" class="headerlink" title="6、域名设置"></a>6、域名设置</h3><p>阿里云万网：<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">wanwang.aliyun.com</a></p>
+<p>第一步：登录万网，点击控制台，在你已购买的域名后点击解析添加两条解析记录：</p>
+<p>那个IPV4地址可以通过ping得到，具体方法是：打开cmd输入下面命令：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping fengye97.github.io    #ping + 你的GitHub的网址</span><br></pre></td></tr></table></figure>
+
+<p>第二步：打开 Blog 文件夹里的 source 文件夹，添加CNAME文件，可以先创建一个CNAME.txt文件，打开后写上你的域名，不要加www否则每次访问都必须加www，但如果不带有www，以后访问的时候带不带www都可以访问，保存后记得要重命名，将.txt删除</p>
+<h3 id="7、主题设置"><a href="#7、主题设置" class="headerlink" title="7、主题设置"></a>7、主题设置</h3><p>打开博客根目录Blog文件夹，右键Git Bash，输入如下命令将next主题下载到目录Blog&#x2F;themes：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>打开根目录下的_config.yml(称为<strong>站点配置文件</strong> )，修改主题</p>
 
       
     </div>
@@ -384,17 +422,17 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">0k</span>
+    <span title="站点总字数">2k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
 </div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共39字</span>
+  <span class="post-count">博客全站共1.3k字</span>
 </div>
 
 
