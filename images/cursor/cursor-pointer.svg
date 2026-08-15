@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="0.8" flood-opacity="0.35"/>
+    </filter>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb6d9"/>
+      <stop offset="100%" stop-color="#ff69b4"/>
+    </linearGradient>
+  </defs>
+  <path d="M 10 4 L 10 20 L 13 18 L 15 23 L 17 22 L 15 17 L 19 17 Z"
+        fill="url(#pinkGrad)"
+        stroke="#ffffff"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+        filter="url(#shadow)"/>
+  <circle cx="22" cy="8" r="2.5" fill="#ff8fb8" opacity="0.7"/>
+  <circle cx="26" cy="5" r="1.5" fill="#ffb6d9" opacity="0.6"/>
+</svg>
