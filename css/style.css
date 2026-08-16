@@ -2468,6 +2468,116 @@ pre .emphasis {
   font-size: 12px;
   padding: 3px 8px;
 }
+.tools-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 800px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.tool-card {
+  display: flex;
+  align-items: center;
+  background: rgba(20,20,28,0.78);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  background: rgba(30,28,36,0.88);
+  border-color: #ff69b4;
+  box-shadow: 0 8px 24px rgba(255,105,180,0.25);
+  text-decoration: none;
+}
+.tool-card:hover .tool-card-name {
+  color: #ffb6d9;
+}
+.tool-card:hover .tool-card-initial {
+  background: linear-gradient(135deg, #ff69b4, #ff85c2);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+}
+.tool-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+.tool-card-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.98em;
+  font-weight: 600;
+  color: #e8e8ee;
+  transition: color 0.2s;
+}
+.tool-card-initial {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #ff9fcf, #ff69b4);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85em;
+  flex-shrink: 0;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.tool-card-desc {
+  font-size: 0.8em;
+  color: #c0c0cc;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tool-card-url {
+  font-size: 0.75em;
+  color: #8a8a98;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-theme-mode="light"] .tool-card {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+[data-theme-mode="light"] .tool-card:hover {
+  background: #fff;
+  border-color: #ff69b4;
+}
+[data-theme-mode="light"] .tool-card .tool-card-name {
+  color: #222;
+}
+[data-theme-mode="light"] .tool-card .tool-card-desc {
+  color: #555;
+}
+[data-theme-mode="light"] .tool-card .tool-card-url {
+  color: #999;
+}
 .post-link-card-wrap {
   display: flex;
   justify-content: center;
