@@ -5,7 +5,7 @@
   
   
   
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
   <title>
     Git管理代码 | 一叶知秋
   </title>
@@ -18,7 +18,7 @@
     <meta name="description" content="本文介绍如何使用Git管理代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git管理代码">
-<meta property="og:url" content="http://example.com/2026/08/04/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:url" content="https://yt33-17.github.io/2026/08/04/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="本文介绍如何使用Git管理代码">
 <meta property="og:locale" content="zh_CN">
@@ -84,6 +84,14 @@
 <div id="copy-tooltip"></div>
 <div id="heatmap-tooltip"></div>
 
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
 
     <div id="container">
       <div id="wrap">
@@ -464,6 +472,16 @@
 
 
 
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
 
 <div id="lazy-script">
   <div>
@@ -473,7 +491,7 @@
         window.REIMU_POST = {
           author: "梦衣柠",
           title: "Git管理代码",
-          url: "http://example.com/2026/08/04/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/",
+          url: "https://yt33-17.github.io/2026/08/04/%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/",
           excerpt: "",
           description: "本文介绍如何使用Git管理代码",
           stripContent: "git使用指令   指令 说明    git init 初始化   git clone +ssh地址 克隆远程仓库到本地   cd +远程仓库名 进入远程仓库目录   git add . 将工作区的所有文件添加到暂存区（也可指定文件）   git commit -m “提交信息” 将暂存区的文件添加到本地仓库   git push 提交到远程仓库   遇到的问题错误一：1234ssh: connect to host github.com port 22: Connection refusedf",
@@ -532,15 +550,9 @@
 <script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
 
 
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      for (let registration of registrations) {
-        registration.unregister();
-      }
-    });
-  }
-</script>
+  
+<script src="/js/service_worker.js"></script>
+
 
 
     <script>
@@ -567,7 +579,7 @@
           loop: '' || 'all',
           order: '' || 'list',
           preload: '' || 'auto',
-          volume: 0.4 || 0.7,
+          volume: 0.3 || 0.7,
           mutex: null || true,
           listFolded: null || false,
           lrcType: null || 0,
@@ -592,6 +604,5 @@
     }
   </script>
 
-      <script src="/js/particle-fall.js"></script>
   </body>
   </html>
