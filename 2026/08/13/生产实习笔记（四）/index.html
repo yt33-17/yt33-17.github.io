@@ -1,0 +1,693 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    生产实习笔记（四） | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="语音识别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产实习笔记（四）">
+<meta property="og:url" content="https://yt33-17.github.io/2026/08/13/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="语音识别">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%801.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%802.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%803.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%804.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%805.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%806.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%802.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%803.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/05%E6%9F%A5%E7%9C%8BUbuntuIP%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%802.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%803.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/06%E6%B5%8B%E8%AF%95Ubuntu%E5%92%8C%E5%BC%80%E5%8F%91%E6%9D%BF%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E9%80%9A%E7%95%85.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%804.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/08%E5%BC%80%E5%8F%91%E6%9D%BF%E5%92%8CUbuntu%E9%80%9A%E4%BF%A1.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B0.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B1.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B2.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B3.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B4.png">
+<meta property="article:published_time" content="2026-08-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-17T16:14:05.050Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%801.png">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word"></div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/6.png" alt="生产实习笔记（四）">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">生产实习笔记（四）</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、语音识别介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">2、语音识别准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E7%8E%B0%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB"><span class="toc-text">3、实现语音识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%8C%87%E4%BB%A4"><span class="toc-text">4、添加语音识别指令</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-生产实习笔记（四）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-08-12T16:00:00.000Z" itemprop="datePublished">2026-08-13</time>
+    <time style="display: none;" id="post-update-time">2026-08-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="1、语音识别介绍"><a href="#1、语音识别介绍" class="headerlink" title="1、语音识别介绍"></a>1、语音识别介绍</h2><p>语音识别（Automatic Speech Recognition，简称ASR）是将人类语音转换为文本或指令的计算机技术，广泛应用于智能设备、医疗、汽车等领域。</p>
+<p>语音识别通过麦克风采集语音信号，经过信号处理（降噪、分帧）、特征提取（如MFCC）、声学模型映射到音素单元，并结合语言模型预测词序，最终转换为文本。现代技术多采用深度学习模型（如RNN、Transformer）提升识别精度。</p>
+<p>本项目使用的语音识别技术是科大讯飞的一个离线语音识别库。</p>
+<p>本项目语音识别逻辑：Ubuntu上运行科大讯飞离线语音识别程序，开发板上运行录音程序，通过网络将音频文件传输到Ubuntu中的科大讯飞语言识别程序，语音识别程序将识别结果(编号)发给开发板，开发板根据返回的结果来执行对应的操作</p>
+<h2 id="2、语音识别准备工作"><a href="#2、语音识别准备工作" class="headerlink" title="2、语音识别准备工作"></a>2、语音识别准备工作</h2><p>为Ubuntu安装32为程序库(这个过程需要联网)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.Windows联网(Wifi或者网线)</span><br><span class="line">2.打开虚拟机，运行Ubuntu</span><br><span class="line">3.点击虚拟机菜单栏中的&quot;虚拟机&quot;，选择&quot;设置&quot;，会弹出一个虚拟机设置对话框</span><br><span class="line">4.设置对话框一共有两页：硬件 和 选项，点击&quot;硬件&quot;，找到&quot;网络适配器&quot;</span><br><span class="line">5.将网络连接方式设置为&quot;桥接模式&quot;，将设备状态中的两个勾都选上，点击“确定”进行保存</span><br><span class="line">6.等Ubuntu右侧的网络图标消失以后重新显示</span><br><span class="line">7.打开一个终端，在终端中输入以下命令来更新软件列表</span><br><span class="line">	sudo apt update</span><br><span class="line">	密码：123456  并且在输入密码的时候不会有任何字符的显示</span><br><span class="line">	如果在访问网络的时候提示的是一些 &quot;命中&quot; 等提示词，而不是&quot;错误&quot;和&quot;无法解释域名&quot;等这样的提		示，就可以了</span><br><span class="line">8.给Ubuntu安装32为程序库：</span><br><span class="line">	sudo apt install libc6-i386</span><br><span class="line">	等待安装完成，不要出现&quot;错误&quot;和&quot;无法解析域名&quot;的错误提示，如果提示&quot;无法获取锁&quot;类似的提示，那么就重启Ubuntu就可以了！</span><br></pre></td></tr></table></figure>
+
+<p>设置Windows、Ubuntu、开发板的网络实现联通：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.检查电脑有没有接网线的地方，如果有，就用网线将电脑和开发板连接；如果没有网线接口，Windows连接教室里面的Wifi，开发板连接教师里面的交换机</span><br><span class="line">2.如果是用网线直接将电脑和开发板相连接，那么就需要先修改Windows的IP地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%801.png" alt="03修改WindowsIP地址1"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%802.png" alt="03修改WindowsIP地址2"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%803.png" alt="03修改WindowsIP地址3"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%804.png" alt="03修改WindowsIP地址4"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%805.png" alt="03修改WindowsIP地址5">	</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/03%E4%BF%AE%E6%94%B9WindowsIP%E5%9C%B0%E5%9D%806.png" alt="03修改WindowsIP地址6"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">3.修改开发板的IP地址</span><br><span class="line">	编辑开发板的配置文件</span><br><span class="line">		vi /etc/profile</span><br><span class="line">	将光标移动到&quot;ifconfig eth0 up&quot;这一行，按o键，新开一行并进入编辑模式，输入以下命令来修		改开发板的IP地址：</span><br><span class="line">		ifconfig eth0 192.168.10.202 up netmask 255.255.255.0</span><br><span class="line">	按Esc键，退出编辑模式，输入&quot;:wq&quot;保存并退出，重启开发板</span><br><span class="line">4.输入命令查看开发板的IP地址是否设置成功</span><br><span class="line">	ifconfig</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%80.png" alt="04设置开发板IP地址"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%802.png" alt="04设置开发板IP地址2"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">5.测试开发板和Windows的网络是否联通</span><br><span class="line">	在SecureCRT中输入以下命令：</span><br><span class="line">		ping 192.168.10.200</span><br><span class="line">		如果能显示以下信息，则网络是联通的</span><br><span class="line">			PING 192.168.10.200 (192.168.10.200): 56 data bytes</span><br><span class="line">            64 bytes from 192.168.10.200: seq=0 ttl=128 time=3.076 ms</span><br><span class="line">            64 bytes from 192.168.10.200: seq=1 ttl=128 time=1.590 ms</span><br><span class="line">            64 bytes from 192.168.10.200: seq=2 ttl=128 time=1.455 ms</span><br><span class="line">            64 bytes from 192.168.10.200: seq=3 ttl=128 time=1.434 ms</span><br><span class="line">            64 bytes from 192.168.10.200: seq=4 ttl=128 time=1.500 ms</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/04%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E6%9D%BFIP%E5%9C%B0%E5%9D%803.png" alt="04设置开发板IP地址3"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">6.查看Ubuntu的IP地址</span><br><span class="line">	在Ubuntu中打开一个终端，输入以下命令查看Ubuntu的IP地址：</span><br><span class="line">		ifconfig</span><br><span class="line">		以下信息就是Ubuntu的IP地址：</span><br><span class="line">			inet 192.168.10.201</span><br><span class="line">	如果没有显示Ubuntu的IP地址，那么就手动修改Ubuntu的ip地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/05%E6%9F%A5%E7%9C%8BUbuntuIP%E5%9C%B0%E5%9D%80.png" alt="05查看UbuntuIP地址"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%80.png" alt="07设置UbuntuIP地址"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%802.png" alt="07设置UbuntuIP地址2"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%803.png" alt="07设置UbuntuIP地址3"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">7.查看Ubuntu和开发板的网络是否通畅</span><br><span class="line">	在Ubuntu的终端中输入以下命令：</span><br><span class="line">		ping 192.168.10.202</span><br><span class="line">		如果提示的是以下信息，则说明Ubuntu和开发板无法通信，网络连接失败：</span><br><span class="line">			From 192.168.10.201 icmp_seq=1 Destination Host Unreachable</span><br><span class="line">		常见的原因有：</span><br><span class="line">			情况一：用网线连接开发板与电脑，但是没有关闭Wifi</span><br><span class="line">				解决办法：关闭Wifi，设置Ubuntu的IP地址，重启Ubuntu的网络</span><br><span class="line">			情况二：使用Wifi连接路由器，开发板连接交换机的方式组网，有可能因为IP地址被占用导					致无法联网</span><br><span class="line">				解决办法：修改Windows或者开发板的IP地址</span><br><span class="line">			情况三：防火墙拦截了</span><br><span class="line">				解决办法：关闭防火墙</span><br><span class="line">		如果提示的是以下信息，则说明Ubuntu和开发板可以通信了：</span><br><span class="line">			64 bytes from 192.168.10.202: icmp_seq=1 ttl=64 time=1.51 ms</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/06%E6%B5%8B%E8%AF%95Ubuntu%E5%92%8C%E5%BC%80%E5%8F%91%E6%9D%BF%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E9%80%9A%E7%95%85.png" alt="06测试Ubuntu和开发板网络是否通畅"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/07%E8%AE%BE%E7%BD%AEUbuntuIP%E5%9C%B0%E5%9D%804.png" alt="07设置UbuntuIP地址4"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">8.测试开发板能否和Ubuntu通信</span><br><span class="line">	在SecureCRT中输入以下命令：</span><br><span class="line">		ping 192.168.10.210</span><br><span class="line">		如果提示以下信息，则可以通信：</span><br><span class="line">			64 bytes from 192.168.10.210: seq=0 ttl=64 time=1.656 ms</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/08%E5%BC%80%E5%8F%91%E6%9D%BF%E5%92%8CUbuntu%E9%80%9A%E4%BF%A1.png" alt="08开发板和Ubuntu通信"></p>
+<h2 id="3、实现语音识别"><a href="#3、实现语音识别" class="headerlink" title="3、实现语音识别"></a>3、实现语音识别</h2><p>在Ubuntu中运行语音识别服务端(科大讯飞语音识别程序)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.将环境中 &quot;语音识别&quot; 这个文件夹拷贝到共享目录中去</span><br><span class="line">2.将Ubuntu中的系统时间修改为 &quot;2017-1-1&quot;，命令如下：</span><br><span class="line">	先禁用自动更新时间的服务：</span><br><span class="line">        停止systemd-timesyncd服务：</span><br><span class="line">            sudo systemctl stop systemd-timesyncd</span><br><span class="line">        禁用systemd-timesyncd服务：</span><br><span class="line">            sudo systemctl disable systemd-timesyncd</span><br><span class="line">  	设置系统时间：</span><br><span class="line">  		sudo date -s &quot;2017-1-1&quot;</span><br><span class="line">  	查看系统时间有没有修改成功：</span><br><span class="line">  		date</span><br><span class="line">2.在Ubuntu中找到该共享文件夹，并运行该目录中 &quot;x86/bin/asr_record_demo&quot;</span><br><span class="line">	cd /mnt/hgfs/Share/环境/语音识别/x86/bin/</span><br><span class="line">	./asr_record_demo</span><br><span class="line">	如果提示：</span><br><span class="line">		离线识别语法网络构建完成，开始识别...</span><br><span class="line">		wait for connecting ...</span><br><span class="line">        则语音识别服务程序运行成功</span><br></pre></td></tr></table></figure>
+
+<p>将语音识别需要用到的库文件以及录音程序传输到开发板上去：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.找一个128G以下的U盘，创建一个文件夹，以英文或者数字命名</span><br><span class="line">2.将环境中的 &quot;alsa_arm.tar.xz&quot; 这个文件拷贝到该目录中去</span><br><span class="line">3.将U盘插入开发板的USB口</span><br><span class="line">4.在SecureCRT中输入命令切换路径到U盘目录</span><br><span class="line">	cd /mnt/udisk/</span><br><span class="line">	ls</span><br><span class="line">	如果能够查看到U盘中的文件，则U盘挂载成功，否则换一个U盘(128G以下)</span><br><span class="line">5.将U盘中 &quot;alsa_arm.tar.xz&quot; 这个文件拷贝到开发板的小组目录</span><br><span class="line">	如：</span><br><span class="line">		cp /mnt/udisk/alsa_arm.tar.xz /</span><br><span class="line">6.将这个压缩文件解压到指定的路径中</span><br><span class="line">	cd /</span><br><span class="line">    tar xvf alsa_arm.tar.xz -C /usr/local</span><br><span class="line">	等待解压完成，输入以下命令查看是否解压成功</span><br><span class="line">		ls /usr/local</span><br><span class="line">		如果能够看到alsa_arm这个文件夹，那么就成功了</span><br><span class="line">	将录音程序的库文件夹以及可执行文件夹添加到环境变量中去：</span><br><span class="line">		vi /etc/profile</span><br><span class="line">		将光标移动到最后一行，按o键新开一行并进入编辑模式，输入以下内容：</span><br><span class="line">			export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/alsa_arm/lib</span><br><span class="line">			export PATH=$PATH:/usr/local/alsa_arm/bin</span><br><span class="line">			以上这两行命令不要手动输，复制，右键粘贴就可以了</span><br><span class="line">		按Esc键退出编辑模式，输入&quot;:wq&quot;保存并退出</span><br><span class="line">		重启开发板</span><br><span class="line">	测试录音程序是否能够正常使用，输入以下命令：</span><br><span class="line">		arecord -d3 -c1 -r16000 -traw -fS16_LE cmd.pcm</span><br><span class="line">		就会运行录音程序开始录音，录音完成以后会生成一个 cmd.pcm 的音频文件</span><br><span class="line">		将这个音频文件发送给科大讯飞的语音识别服务器就可以进行识别了！</span><br></pre></td></tr></table></figure>
+
+<p>语音识别的代码分成两个部分：</p>
+<p>​	服务端：用来对语音进行识别，并将结果返回给终端</p>
+<p>​		服务端的代码是由科大讯飞提供的，不需要修改，源代码所在路径为：</p>
+<p>​			环境\语音识别\x86\examples\asr_record_demo</p>
+<p>​		可执行文件路径：</p>
+<p>​			环境\语音识别\x86\bin\asr_record_demo</p>
+<p>​		服务端是在Ubuntu中运行的！</p>
+<p>​	客户端(开发板)：用来录音，将录音文件发给服务端，接收服务端的识别结果，做出相应的操作</p>
+<p>​		客户端的代码需要自己去实现，有一个演示代码，源代码路径为：</p>
+<p>​			环境\语音识别\gec6818</p>
+<p>​			其中voicectl.c就是主程序所在文件</p>
+<p>​			common.c存放了一些功能实现的函数</p>
+<p>​			inc目录中存放的是一些头文件</p>
+<p>​			lib目录中存放的是一些库文件</p>
+<p>​			Makefile文件是进行自动化编译的配置文件</p>
+<p>​		可执行文件的路径名为：</p>
+<p>​			环境\语音识别\gec6818\voicectl</p>
+<p>语音识别的操作流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.在Ubuntu中运行服务端</span><br><span class="line">2.将语音识别客户端的可执行文件传输到开发板上去</span><br><span class="line">3.运行客户端，并指定服务器的IP地址</span><br></pre></td></tr></table></figure>
+
+<p>修改系统时间：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B0.png" alt="09语音识别流程0"></p>
+<p>查看Ubuntu的IP地址：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B1.png" alt="09语音识别流程1"></p>
+<p>运行服务端：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B2.png" alt="09语音识别流程2"></p>
+<p>传输客户端程序到开发板上去：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B3.png" alt="09语音识别流程3"></p>
+<p>运行客户端进行语音识别：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day3/09%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B4.png" alt="09语音识别流程4"></p>
+<h2 id="4、添加语音识别指令"><a href="#4、添加语音识别指令" class="headerlink" title="4、添加语音识别指令"></a>4、添加语音识别指令</h2><p>编辑 “环境\语音识别\x86\bin\cmd.bnf” 这个配置文件，以记事本打开</p>
+<p>每一条指令由两个部分组成：命令对应的文本!id(命令编号)，如：</p>
+<p>​	开灯!id(666)</p>
+<p>​	当通过语音识别之后的文本为开灯，那么服务器就会返回666这个编号给客户端！</p>
+<p>​	所以，开发板就会收到666这个编号，然后根据这个编号去执行对应的操作，如开灯</p>
+<p>指令与指令之间用 ‘|’ 来隔开，如：</p>
+<p>​	开灯!id(666)|关灯!id(777)</p>
+<p>完整的指令列表示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;cmd&gt;:加速!id(1)|快一点!id(1)|太慢了!id(1)|减速!id(2)|降速!id(2)|慢一点!id(2)|太快了!id(2)|开灯!id(3)|关窗!id(4)|关门!id(5)|关灯!id(6)|今天天气怎么样!id(7)|今天天气!id(7)|天气!id(7)|小爱!id(100)|小爱小爱!id(100)|小爱同学!id(100)|退出!id(999)|不玩了!id(999);</span><br></pre></td></tr></table></figure>
+
+<p>所以如果需要添加指令或者删除一些指令，就可以直接编辑这个配置文本就可以了</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag" title="Linux">Linux</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（三）" class="lazyload">
+      <a href="/2026/08/12/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" aria-label="后一篇: 生产实习笔记（三）"  title="后一篇: 生产实习笔记（三）"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          生产实习笔记（三）
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        12.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:51
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、语音识别介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">2、语音识别准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E7%8E%B0%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB"><span class="toc-text">3、实现语音识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%8C%87%E4%BB%A4"><span class="toc-text">4、添加语音识别指令</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" loading="lazy" decoding="async" fetchpriority="low"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "生产实习笔记（四）",
+          url: "https://yt33-17.github.io/2026/08/13/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/",
+          excerpt: "",
+          description: "语音识别",
+          stripContent: "1、语音识别介绍语音识别（Automatic Speech Recognition，简称ASR）是将人类语音转换为文本或指令的计算机技术，广泛应用于智能设备、医疗、汽车等领域。 语音识别通过麦克风采集语音信号，经过信号处理（降噪、分帧）、特征提取（如MFCC）、声学模型映射到音素单元，并结合语言模型预测词序，最终转换为文本。现代技术多采用深度学习模型（如RNN、Transformer）提升识别精度。 本项目使用的语音识别技术是科大讯飞的一个离线语音识别库。 本项目语音识别逻辑：Ubuntu上运行",
+          date: "Thu Aug 13 2026 00:00:00 GMT+0800",
+          updated: "Tue Aug 18 2026 00:14:05 GMT+0800",
+          cover: "/images/4.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"定格","artist":"欧杰;袁晓婕","url":"/music/定格.mp3","cover":"/images/nav-logo.jpg"},{"name":"一直很安静","artist":"阿桑","url":"/music/一直很安静.mp3","cover":"/images/nav-logo.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/晴天.mp3","cover":"/images/nav-logo.jpg"},{"name":"不负众望","artist":"陈婉菁","url":"/music/不负众望.mp3","cover":"/images/nav-logo.jpg"},{"name":"Sakura Tears","artist":"Nigel Silin","url":"/music/Sakura Tears.mp3","cover":"/images/nav-logo.jpg"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/春娇与志明.mp3","cover":"/images/nav-logo.jpg"},{"name":"蜚蜚","artist":"陈婉菁","url":"/music/蜚蜚.mp3","cover":"/images/nav-logo.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/枫.mp3","cover":"/images/nav-logo.jpg"},{"name":"海阔天空","artist":"BEYOND","url":"/music/海阔天空.mp3","cover":"/images/nav-logo.jpg"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/偏偏喜欢你.mp3","cover":"/images/nav-logo.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/七里香.mp3","cover":"/images/nav-logo.jpg"},{"name":"日落大道","artist":"梁博","url":"/music/日落大道.mp3","cover":"/images/nav-logo.jpg"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/身骑白马.mp3","cover":"/images/nav-logo.jpg"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/一生中最爱.mp3","cover":"/images/nav-logo.jpg"},{"name":"萤火飞光","artist":"圈9","url":"/music/萤火飞光.mp3","cover":"/images/nav-logo.jpg"},{"name":"勇气","artist":"梁静茹","url":"/music/勇气.mp3","cover":"/images/nav-logo.jpg"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: null || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

@@ -1,0 +1,654 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    生产实习笔记（三） | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="映射_显示图片_LED灯_蜂鸣器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产实习笔记（三）">
+<meta property="og:url" content="https://yt33-17.github.io/2026/08/12/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="映射_显示图片_LED灯_蜂鸣器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-17T16:13:31.572Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word"></div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/6.png" alt="生产实习笔记（三）">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">生产实习笔记（三）</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84"><span class="toc-text">1、内存映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E3%80%81mmap%EF%BC%9A"><span class="toc-text">1.1、mmap：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E3%80%81munmap%EF%BC%9A"><span class="toc-text">1.2、munmap：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-text">2、显示图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81BMP%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">3、BMP图片格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4、显示图片的代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E8%9C%82%E9%B8%A3%E5%99%A8"><span class="toc-text">5、蜂鸣器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E3%80%81%E5%AE%89%E8%A3%85%E8%9C%82%E9%B8%A3%E5%99%A8%E9%A9%B1%E5%8A%A8"><span class="toc-text">5.1、安装蜂鸣器驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E3%80%81%E8%9C%82%E9%B8%A3%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">5.2、蜂鸣器的使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81LED%E7%81%AF"><span class="toc-text">6、LED灯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E3%80%81%E5%AE%89%E8%A3%85LED%E7%81%AF%E9%A9%B1%E5%8A%A8"><span class="toc-text">6.1、安装LED灯驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2%E3%80%81LED%E7%81%AF%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">6.2、LED灯的使用方法</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-生产实习笔记（三）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-08-11T16:00:00.000Z" itemprop="datePublished">2026-08-12</time>
+    <time style="display: none;" id="post-update-time">2026-08-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="1、内存映射"><a href="#1、内存映射" class="headerlink" title="1、内存映射"></a>1、内存映射</h2><p>将一个文件或者设备映射到内存中去，即，在内存中分配一块存储空间，这个空间的大小通常等于文件的大小，文件中的每个存储单元在内存中都能找到一一与之映射的存储单元。原来需要通过文件IO来访问的操作，可以直接通过内存来访问，大大地提高数据的访问速度！</p>
+<p>使用mmap()函数来建立映射，使用munmap()函数来解除映射释放内存。</p>
+<h3 id="1-1、mmap："><a href="#1-1、mmap：" class="headerlink" title="1.1、mmap："></a>1.1、mmap：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	mmap, munmap - map or unmap files or devices into memory</span><br><span class="line">					将文件或者设备映射到内存中去</span><br><span class="line">					</span><br><span class="line">函数原型：</span><br><span class="line">	void *mmap(void *addr, size_t length, int prot, int flags,</span><br><span class="line">                  int fd, off_t offset);</span><br><span class="line">                  </span><br><span class="line">参数：</span><br><span class="line">	addr：是一个通用指针，用来指向一个内存地址，用来指定从内存的哪个位置开始分配存储空间</span><br><span class="line">		通常设置为 NULL，让系统自行分配存储空间</span><br><span class="line">	</span><br><span class="line">	length：映射区的长度，指定要分配多少个字节的存储空间</span><br><span class="line">		通常和文件大小一致</span><br><span class="line">		</span><br><span class="line">	prot：指定对映射区的访问权限，有以下值可选</span><br><span class="line">		PROT_EXEC	可执行</span><br><span class="line">       	PROT_READ	可读</span><br><span class="line">       	PROT_WRITE	可写</span><br><span class="line">		如果要表示可读并且可写，就需要使用位运算符来实现，如：</span><br><span class="line">			PROT_READ|PROT_WRITE</span><br><span class="line">		通常权限和文件在打开时的权限是一样的，</span><br><span class="line">		因此，文件在打开的时候也通常要是以可读可写的权限打开</span><br><span class="line">	</span><br><span class="line">	flags：设置共享模式，有以下值可选</span><br><span class="line">		MAP_SHARED	共享模式，该模式下，修改了映射区的数据会自动同步到文件中去</span><br><span class="line">		MAP_PRIVATE	私有模式，该模式下，修改了映射区的数据不会同步到文件中去</span><br><span class="line">		通常设置为 MAP_SHARED 模式</span><br><span class="line">		</span><br><span class="line">	fd：文件描述符，指定要将哪个文件或者设备映射到内存中去</span><br><span class="line">	</span><br><span class="line">	offset：文件偏移量，指定从文件的哪个位置开始映射，以页为单位(1页=4Kb)</span><br><span class="line">		通常设置为0</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	On  success,  mmap()  returns a pointer to the mapped area.  </span><br><span class="line">	On error, the value MAP_FAILED (that is, (void *) -1) is returned, and errno is set to indicate the cause of the error.</span><br><span class="line">	成功，返回一个指向映射区首地址的指针</span><br><span class="line">	失败，返回 MAP_FAILED ，同时errno被设置</span><br><span class="line">	</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;sys/mman.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2、munmap："><a href="#1-2、munmap：" class="headerlink" title="1.2、munmap："></a>1.2、munmap：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	mmap, munmap - map or unmap files or devices into memory</span><br><span class="line">					解除映射关系，释放内存</span><br><span class="line">					</span><br><span class="line">函数原型：</span><br><span class="line">	int munmap(void *addr, size_t length);</span><br><span class="line">                  </span><br><span class="line">参数：</span><br><span class="line">	addr：是一个通用指针，指向要释放的映射区首地址</span><br><span class="line">	</span><br><span class="line">	length：用来指定要释放的内存大小</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	On success, munmap() returns 0.  </span><br><span class="line">	On failure, it returns -1, and errno is set to indicate the cause of the error (probably to EINVAL).</span><br><span class="line">	成功，返回0</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">	</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;sys/mman.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、显示图片"><a href="#2、显示图片" class="headerlink" title="2、显示图片"></a>2、显示图片</h2><p>图片通常指图片文件，图片文件中存储了图片的信息以及图片上所有像素点的颜色值</p>
+<p>所以，要显示图片只需要将图片中所有像素点的颜色值读取出来并显示到屏幕上就可以了</p>
+<p>事实上没这么简单，图片有很多的格式，不同的图片格式在保存数据的时候采用的算法不同，<br>所以，针对不同的图片格式需要用不同的算法来处理！</p>
+<p>其中有些图片格式还涉及压缩算法，需要用第三方库来进行解压缩</p>
+<p>常见的图片格式有：jpg jpeg png bmp gif等</p>
+<p>其中有一种图片格式比较特殊，它通常没有压缩算法，这种图片格式就是bmp图片格式</p>
+<h2 id="3、BMP图片格式"><a href="#3、BMP图片格式" class="headerlink" title="3、BMP图片格式"></a>3、BMP图片格式</h2><p>一张BMP图片，其内部由4个部分组成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BITMAP头：存放了图片文件的信息，如：魔数、大小等</span><br><span class="line">DIB头：存放了图片的信息，如：宽度、高度、色深等</span><br><span class="line">调色板：只存在于低位的BMP图片中，常见的24位和32位BMP图片中不存在调色板</span><br><span class="line">像素数组：存放了图片上所有像素点的颜色值</span><br></pre></td></tr></table></figure>
+
+<p>在解析BMP图片的时候，会用到以下的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">魔数：用来标识BMP和DIB文件的，如果是BMP图片，魔数值为0x4D42</span><br><span class="line">	文件偏移量：0x00</span><br><span class="line">	数据大小：2字节</span><br><span class="line">	</span><br><span class="line">像素数组的文件偏移量：保存了像素数组在文件中的位置</span><br><span class="line">	文件偏移量：0x0A</span><br><span class="line">	数据大小：4字节</span><br><span class="line">	</span><br><span class="line">宽度：存储了图片的宽度值，单位为像素点个数</span><br><span class="line">	文件偏移量：0x12</span><br><span class="line">	数据大小：4字节</span><br><span class="line">	宽度值可正可负，如果为正数，则表示图片是从左往右存储的</span><br><span class="line">	如果为负数，则表示图片是从右往左存储的</span><br><span class="line">	</span><br><span class="line">高度：存储了图片的高度值，单位为像素点个数</span><br><span class="line">	文件偏移量：0x16</span><br><span class="line">	数据大小：4字节</span><br><span class="line">	高度值可正可负，如果为正数，则表示图片是从下往上存储的</span><br><span class="line">	如果为负数，则表示图片是从上往下存储的</span><br><span class="line"></span><br><span class="line">色深：存储了图片上每个像素点颜色值是用多少位数据来保存的</span><br><span class="line">	文件偏移量：0x1C</span><br><span class="line">	数据大小：2字节</span><br><span class="line">	常见的有24位和32位，24位表示每个像素点颜色值用3个字节数据来存储(bgr)</span><br><span class="line">	32位表示每个像素点颜色值用4个字节数据来存储(bgra)</span><br><span class="line">	注意：</span><br><span class="line">		图片文件中的像素点颜色值的颜色分量排列顺序为 bgra</span><br><span class="line">		帧缓冲设备文件中像素点颜色值的颜色分量排列顺序为 argb</span><br><span class="line">		所以，从图片文件中读取到的颜色值不能直接显示，否则颜色就会错误</span><br><span class="line">		</span><br><span class="line">注意：</span><br><span class="line">	为了提高数据访问速度，在存储图片颜色时，采用了字节对齐的方式</span><br><span class="line">	每一行数据的总字节数要是4的整数倍，如果不是4的整数倍，那么就填充若干个自己的数据，让其变为4的整数倍，如：</span><br><span class="line">		假设图片的色深为 24位，宽度为 101，高度为 100</span><br><span class="line">		那么一行像素点颜色值的有效数据大小为：101 * 24/8 = 303个字节</span><br><span class="line">		显然303不是4的整数倍，那么会在后面填充 4-303%4 = 1 个字节的数据</span><br><span class="line">		没一行都会填充1个字节数据，总共有100行，所以，该图片像素数组的大小为：</span><br><span class="line">			(101*24/8+1)*100</span><br><span class="line">			</span><br><span class="line">	总结公式为：</span><br><span class="line">		每一行填充的字节数为： (4 - (宽度*色深/8)%4)%4</span><br><span class="line">		像素数组大小：(每一行的有效字节数+填充字节数)*高度</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、显示图片的代码实现"><a href="#4、显示图片的代码实现" class="headerlink" title="4、显示图片的代码实现"></a>4、显示图片的代码实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">初始化LCD显示屏</span><br><span class="line">打开图片文件</span><br><span class="line">读取图片的属性信息(魔数、像素数组的文件偏移量、宽度、高度、色深)</span><br><span class="line">计算填充字节数、像素数组大小</span><br><span class="line">读取像素数组数据</span><br><span class="line">遍历图片上的每个像素点</span><br><span class="line">获取每个像素点的4个颜色分量(b,g,r,a)</span><br><span class="line">将颜色分量按照argb的顺序重新排列组合成一个颜色，显示到屏幕上</span><br><span class="line">每显示完一行像素点，跳过后面填充的字节数</span><br><span class="line">关闭图片文件</span><br><span class="line">关闭LCD显示屏</span><br></pre></td></tr></table></figure>
+
+<p>问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示的图片上下颠倒了，是什么原因？怎么解决？</span><br></pre></td></tr></table></figure>
+
+<p>任务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">将显示图片的代码封装成一个函数：</span><br><span class="line">	/************************************************</span><br><span class="line">     * 功能：在指定的位置显示BMP图片</span><br><span class="line">     * 返回值：无</span><br><span class="line">     * 参数：</span><br><span class="line">     *      x0,y0：图片左上顶点的坐标</span><br><span class="line">     *      pic_path：要显示的图片的路径名</span><br><span class="line">    *************************************************/</span><br><span class="line">    void lcdShowBMP(int x0,int y0,char *path_name);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、蜂鸣器"><a href="#5、蜂鸣器" class="headerlink" title="5、蜂鸣器"></a>5、蜂鸣器</h2><h3 id="5-1、安装蜂鸣器驱动"><a href="#5-1、安装蜂鸣器驱动" class="headerlink" title="5.1、安装蜂鸣器驱动"></a>5.1、安装蜂鸣器驱动</h3><p>​    将 环境&#x2F;LED灯_蜂鸣器驱动&#x2F;pwm.ko 将这个驱动文件通过rx命令传输到开发板的根目录<br>​	以下操作在开发板中执行：<br>​        cd &#x2F;<br>​        rx pwm.ko    </p>
+<pre><code>传输完成以后执行以下的步骤：
+    vi /etc/profile
+    将光标移动到 source /IOT/driver_ko/insmod_driver.sh 这一行的前一行
+    按 i 键，进入编辑模式，按回车键新开一行，写入以下命令
+        insmod /pwm.ko
+    如果不想让开发板一启动就运行演示程序，将以下两行代码注释掉：
+        cd /IOT
+        ./iot
+        在这两个的行首加上一个#就可以了，如：
+            # cd /IOT
+            # ./iot
+    按ESC键，退出模式
+    输入&quot;:wq&quot;进行保存并退出，注意输入法要切换成英文输入法
+    重启开发板，查看驱动是否自动安装完成    =&gt;  pwm
+</code></pre>
+<h3 id="5-2、蜂鸣器的使用方法"><a href="#5-2、蜂鸣器的使用方法" class="headerlink" title="5.2、蜂鸣器的使用方法"></a>5.2、蜂鸣器的使用方法</h3><p>​    打开蜂鸣器设备文件(&#x2F;dev&#x2F;pwm)<br>​    写入控制命令：一个字节的数据，1表示工作，0表示停止<br>​    关闭蜂鸣器设备文件</p>
+<h2 id="6、LED灯"><a href="#6、LED灯" class="headerlink" title="6、LED灯"></a>6、LED灯</h2><h3 id="6-1、安装LED灯驱动"><a href="#6-1、安装LED灯驱动" class="headerlink" title="6.1、安装LED灯驱动"></a>6.1、安装LED灯驱动</h3><p>​    和蜂鸣器驱动安装步骤类似，只是LED驱动的名称为：led_drv.ko</p>
+<pre><code>将 环境/LED灯_蜂鸣器驱动/led_drv.ko 这个驱动文件通过rx命令传输到开发板的根目录，以下操作在开发板中执行：
+    cd /
+    rx led_drv.ko
+
+传输完成以后执行以下的步骤：
+    vi /etc/profile
+    将光标移动到 source /IOT/driver_ko/insmod_driver.sh 这一行的行首
+    按 i 键，进入编辑模式，按回车键新开一行，写入以下命令
+        insmod /led_drv.ko
+    按ESC键，退出模式
+    输入&quot;:wq&quot;进行保存并退出，注意输入法要切换成英文输入法
+    重启开发板，查看驱动是否自动安装完成    =&gt;   led_drv
+</code></pre>
+<h3 id="6-2、LED灯的使用方法"><a href="#6-2、LED灯的使用方法" class="headerlink" title="6.2、LED灯的使用方法"></a>6.2、LED灯的使用方法</h3><p>​    打开LED设备文件(&#x2F;dev&#x2F;led_drv)<br>​    写入控制命令：一共有两字节的数据 char cmd[2] &#x3D; {data0,data1};<br>​                data0：用来控制LED灯的状态，1表示点亮，0表示熄灭<br>​                data1：用来控制LED灯的序号<br>​                    在开发板的右侧(屏幕下面)有4个LED灯，分别是D7<del>D10<br>​                    D7被占用了，通常控制不了，因此能够使用的是D8</del>D10<br>​                    对应的编号就是8~10<br>​    关闭LED设备文件</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag" title="Linux">Linux</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（四）" class="lazyload">
+        <a href="/2026/08/13/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" aria-label="前一篇: 生产实习笔记（四）" title="前一篇: 生产实习笔记（四）"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            生产实习笔记（四）
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（二）" class="lazyload">
+      <a href="/2026/08/11/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" aria-label="后一篇: 生产实习笔记（二）"  title="后一篇: 生产实习笔记（二）"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          生产实习笔记（二）
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        12.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:51
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84"><span class="toc-text">1、内存映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E3%80%81mmap%EF%BC%9A"><span class="toc-text">1.1、mmap：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E3%80%81munmap%EF%BC%9A"><span class="toc-text">1.2、munmap：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-text">2、显示图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81BMP%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">3、BMP图片格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4、显示图片的代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E8%9C%82%E9%B8%A3%E5%99%A8"><span class="toc-text">5、蜂鸣器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E3%80%81%E5%AE%89%E8%A3%85%E8%9C%82%E9%B8%A3%E5%99%A8%E9%A9%B1%E5%8A%A8"><span class="toc-text">5.1、安装蜂鸣器驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E3%80%81%E8%9C%82%E9%B8%A3%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">5.2、蜂鸣器的使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81LED%E7%81%AF"><span class="toc-text">6、LED灯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E3%80%81%E5%AE%89%E8%A3%85LED%E7%81%AF%E9%A9%B1%E5%8A%A8"><span class="toc-text">6.1、安装LED灯驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2%E3%80%81LED%E7%81%AF%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">6.2、LED灯的使用方法</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" loading="lazy" decoding="async" fetchpriority="low"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "生产实习笔记（三）",
+          url: "https://yt33-17.github.io/2026/08/12/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/",
+          excerpt: "",
+          description: "映射_显示图片_LED灯_蜂鸣器",
+          stripContent: "1、内存映射将一个文件或者设备映射到内存中去，即，在内存中分配一块存储空间，这个空间的大小通常等于文件的大小，文件中的每个存储单元在内存中都能找到一一与之映射的存储单元。原来需要通过文件IO来访问的操作，可以直接通过内存来访问，大大地提高数据的访问速度！ 使用mmap()函数来建立映射，使用munmap()函数来解除映射释放内存。 1.1、mmap：12345678910111213141516171819202122232425262728293031323334353637383940414",
+          date: "Wed Aug 12 2026 00:00:00 GMT+0800",
+          updated: "Tue Aug 18 2026 00:13:31 GMT+0800",
+          cover: "/images/4.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"定格","artist":"欧杰;袁晓婕","url":"/music/定格.mp3","cover":"/images/nav-logo.jpg"},{"name":"一直很安静","artist":"阿桑","url":"/music/一直很安静.mp3","cover":"/images/nav-logo.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/晴天.mp3","cover":"/images/nav-logo.jpg"},{"name":"不负众望","artist":"陈婉菁","url":"/music/不负众望.mp3","cover":"/images/nav-logo.jpg"},{"name":"Sakura Tears","artist":"Nigel Silin","url":"/music/Sakura Tears.mp3","cover":"/images/nav-logo.jpg"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/春娇与志明.mp3","cover":"/images/nav-logo.jpg"},{"name":"蜚蜚","artist":"陈婉菁","url":"/music/蜚蜚.mp3","cover":"/images/nav-logo.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/枫.mp3","cover":"/images/nav-logo.jpg"},{"name":"海阔天空","artist":"BEYOND","url":"/music/海阔天空.mp3","cover":"/images/nav-logo.jpg"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/偏偏喜欢你.mp3","cover":"/images/nav-logo.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/七里香.mp3","cover":"/images/nav-logo.jpg"},{"name":"日落大道","artist":"梁博","url":"/music/日落大道.mp3","cover":"/images/nav-logo.jpg"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/身骑白马.mp3","cover":"/images/nav-logo.jpg"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/一生中最爱.mp3","cover":"/images/nav-logo.jpg"},{"name":"萤火飞光","artist":"圈9","url":"/music/萤火飞光.mp3","cover":"/images/nav-logo.jpg"},{"name":"勇气","artist":"梁静茹","url":"/music/勇气.mp3","cover":"/images/nav-logo.jpg"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: null || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

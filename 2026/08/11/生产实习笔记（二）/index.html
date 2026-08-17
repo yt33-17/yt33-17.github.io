@@ -1,0 +1,685 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    生产实习笔记（二） | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="GEC6818开发板的使用_文件IO_显示颜色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产实习笔记（二）">
+<meta property="og:url" content="https://yt33-17.github.io/2026/08/11/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="GEC6818开发板的使用_文件IO_显示颜色">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/02%E8%AE%BE%E7%BD%AE%E4%B8%B2%E5%8F%A3%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/03%E4%B8%B2%E5%8F%A3%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E6%83%85%E5%86%B5%E4%B8%80.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%871.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%872.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%874.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%873.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%875.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%876.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%877.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/03%E4%B8%B2%E5%8F%A3%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E6%83%85%E5%86%B5%E4%BA%8C.png">
+<meta property="article:published_time" content="2026-08-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-17T16:12:48.656Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/02%E8%AE%BE%E7%BD%AE%E4%B8%B2%E5%8F%A3%E5%B1%9E%E6%80%A7.png">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word"></div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/6.png" alt="生产实习笔记（二）">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">生产实习笔记（二）</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81GEC6818%E5%BC%80%E5%8F%91%E6%9D%BF%E7%AE%80%E4%BB%8B"><span class="toc-text">1、GEC6818开发板简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81GEC6818%E5%BC%80%E5%8F%91%E6%9D%BF%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">2、GEC6818开发板的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%88%B0%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%8E%BB"><span class="toc-text">3、传输文件到开发板上去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%96%87%E4%BB%B6"><span class="toc-text">4、运行程序文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%96%87%E4%BB%B6IO"><span class="toc-text">5、文件IO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E3%80%81open%EF%BC%9A"><span class="toc-text">5.1、open：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E3%80%81close%EF%BC%9A"><span class="toc-text">5.2、close：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E3%80%81read%EF%BC%9A"><span class="toc-text">5.3、read：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E3%80%81write%EF%BC%9A"><span class="toc-text">5.4、write：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E3%80%81lseek%EF%BC%9A"><span class="toc-text">5.5、lseek：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2"><span class="toc-text">6、在屏幕上显示颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E7%94%A8%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2%E5%80%BC"><span class="toc-text">7、用代码如何在屏幕上显示颜色值</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-生产实习笔记（二）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-08-10T16:00:00.000Z" itemprop="datePublished">2026-08-11</time>
+    <time style="display: none;" id="post-update-time">2026-08-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="1、GEC6818开发板简介"><a href="#1、GEC6818开发板简介" class="headerlink" title="1、GEC6818开发板简介"></a>1、GEC6818开发板简介</h2><p>GEC：广州粤嵌</p>
+<p>6818：开发板的型号，该开发板使用的处理器是三星S5P6818处理器<br>		该处理器的内核是ARM CORTEX A53<br>		所以，该开发板是一块ARM开发板，只能执行ARM指令集的程序</p>
+<h2 id="2、GEC6818开发板的使用"><a href="#2、GEC6818开发板的使用" class="headerlink" title="2、GEC6818开发板的使用"></a>2、GEC6818开发板的使用</h2><p>接线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.接电源线</span><br><span class="line">2.接数据线</span><br></pre></td></tr></table></figure>
+
+<p>电脑控制开发板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.如果在接数据线的时候，电脑上运行了虚拟机，那么在虚拟机中就会检测到新的USB设备，会弹出一个弹窗</span><br><span class="line">	选择连接到主机，不要勾选不再提示。</span><br><span class="line"></span><br><span class="line">2.电脑安装USB驱动</span><br><span class="line">	运行 “环境\USB驱动\ch341ser.exe”</span><br><span class="line">	点击 “安装” 进行安装，如果提示安装成功，就可以了</span><br><span class="line">	如果提示安装失败，就先卸载，再安装</span><br><span class="line">	</span><br><span class="line">3.打开设备管理器查看串口号(端口号)</span><br><span class="line">	在Windos的搜索栏中输入 “设备管理器”，来打开设备管理器，或者右键桌面上的此电脑，选择“管理”，打开设备管理器</span><br><span class="line">	找到 “端口” 这一项，如果没有，则说明数据线没接，或者虚拟机中没有选择连接到主机，或者USB驱动没有安装成功</span><br><span class="line">	在端口这一项中，有一个名为 USB-SERIAL CH340 的设备，这个设备的后面就是所对应的端口号，如COM4</span><br><span class="line">	</span><br><span class="line">4.将 “环境\SecureCRT6.5.zip” 这个压缩包进行解压，会生成一个名为SecureCRT的文件夹</span><br><span class="line">	打开该文件夹，运行其中的 SecureCRT.exe</span><br><span class="line">	</span><br><span class="line">5.如果是第一次运行该程序，会弹出一个 “快速连接” 的窗口，如果不是第一次运行或者没有弹出快速连接窗口的话，可以点击工具栏中的快速连接图标，打开快速连接，并设置串口的以下属性：</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/02%E8%AE%BE%E7%BD%AE%E4%B8%B2%E5%8F%A3%E5%B1%9E%E6%80%A7.png" alt="02设置串口属性"></p>
+<p>点击连接以后，有可能会成功，有可能会失败，常见失败的情况有：</p>
+<p>情况一：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/03%E4%B8%B2%E5%8F%A3%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E6%83%85%E5%86%B5%E4%B8%80.png" alt="03串口连接失败情况一"></p>
+<p>解决办法：先将串口的波特率降低到9600，连接成功以后，再恢复到115200，具体操作如下</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%871.png" alt="04调节波特率1"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%872.png" alt="04调节波特率2"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%874.png" alt="04调节波特率4"><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%873.png" alt="04调节波特率3"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%875.png" alt="04调节波特率5"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%876.png" alt="04调节波特率6"></p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/04%E8%B0%83%E8%8A%82%E6%B3%A2%E7%89%B9%E7%8E%877.png" alt="04调节波特率7"></p>
+<p>情况二：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day2/03%E4%B8%B2%E5%8F%A3%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E6%83%85%E5%86%B5%E4%BA%8C.png" alt="03串口连接失败情况二"></p>
+<p>解决办法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.检查串口线是否连接到电脑</span><br><span class="line">2.检查虚拟机中是否检测到新的USB设备，没有选择连接到主机</span><br><span class="line">3.打开设备管理器查看端口号，如果找不到，检测驱动是否安装成功</span><br><span class="line">	如果找到了，检测在设置串口属性时，是不是选错端口号了</span><br></pre></td></tr></table></figure>
+
+<p>连接成功了，有可能还是无法控制开发板，有以下情况：</p>
+<p>情况一：开发板开机以后会显示一个登录界面，并且在 SecureCRT 中输入命令无法执行，无法识别</p>
+<p>原因及解决办法：此时开发板正在运行一个演示程序，键盘上的输入都当做程序运行时的输入，<br>		按Ctr + C 可以结束正在运行的程序</p>
+<p>情况二：开机以后，键盘输入任何字符都没有反应</p>
+<p>原因及解决办法：可能是数据线断开了<br>		也有可能是开发板没有开机<br>		也有可能是波特率设置错误，检测波特率，设置为115200<br>		有可能是数据线接触不良，更换数据线</p>
+<h2 id="3、传输文件到开发板上去"><a href="#3、传输文件到开发板上去" class="headerlink" title="3、传输文件到开发板上去"></a>3、传输文件到开发板上去</h2><p>1.在SecureCRT中输入rx命令，让开发板进入接收文件的状态，用法如下<br>	rx 文件名<br>	如：<br>		rx hello</p>
+<p>​	输入完rx命令以后，开发板会进入接收文件状态，此时会提示 CCC…<br>​	每隔一段时间，就会添加一个C，如果长时间没有传输文件，就会传输失败<br>​	所以，在输入完rx命令以后，应该要尽快地将要传输的文件发送给开发板</p>
+<p>2.发送文件到开发板上去<br>	方法一：选中要发送的文件，拖拽到SecureCRT中，松开鼠标，选择“发送Xmodem”</p>
+<p>​	方法二：在SecureCRT的菜单栏中，找到“传输”，选择“发送Xmodem”，选择要发送的文件，点击发送</p>
+<p>​	等待文件的传输进度到100%，文件传输完成，按回车键结束文件传输</p>
+<p>​	方法三：使用U盘来传输文件，并不是所有U盘都能使用<br>​			将U盘插入电脑，将要传输的文件拷贝到U盘中<br>​			将U盘插入开发板的USB口，在SecureCRT中会加载U盘的信息<br>​			确认U盘是否自动挂载成功：<br>​				ls &#x2F;mnt&#x2F;udisk<br>​				如果能够列举出U盘中的文件，那么U盘挂载成功<br>​				否则，换个U盘再试</p>
+<p>​			将U盘中需要拷贝的文件拷贝到开发板中去：<br>​				cp &#x2F;mnt&#x2F;udisk&#x2F;文件名 拷贝到开发板的哪个位置<br>​				如：<br>​					cp &#x2F;mnt&#x2F;udisk&#x2F;hello &#x2F;<br>​					将U盘中的hello这个文件拷贝到开发板的根目录(&#x2F;)</p>
+<p>注意：开发板是一种嵌入式设备，所以它没有配置编译环境，因此开发板上无法编译代码<br>	但是它只能运行ARM指令集的程序文件，所以传输到开发板上去的通常是ARM版本的可执行文件或者图片、音视频、库文件等。</p>
+<h2 id="4、运行程序文件"><a href="#4、运行程序文件" class="headerlink" title="4、运行程序文件"></a>4、运行程序文件</h2><p>在运行开发板上的程序时，有可能会报错，如：</p>
+<p>​		-&#x2F;bin&#x2F;sh: .&#x2F;hello: Permission denied</p>
+<p>原因：<br>	通过rx命令传输过来的新文件，默认是没有可执行权限的<br>	所以，直接去运行会报错：权限不够<br>	此时就需要给文件添加可执行权限</p>
+<p>解决办法：<br>	chmod +x hello</p>
+<p>在运行程序的时候，有可能会报以下的错误：<br>		.&#x2F;hello: line 1: syntax error: unterminated quoted string</p>
+<p>原因：<br>	开发板的处理器是一个ARM处理器，它只能运行ARM指令集的程序<br>	但是传输过来的文件不是ARM指令集的程序，所以无法运行</p>
+<p>解决办法：<br>	如果程序是要放到开发板上去运行的，那么在编译的时候需要使用交叉编译器来进行编译<br>	如：<br>		arm-linux-gcc hello.c -o hello<br>	通过交叉编译器编译后的程序，才能放到开发板上去运行</p>
+<p>练习：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在开发板上运行程序，打印一个由*组成的正方形(空心，6行6列)</span><br><span class="line">* * * * * *</span><br><span class="line">*         *</span><br><span class="line">*         *</span><br><span class="line">*         *</span><br><span class="line">*         *</span><br><span class="line">* * * * * *</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、文件IO"><a href="#5、文件IO" class="headerlink" title="5、文件IO"></a>5、文件IO</h2><p>文件IO是系统提供的一套操作文件的方法(函数)</p>
+<p>对一个文件的操作有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">打开文件		open</span><br><span class="line">读取数据		read</span><br><span class="line">写入数据		write</span><br><span class="line">设置文件偏移量	  lseek</span><br><span class="line">关闭文件		close</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1、open："><a href="#5-1、open：" class="headerlink" title="5.1、open："></a>5.1、open：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	open, openat, creat - open and possibly create a file</span><br><span class="line">							打开并且有可能创建一个文件</span><br><span class="line"></span><br><span class="line">函数原型：</span><br><span class="line">	int open(const char *pathname, int flags);</span><br><span class="line">	</span><br><span class="line">参数：</span><br><span class="line">	pathname：字符串，用来指定打开哪个位置的位置(文件的路径名)</span><br><span class="line">	flags：打开标志，有以下值可选</span><br><span class="line">		O_RDONLY	只读</span><br><span class="line">		O_WRONLY	只写</span><br><span class="line">		O_RDWR		可读可写</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	open(), openat(), and creat() return the new file descriptor, </span><br><span class="line">	or -1 if an error occurred (in which case, errno is set appropriately).</span><br><span class="line">	成功，返回新的文件描述符</span><br><span class="line">		文件描述符：就是程序在运行时打开的文件的序号</span><br><span class="line">			打开的第一个文件，它的文件描述符为0</span><br><span class="line">			打开的第二个文件，它的文件描述符为1</span><br><span class="line">			打开的第三个文件，它的文件描述符为2</span><br><span class="line">			...</span><br><span class="line">			后续在操作文件的时候都是通过文件描述符来操作的。</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">		errno：错误码，在使用库函数出现错误的时候，会将它的错误码存到这个值里面</span><br><span class="line">			可以通过perror这个函数来打印具体的错误信息</span><br><span class="line">			</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;sys/types.h&gt;</span><br><span class="line">    #include &lt;sys/stat.h&gt;</span><br><span class="line">    #include &lt;fcntl.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2、close："><a href="#5-2、close：" class="headerlink" title="5.2、close："></a>5.2、close：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	close - close a file descriptor</span><br><span class="line">			关闭一个文件描述符</span><br><span class="line"></span><br><span class="line">函数原型：</span><br><span class="line">	int close(int fd);</span><br><span class="line">	</span><br><span class="line">参数：</span><br><span class="line">	fd：指定要关闭的那个文件的文件描述符</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	close() returns zero on success. </span><br><span class="line">	On error, -1 is returned, and errno is set appropriately.</span><br><span class="line">	成功，返回0</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">			</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;unistd.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3、read："><a href="#5-3、read：" class="headerlink" title="5.3、read："></a>5.3、read：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	read - read from a file descriptor</span><br><span class="line">			从一个文件描述符中读取数据</span><br><span class="line"></span><br><span class="line">函数原型：</span><br><span class="line">	ssize_t read(int fd, void *buf, size_t count);</span><br><span class="line">	</span><br><span class="line">参数：</span><br><span class="line">	fd：文件描述符，指定从哪个文件中读取数据</span><br><span class="line">	buf：通用指针，保存了一个地址，指定将读到的数据保存到哪个地址空间中去</span><br><span class="line">	count：用来指定最多读取多少个字节的数据</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	On  success,the number of bytes read is returned (zero indicates end of file), </span><br><span class="line">	On error, -1 is returned, and errno is set appropriately.</span><br><span class="line">	成功，返回读到的字节数，返回0表示读到文件末尾了</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">			</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;unistd.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4、write："><a href="#5-4、write：" class="headerlink" title="5.4、write："></a>5.4、write：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	write - write to a file descriptor</span><br><span class="line">			从一个文件描述符中写入数据</span><br><span class="line"></span><br><span class="line">函数原型：</span><br><span class="line">	ssize_t write(int fd, const void *buf, size_t count);</span><br><span class="line">	</span><br><span class="line">参数：</span><br><span class="line">	fd：文件描述符，指定往哪个文件中写入数据</span><br><span class="line">	buf：通用指针，保存了一个地址，指定将哪个地址空间中的数据写入到文件中去</span><br><span class="line">	count：用来指定写入多少个字节的数据</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	On success, the number of bytes written is returned (zero indicates nothing was written).</span><br><span class="line">	On error, -1 is returned, and errno is set appropriately.</span><br><span class="line">	成功，返回写入的字节数，返回0表示什么也没有写进去</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">			</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;unistd.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5、lseek："><a href="#5-5、lseek：" class="headerlink" title="5.5、lseek："></a>5.5、lseek：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">描述：</span><br><span class="line">	lseek - reposition read/write file offset</span><br><span class="line">			设置读/写的文件偏移量位置</span><br><span class="line"></span><br><span class="line">函数原型：</span><br><span class="line">	off_t lseek(int fd, off_t offset, int whence);</span><br><span class="line">	</span><br><span class="line">参数：</span><br><span class="line">	fd：文件描述符，指定要设置哪一个文件的文件偏移量</span><br><span class="line">	offset：指定偏移的字节数，可正可负，如果为负数表示往前偏移</span><br><span class="line">	whence：指定从文件的哪个位置开始偏移，有以下值可选</span><br><span class="line">		SEEK_SET：从文件开头的位置偏移offset个字节</span><br><span class="line">		SEEK_CUR：从文件当前的位置偏移offset个字节</span><br><span class="line">		SEEK_END：从文件末尾的位置偏移offset个字节</span><br><span class="line">		</span><br><span class="line">返回值：</span><br><span class="line">	Upon successful completion, lseek() returns the resulting offset location as measured in bytes from the beginning of the file.  </span><br><span class="line">	On error, the value (off_t) -1 is returned and errno is set to indicate the error.</span><br><span class="line">	成功，返回偏移后的位置(距离文件开头的字节数)</span><br><span class="line">	失败，返回-1，同时errno被设置</span><br><span class="line">			</span><br><span class="line">头文件：</span><br><span class="line">	#include &lt;sys/types.h&gt;</span><br><span class="line">    #include &lt;unistd.h&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、在屏幕上显示颜色"><a href="#6、在屏幕上显示颜色" class="headerlink" title="6、在屏幕上显示颜色"></a>6、在屏幕上显示颜色</h2><p>在Linux中一切皆文件，所以屏幕也是通过文件来操作的</p>
+<p>在开发板中有一个特殊的文件，这个文件中存储了屏幕上所有像素点的颜色值</p>
+<p>称之为帧缓冲设备文件</p>
+<p>这个文件在开发板中的存储位置为：&#x2F;dev&#x2F;fb0</p>
+<p>这个文件的大小为：800x480x4</p>
+<p>​	像素点：屏幕上最小的发光单元<br>​	GEC6818开发板屏幕分辨率为：800x480<br>​	也就是说，该屏幕上一共有480行像素点，每一行有800个像素点</p>
+<p>如何描述像素点的颜色值？<br>	用一个32位(4字节)的整数来表示一个颜色值，这32位数据可以分成4组，没一组占8位<br>	分别表示：a(透明度) r(红) g(绿) b(绿)<br>	即4个颜色分量，所以在描述一个颜色的时候，只需要设置好这4个颜色分量的值就可以表示一种颜色了，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">描述一种红色：</span><br><span class="line">			a			r			g			b</span><br><span class="line">		0000 0000	1111 1111	0000 0000	0000 0000</span><br><span class="line">		为了方便阅读，通常用十六进制来表示颜色值：0x00FF0000</span><br><span class="line"></span><br><span class="line">描述一种橙色：</span><br><span class="line">			a			r			g			b</span><br><span class="line">		0000 0000	1110 1110	1010 1101	0000 1110</span><br><span class="line">		为了方便阅读，通常用十六进制来表示颜色值：0x00EEAD0E</span><br></pre></td></tr></table></figure>
+
+<p>如何将颜色值显示到屏幕上去？<br>	当帧缓冲设备文件中的数据发生改变以后，屏幕上的像素点就会自动显示对应的颜色</p>
+<p>假设有一个像素点的坐标为(x,y)，那么它的颜色值在帧缓冲设备文件中的偏移量为多少？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x,y可以理解为：该像素点前面一共有y行像素点，每一行有800个像素点</span><br><span class="line">		在该像素点所在的这一行中，它前面还有x列像素点</span><br><span class="line">		所以，该像素点前面一共有 (y*800+x) 个像素点</span><br><span class="line">		每个像素点的颜色值占4个字节的存储空间</span><br><span class="line">		所以，该像素点的颜色值文件偏移量为： (y*800+x)*4</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、用代码如何在屏幕上显示颜色值"><a href="#7、用代码如何在屏幕上显示颜色值" class="headerlink" title="7、用代码如何在屏幕上显示颜色值"></a>7、用代码如何在屏幕上显示颜色值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.打开帧缓冲设备文件(/dev/fb0)</span><br><span class="line">2.计算出像素点颜色值的文件偏移量，设置文件偏移量</span><br><span class="line">3.写入颜色值</span><br><span class="line">4.关闭文件</span><br></pre></td></tr></table></figure>
+
+<p>作业：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">1.实现画矩形的函数(实心)</span><br><span class="line">    /************************************************</span><br><span class="line">     * 功能：在指定的位置画矩形(实心)</span><br><span class="line">     * 返回值：无</span><br><span class="line">     * 参数：</span><br><span class="line">     *      x0,y0：矩形左上顶点的坐标</span><br><span class="line">     *      w,h：矩形的宽度和高度</span><br><span class="line">     *      color：矩形的填充颜色</span><br><span class="line">    *************************************************/</span><br><span class="line">    void lcdDrawRect(int x0,int y0,int w,int h,unsigned int color)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">2.实现画圆形的函数(实心)</span><br><span class="line">    /************************************************</span><br><span class="line">     * 功能：在指定的位置画圆形(实心)</span><br><span class="line">     * 返回值：无</span><br><span class="line">     * 参数：</span><br><span class="line">     *      x0,y0：圆心的坐标</span><br><span class="line">     *      r：圆形的半径</span><br><span class="line">     *      color：圆形的填充颜色</span><br><span class="line">    *************************************************/</span><br><span class="line">    void lcdDrawCircle(int x0,int y0,int r,unsigned int color)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">3.实现画太极图的函数</span><br><span class="line">    /************************************************</span><br><span class="line">     * 功能：在指定的位置画太极图</span><br><span class="line">     * 返回值：无</span><br><span class="line">     * 参数：</span><br><span class="line">     *      x0,y0：大圆的圆心的坐标</span><br><span class="line">     *      r：大圆的半径</span><br><span class="line">    *************************************************/</span><br><span class="line">    void lcdDrawTaiji(int x0,int y0,int r)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag" title="Linux">Linux</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（三）" class="lazyload">
+        <a href="/2026/08/12/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" aria-label="前一篇: 生产实习笔记（三）" title="前一篇: 生产实习笔记（三）"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            生产实习笔记（三）
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（一）" class="lazyload">
+      <a href="/2026/08/10/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" aria-label="后一篇: 生产实习笔记（一）"  title="后一篇: 生产实习笔记（一）"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          生产实习笔记（一）
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        12.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:51
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81GEC6818%E5%BC%80%E5%8F%91%E6%9D%BF%E7%AE%80%E4%BB%8B"><span class="toc-text">1、GEC6818开发板简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81GEC6818%E5%BC%80%E5%8F%91%E6%9D%BF%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">2、GEC6818开发板的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%88%B0%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%8E%BB"><span class="toc-text">3、传输文件到开发板上去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E6%96%87%E4%BB%B6"><span class="toc-text">4、运行程序文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%96%87%E4%BB%B6IO"><span class="toc-text">5、文件IO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E3%80%81open%EF%BC%9A"><span class="toc-text">5.1、open：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E3%80%81close%EF%BC%9A"><span class="toc-text">5.2、close：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E3%80%81read%EF%BC%9A"><span class="toc-text">5.3、read：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E3%80%81write%EF%BC%9A"><span class="toc-text">5.4、write：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E3%80%81lseek%EF%BC%9A"><span class="toc-text">5.5、lseek：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2"><span class="toc-text">6、在屏幕上显示颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E7%94%A8%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2%E5%80%BC"><span class="toc-text">7、用代码如何在屏幕上显示颜色值</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" loading="lazy" decoding="async" fetchpriority="low"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "生产实习笔记（二）",
+          url: "https://yt33-17.github.io/2026/08/11/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/",
+          excerpt: "",
+          description: "GEC6818开发板的使用_文件IO_显示颜色",
+          stripContent: "1、GEC6818开发板简介GEC：广州粤嵌 6818：开发板的型号，该开发板使用的处理器是三星S5P6818处理器  该处理器的内核是ARM CORTEX A53  所以，该开发板是一块ARM开发板，只能执行ARM指令集的程序 2、GEC6818开发板的使用接线： 121.接电源线2.接数据线  电脑控制开发板： 12345678910111213141516171.如果在接数据线的时候，电脑上运行了虚拟机，那么在虚拟机中就会检测到新的USB设备，会弹出一个弹窗 选择连接到主机，不要勾选不再提",
+          date: "Tue Aug 11 2026 00:00:00 GMT+0800",
+          updated: "Tue Aug 18 2026 00:12:48 GMT+0800",
+          cover: "/images/4.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"定格","artist":"欧杰;袁晓婕","url":"/music/定格.mp3","cover":"/images/nav-logo.jpg"},{"name":"一直很安静","artist":"阿桑","url":"/music/一直很安静.mp3","cover":"/images/nav-logo.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/晴天.mp3","cover":"/images/nav-logo.jpg"},{"name":"不负众望","artist":"陈婉菁","url":"/music/不负众望.mp3","cover":"/images/nav-logo.jpg"},{"name":"Sakura Tears","artist":"Nigel Silin","url":"/music/Sakura Tears.mp3","cover":"/images/nav-logo.jpg"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/春娇与志明.mp3","cover":"/images/nav-logo.jpg"},{"name":"蜚蜚","artist":"陈婉菁","url":"/music/蜚蜚.mp3","cover":"/images/nav-logo.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/枫.mp3","cover":"/images/nav-logo.jpg"},{"name":"海阔天空","artist":"BEYOND","url":"/music/海阔天空.mp3","cover":"/images/nav-logo.jpg"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/偏偏喜欢你.mp3","cover":"/images/nav-logo.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/七里香.mp3","cover":"/images/nav-logo.jpg"},{"name":"日落大道","artist":"梁博","url":"/music/日落大道.mp3","cover":"/images/nav-logo.jpg"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/身骑白马.mp3","cover":"/images/nav-logo.jpg"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/一生中最爱.mp3","cover":"/images/nav-logo.jpg"},{"name":"萤火飞光","artist":"圈9","url":"/music/萤火飞光.mp3","cover":"/images/nav-logo.jpg"},{"name":"勇气","artist":"梁静茹","url":"/music/勇气.mp3","cover":"/images/nav-logo.jpg"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: null || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

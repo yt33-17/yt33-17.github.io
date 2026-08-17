@@ -1,0 +1,627 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    生产实习笔记（一） | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="搭建开发环境_Linux基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产实习笔记（一）">
+<meta property="og:url" content="https://yt33-17.github.io/2026/08/10/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="搭建开发环境_Linux基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day1/02%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+<meta property="og:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day1/03%E9%AA%8C%E8%AF%81%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+<meta property="article:published_time" content="2026-08-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-17T16:11:34.200Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yt33-17.github.io/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day1/02%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word"></div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/6.png" alt="生产实习笔记（一）">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">生产实习笔记（一）</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、项目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="toc-text">2、环境介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">3、创建共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4"><span class="toc-text">4、常用Linux命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E7%AC%AC%E4%B8%80%E4%B8%AAC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-text">5、第一个C语言程序</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-生产实习笔记（一）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-08-09T16:00:00.000Z" itemprop="datePublished">2026-08-10</time>
+    <time style="display: none;" id="post-update-time">2026-08-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="1、项目介绍"><a href="#1、项目介绍" class="headerlink" title="1、项目介绍"></a>1、项目介绍</h2><p>机器人语音控制系统</p>
+<h2 id="2、环境介绍"><a href="#2、环境介绍" class="headerlink" title="2、环境介绍"></a>2、环境介绍</h2><p>vncviewer：局域网屏幕共享工具</p>
+<p>FeiQ：局域网聊天工具，可以实现文件共享</p>
+<p>虚拟机：虚拟计算机</p>
+<p>VMware-17：虚拟机安装程序</p>
+<p>Ubuntu18.04.4.rar：打包好的虚拟机系统，是一个Linux操作系统</p>
+<p>VSCode：代码编辑工具</p>
+<h2 id="3、创建共享文件夹"><a href="#3、创建共享文件夹" class="headerlink" title="3、创建共享文件夹"></a>3、创建共享文件夹</h2><p>将Windows中的一个文件夹挂载到虚拟机中去，这样的话在虚拟机中也可以访问这个文件夹中的文件了</p>
+<p>具体步骤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.打开虚拟机，运行Ubuntu</span><br><span class="line">2.点击虚拟机菜单栏中的 “虚拟机”，选择 “设置”，会弹出一个设置对话框</span><br><span class="line">3.点击 “选项” 标签页，找到 “共享文件夹”</span><br><span class="line">4.将共享文件夹的启用方式设置为 “总是启用”</span><br><span class="line">5.点击 “添加”，按照添加向导的提示来添加共享文件夹</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day1/02%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="02设置共享文件夹"></p>
+<p>检验共享文件夹是否设置成功：</p>
+<p><img src="/images/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0/day1/03%E9%AA%8C%E8%AF%81%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="03验证共享文件夹"></p>
+<h2 id="4、常用Linux命令"><a href="#4、常用Linux命令" class="headerlink" title="4、常用Linux命令"></a>4、常用Linux命令</h2><p>命令是在哪里输入并执行的？<br>	在终端中输入并执行命令</p>
+<p>如何打开一个终端？<br>	方式一：在Ubuntu的收藏栏中(左下角)有一个终端的图标，点击该图标可以打开一个终端<br>	方式二：使用快捷键 Ctrl + Alt + T</p>
+<p>如何调节终端中的字体大小？<br>	在终端的菜单栏中，有一个“查看”的选项，点击放大，来放大字体<br>	点击缩小，来缩小字体</p>
+<p>常用基本命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">cd：切换目录，相当于Windows中的打开文件夹</span><br><span class="line">	cd			切换到家目录(主目录)</span><br><span class="line">	cd /home/china	切换到家目录(主目录)</span><br><span class="line">	cd /		切换到根目录</span><br><span class="line">	cd /mnt/hgfs/Share	切换到指定的路径</span><br><span class="line">	cd -		切换回上一次的目录</span><br><span class="line">	cd ./day1	切换到当前路径中的day1目录</span><br><span class="line">	cd ../day1	切换到上一级目录中的day1目录</span><br><span class="line"></span><br><span class="line">ls：列举出当前路径或者指定路径下所有文件的文件名或者属性</span><br><span class="line">	ls		列举出当前目录下所有文件的文件名(不包含隐藏文件)</span><br><span class="line">	ls /home/china	列举出指定路径下所有文件的文件名(不包含隐藏文件)</span><br><span class="line">	ls -a	列举出当前目录下所有文件的文件名(包含隐藏文件 以.开头的文件)</span><br><span class="line">	ls -l	列举出当前目录下所有文件的属性(不包含隐藏文件)</span><br><span class="line">	文件的属性：</span><br><span class="line">	-rw-rw-rw- 1 china china        0 6月   9 19:48 test.txt</span><br><span class="line">	第一个字符：用来表示文件的类型，以 - 开头的是普通文件(文本文件 和 二进制文件)</span><br><span class="line">			以 d 开头的文件，是目录文件(文件夹)</span><br><span class="line">	rw-rw-rw-：一共有9个字符，用来表示文件的访问权限，这9个字符由以下字母组成：</span><br><span class="line">		r：可读</span><br><span class="line">		w：可写(可修改)</span><br><span class="line">		x：可执行</span><br><span class="line">		-：没有对应的权限</span><br><span class="line">		这9个字符可以分成3组，每一组占3个字符，这3组分别表示：</span><br><span class="line">			属主用户访问权限 其他组用户访问权限 其他用户访问权限</span><br><span class="line">			每一组权限由3位组成，分别表示(r(可读) w(可写) x(可执行))，</span><br><span class="line">			如果没有对应的权限，则用-来表示，如：</span><br><span class="line">			rw- rw- rw-：属主用户对该文件可读，可写，不可执行</span><br><span class="line">						 其他组用户对该文件可读，可写，不可执行</span><br><span class="line">						 其他用户对该文件可读，可写，不可执行</span><br><span class="line">	1：该文件的硬链接个数</span><br><span class="line">	china：属主用户名</span><br><span class="line">	china：属主用户组名</span><br><span class="line">	0：该文件的大小，单位为字节个数</span><br><span class="line">	6月   9 19:48：该文件最后一次修改的时间</span><br><span class="line">	test.txt：该文件的文件名</span><br><span class="line"></span><br><span class="line">chmod：修改文件的访问权限</span><br><span class="line">	chmod +x hello		给当前目录中的hello文件添加可执行权限</span><br><span class="line">	chmod -w hello		去除当前目录中hello这个文件的可写权限</span><br><span class="line">	chmod 0666 hello	将当前目录中hello这个文件的权限设置为0666(八进制)</span><br><span class="line">						110 110 110 =&gt; rw- rw- rw-</span><br><span class="line">						111 111 111 =&gt; rwx rwx rwx</span><br><span class="line">					</span><br><span class="line">touch：创建空的普通文件</span><br><span class="line">	touch 1.c</span><br><span class="line">	touch 2.c 3.mp3 4.exe 5.bmp</span><br><span class="line"></span><br><span class="line">rm：删除文件</span><br><span class="line">	rm 1.c</span><br><span class="line">	rm 2.c 3.mp3 4.exe 5.bmp</span><br><span class="line">	rm *.c		删除当前目录中所有的.c文件</span><br><span class="line">	rm *		删除当前目录中所有的普通文件</span><br><span class="line">	如果要删除的是一个目录，可以加-rf的选项来实现，如：</span><br><span class="line">		rm -rf dir1</span><br><span class="line">		rm -rf dir2 dir3 dir4</span><br><span class="line">		-rf：强制且递归地删除文件</span><br><span class="line"></span><br><span class="line">mkdir：创建空目录文件</span><br><span class="line">	mkdir dir1</span><br><span class="line">    mkdir dir2 dir3 dir4</span><br><span class="line">   </span><br><span class="line">rmdir：删除空目录文件</span><br><span class="line">	rmdir dir1</span><br><span class="line">	rmdir dir2 dir3 dir4</span><br><span class="line"></span><br><span class="line">clear：清屏</span><br><span class="line">	快捷键：Ctrl + L （滚屏）</span><br><span class="line"></span><br><span class="line">cp：拷贝文件</span><br><span class="line">	cp 1.c 2.c	将当前目录中的1.c拷贝到当前目录，新文件名为2.c(常用来备份文件)</span><br><span class="line">	cp 1.c /home/china	将当前目录中的1.c拷贝到指定的路径下去</span><br><span class="line">	cp -r dir1 /home/china	将当前目录中的dir1目录拷贝到指定路径下去</span><br><span class="line"></span><br><span class="line">mv：移动文件</span><br><span class="line">	mv 1.c 2.c	将当前目录中的1.c移动到当前目录，文件名为2.c(常用来修改文件名)</span><br><span class="line">	mv 1.c /home/china	将当前目录中的1.c移动到指定的路径中去</span><br><span class="line">	mv dir1 /home/china	将当前目录中的dir1目录移动到指定的路径中去</span><br><span class="line"></span><br><span class="line">sudo：以超级用户的权限去执行指令，如</span><br><span class="line">	sudo touch /1.c</span><br><span class="line">	sudo rm /1.c</span><br><span class="line">	在Linux中文件的访问权限管控很严格，在根目录中，用户是没有权限创建和删除文件的</span><br><span class="line">	如果要创建或者删除文件，需要提供使用者的权限(以超级用户来执行)</span><br><span class="line">	注意：在使用sudo的时候，需要输入用户的登录密码</span><br><span class="line">		并且在输入密码的时候没有任何的字符回显（不会显示输入的字符，也不会显示输入了多少位）</span><br><span class="line">		密码验证成功以后，一段时间内使用sudo都不需要重新输密码</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、第一个C语言程序"><a href="#5、第一个C语言程序" class="headerlink" title="5、第一个C语言程序"></a>5、第一个C语言程序</h2><p>开发步骤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1.用VSCode打开共享文件夹，创建一个C语言源码文件(hello.c文件)</span><br><span class="line"></span><br><span class="line">2.编写代码</span><br><span class="line">    #include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">    int main()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;hello world!\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">3.编译代码</span><br><span class="line">	使用Ubuntu中的编译器来编译代码</span><br><span class="line">	C语言常用的编译器有：</span><br><span class="line">		gcc：生成在电脑(Ubuntu)上运行的程序文件</span><br><span class="line">		arm-linux-gcc：生成在开发板上(GEC6818开发板)运行的程序文件</span><br><span class="line">		用法如下：</span><br><span class="line">			gcc hello.c -o hello</span><br><span class="line">			或者</span><br><span class="line">			arm-linux-gcc hello.c -o hello</span><br><span class="line">			将当前目录中的hello.c这个源码文件编译成可执行文件 hello</span><br><span class="line">			其中，-o用来指定输出文件(可执行文件)的名称</span><br><span class="line">		注意：需要先切换目录到共享文件夹，找到源码文件，或者使用绝对路径指定源码文件的位置</span><br><span class="line"></span><br><span class="line">4.运行程序</span><br><span class="line">	在终端中输入要运行的程序文件的路径名就可以了，如：</span><br><span class="line">		/mnt/hgfs/Share/day1/code/hello</span><br><span class="line">	如果当前所在的目录就是目标文件所在的目录，那么可以用相对路径来代替文件路径，如：</span><br><span class="line">		./hello</span><br></pre></td></tr></table></figure>
+
+<p>练习：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在Ubuntu上运行程序，打印出9x9乘法口诀表，如：</span><br><span class="line">	1x1=1</span><br><span class="line">	1x2=2 2x2=4</span><br><span class="line">	1x3=3 2x3=6 3x3=9</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+
+<p>作业：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">1.求一个字符串中最长的单词长度</span><br><span class="line">	int longestWord(const char* str)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	如：</span><br><span class="line">	字符串为：good good study,day day up!</span><br><span class="line">	返回5</span><br><span class="line"></span><br><span class="line">2.删除一个数组中所有重复的项</span><br><span class="line">	void deleteRepeated(int* array,int length)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	如：</span><br><span class="line">		数组为：1,3,7,4,9,1,5,1,4,7,5,2,1,0,4,0,7,0,6,0,8</span><br><span class="line">		调用函数以后，数组变为：</span><br><span class="line">			1,3,7,4,9,5,2,0,6,8</span><br><span class="line"></span><br><span class="line">3.将两个数组合并，并按升序或者降序排列</span><br><span class="line">	array1：数组1的首地址</span><br><span class="line">	len1：数组1的长度</span><br><span class="line">	array2：数组2的首地址</span><br><span class="line">	len2：数组2的长度</span><br><span class="line">	algorithm：升序或者降序算法编号(宏)</span><br><span class="line">	返回合并以后的那个数组的首地址(动态内存分配malloc)</span><br><span class="line">	int* packedArray(int* array1,int len1,int* array2,int len2,int algorithm)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	如：</span><br><span class="line">		数组1：456,123,789,6,3,1,0,7,6,8,9,15</span><br><span class="line">		数组2：3,8,4,9,6,7,5,4,3,2,1,4,8,9,6,4,4,0,5</span><br><span class="line">		输出数组为(假设为升序)：0,0,1,1,2,3,3,3,4,4,4,4,4,...</span><br><span class="line"></span><br><span class="line">4.判断一个字符串中单词的个数</span><br><span class="line">	int countWords(const char* str)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	如：</span><br><span class="line">		good good study,day day up!</span><br><span class="line">		输出：6</span><br><span class="line"></span><br><span class="line">5.猴子吃桃</span><br><span class="line">	猴子第一天摘下若干个桃子，当即吃掉了一半，还不过瘾，又多吃了一个。</span><br><span class="line">	第二天早上又将第一天剩下的桃子吃掉一半，又多吃了一个。</span><br><span class="line">	以后每天早上都吃了前一天剩下的一半零一个。</span><br><span class="line">	到第10天早上想再吃的时候，发现只剩下一个桃子了。</span><br><span class="line">	编程求猴子第一天共摘了多少个桃子。</span><br></pre></td></tr></table></figure>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag" title="Linux">Linux</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/4.png" data-sizes="auto" alt="生产实习笔记（二）" class="lazyload">
+        <a href="/2026/08/11/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" aria-label="前一篇: 生产实习笔记（二）" title="前一篇: 生产实习笔记（二）"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            生产实习笔记（二）
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/3.png" data-sizes="auto" alt="开源STM32学习板" class="lazyload">
+      <a href="/2026/08/05/STM32%E5%AD%A6%E4%B9%A0%E6%9D%BF/" aria-label="后一篇: 开源STM32学习板"  title="后一篇: 开源STM32学习板"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          开源STM32学习板
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        12.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:51
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、项目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%8E%AF%E5%A2%83%E4%BB%8B%E7%BB%8D"><span class="toc-text">2、环境介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">3、创建共享文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4"><span class="toc-text">4、常用Linux命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E7%AC%AC%E4%B8%80%E4%B8%AAC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F"><span class="toc-text">5、第一个C语言程序</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">1</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png" loading="lazy" decoding="async" fetchpriority="low"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "生产实习笔记（一）",
+          url: "https://yt33-17.github.io/2026/08/10/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/",
+          excerpt: "",
+          description: "搭建开发环境_Linux基础",
+          stripContent: "1、项目介绍机器人语音控制系统 2、环境介绍vncviewer：局域网屏幕共享工具 FeiQ：局域网聊天工具，可以实现文件共享 虚拟机：虚拟计算机 VMware-17：虚拟机安装程序 Ubuntu18.04.4.rar：打包好的虚拟机系统，是一个Linux操作系统 VSCode：代码编辑工具 3、创建共享文件夹将Windows中的一个文件夹挂载到虚拟机中去，这样的话在虚拟机中也可以访问这个文件夹中的文件了 具体步骤： 123451.打开虚拟机，运行Ubuntu2.点击虚拟机菜单栏中的 “虚拟机”",
+          date: "Mon Aug 10 2026 00:00:00 GMT+0800",
+          updated: "Tue Aug 18 2026 00:11:34 GMT+0800",
+          cover: "/images/4.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"定格","artist":"欧杰;袁晓婕","url":"/music/定格.mp3","cover":"/images/nav-logo.jpg"},{"name":"一直很安静","artist":"阿桑","url":"/music/一直很安静.mp3","cover":"/images/nav-logo.jpg"},{"name":"晴天","artist":"周杰伦","url":"/music/晴天.mp3","cover":"/images/nav-logo.jpg"},{"name":"不负众望","artist":"陈婉菁","url":"/music/不负众望.mp3","cover":"/images/nav-logo.jpg"},{"name":"Sakura Tears","artist":"Nigel Silin","url":"/music/Sakura Tears.mp3","cover":"/images/nav-logo.jpg"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/春娇与志明.mp3","cover":"/images/nav-logo.jpg"},{"name":"蜚蜚","artist":"陈婉菁","url":"/music/蜚蜚.mp3","cover":"/images/nav-logo.jpg"},{"name":"枫","artist":"周杰伦","url":"/music/枫.mp3","cover":"/images/nav-logo.jpg"},{"name":"海阔天空","artist":"BEYOND","url":"/music/海阔天空.mp3","cover":"/images/nav-logo.jpg"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/偏偏喜欢你.mp3","cover":"/images/nav-logo.jpg"},{"name":"七里香","artist":"周杰伦","url":"/music/七里香.mp3","cover":"/images/nav-logo.jpg"},{"name":"日落大道","artist":"梁博","url":"/music/日落大道.mp3","cover":"/images/nav-logo.jpg"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/身骑白马.mp3","cover":"/images/nav-logo.jpg"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/一生中最爱.mp3","cover":"/images/nav-logo.jpg"},{"name":"萤火飞光","artist":"圈9","url":"/music/萤火飞光.mp3","cover":"/images/nav-logo.jpg"},{"name":"勇气","artist":"梁静茹","url":"/music/勇气.mp3","cover":"/images/nav-logo.jpg"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: null || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>
