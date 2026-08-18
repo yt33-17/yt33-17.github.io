@@ -389,6 +389,9 @@ body [data-aos='zoom-in'] {
 .icon-github:before {
   content: '\e619';
 }
+.icon-bilibili:before {
+  content: '\e603';
+}
 .sidebar-toc-btn:before {
   font-family: 'iconfont';
   content: '\e633';
@@ -3219,6 +3222,9 @@ pre .emphasis {
 }
 [data-theme='dark'] .icon-github {
   color: #bc88ff;
+}
+.icon-bilibili {
+  color: #00a1d6;
 }
 .sidebar-menu-icon,
 .sidebar-menu-link {
