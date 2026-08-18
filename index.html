@@ -143,7 +143,6 @@
             <h1 data-aos="slide-up">一叶知秋</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
-              <span id="subtitle">吃饱饭，睡好觉；好好学习，天天向上</span>
         </h2>
     </div>
   </div>
@@ -449,7 +448,6 @@
             <div id="reimu-hits"></div>
             <div id="reimu-pagination" class="reimu-pagination"></div>
           </div>
-          <img class="reimu-bg" src="/images/1.gif" loading="lazy" decoding="async" fetchpriority="low"/>
         </div>
       </div>
     
@@ -515,6 +513,48 @@
 
 <div id="lazy-script">
   <div>
+      
+<script src="https://npm.webcache.cn/typed.js@2.1.0/dist/typed.umd.js" integrity="sha384-cMrTlShXEGSdSFA359p+3aVUxK&#x2F;R+0TAfbRZMcTlAn8yqzxEDj05QsS65nTFMMj4" crossorigin="anonymous" defer onload="initSubtitleTyping()"></script>
+
+      <script data-pjax>
+        window.subtitleTypingConfig = {
+          strings: ["吃饱饭，睡好觉","好好学习，天天向上"],
+          typeSpeed: 100,
+          backSpeed: 50,
+          backDelay: 2000,
+          startDelay: 300,
+          loop: true,
+          shuffle: true,
+          showCursor: true || true,
+          cursorChar: "|",
+          smartBackspace: false || false,
+        };
+
+        function initSubtitleTyping() {
+          const subtitleElement = document.querySelector('#subtitle');
+          if (!subtitleElement || !window.Typed || !window.subtitleTypingConfig) {
+            return;
+          }
+
+          if (window.__typedInstance) {
+            window.__typedInstance.destroy();
+          }
+
+          window.__typedInstance = new Typed('#subtitle span', window.subtitleTypingConfig);
+        }
+        
+        if (!window.__typedInitialized) {
+          window.__typedInitialized = true;
+          
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSubtitleTyping);
+          } else {
+            initSubtitleTyping();
+          }
+        } else {
+          initSubtitleTyping();
+        }
+      </script>
   </div>
 </div>
 
