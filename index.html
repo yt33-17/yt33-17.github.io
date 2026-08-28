@@ -166,7 +166,7 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -226,7 +226,25 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content">      <div class="post-wrapper">
+          <section id="main" aria-label="Main content">    <div class="post-categories-wrapper" data-aos="fade-up">
+        <div class="post-categories-wrap">
+          <a class="post-link" href="/categories/%E7%AC%94%E8%AE%B0" aria-label="笔记" title="笔记"></a>
+          <div class="post-categories-cover">
+              <img data-src="/images/1.jpg" data-sizes="auto" alt="笔记" class="lazyload">
+            <h2>笔记</h2>
+            <h3>6 篇文章</h3>
+          </div>
+        </div>
+        <div class="post-categories-wrap">
+          <a class="post-link" href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA" aria-label="单片机" title="单片机"></a>
+          <div class="post-categories-cover">
+              <img data-src="/images/1.png" data-sizes="auto" alt="单片机" class="lazyload">
+            <h2>单片机</h2>
+            <h3>1 篇文章</h3>
+          </div>
+        </div>
+    </div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/08/13/%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" aria-label="生产实习笔记（四）" title="生产实习笔记（四）"></a>
     <div class="post-cover left">
@@ -379,7 +397,7 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -513,48 +531,6 @@
 
 <div id="lazy-script">
   <div>
-      
-<script src="https://npm.webcache.cn/typed.js@2.1.0/dist/typed.umd.js" integrity="sha384-cMrTlShXEGSdSFA359p+3aVUxK&#x2F;R+0TAfbRZMcTlAn8yqzxEDj05QsS65nTFMMj4" crossorigin="anonymous" defer onload="initSubtitleTyping()"></script>
-
-      <script data-pjax>
-        window.subtitleTypingConfig = {
-          strings: ["吃饱饭，睡好觉","好好学习，天天向上"],
-          typeSpeed: 100,
-          backSpeed: 50,
-          backDelay: 2000,
-          startDelay: 300,
-          loop: true,
-          shuffle: true,
-          showCursor: true || true,
-          cursorChar: "|",
-          smartBackspace: false || false,
-        };
-
-        function initSubtitleTyping() {
-          const subtitleElement = document.querySelector('#subtitle');
-          if (!subtitleElement || !window.Typed || !window.subtitleTypingConfig) {
-            return;
-          }
-
-          if (window.__typedInstance) {
-            window.__typedInstance.destroy();
-          }
-
-          window.__typedInstance = new Typed('#subtitle span', window.subtitleTypingConfig);
-        }
-        
-        if (!window.__typedInitialized) {
-          window.__typedInitialized = true;
-          
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initSubtitleTyping);
-          } else {
-            initSubtitleTyping();
-          }
-        } else {
-          initSubtitleTyping();
-        }
-      </script>
   </div>
 </div>
 
@@ -606,7 +582,7 @@
           loop: '' || 'all',
           order: '' || 'list',
           preload: '' || 'auto',
-          volume: 0.3 || 0.7,
+          volume: 0.2 || 0.7,
           mutex: null || true,
           listFolded: null || false,
           lrcType: null || 0,
