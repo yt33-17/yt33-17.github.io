@@ -70,7 +70,7 @@ self.addEventListener("activate", (event) => {
             return caches.delete(cacheName);
           }
         })
-      );
+      ).then(() => self.clients.claim());
     })
   );
   console.log(`Service Worker ${VERSION} activated.`);
