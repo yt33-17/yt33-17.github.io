@@ -46,9 +46,9 @@
   --cursor-default: url("../images/cursor/cursor-default.svg"), auto;
   --cursor-pointer: url("../images/cursor/cursor-pointer.svg"), pointer;
   --cursor-text: url("../images/cursor/cursor-text.svg") 12 12, text;
-  --footer-icon: url("../images/xielunyan.png");
+  --footer-icon: url("../images/theme/xielunyan.png");
   --sponsor-icon: url("../images/taichi.png");
-  --top-icon: url("../images/xielunyan.png");
+  --top-icon: url("../images/theme/xielunyan.png");
   --shadow-meta: 0 0 5px 2px var(--color-meta-shadow);
   --shadow-meta-hover: 0 0 6px 4px var(--color-meta-shadow);
   --shadow-card: 0 0 10px 2px var(--color-hover-shadow);
@@ -1953,7 +1953,7 @@ button {
   font-weight: 700;
 }
 #footer {
-  background-image: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0)), url("../images/footer-img.png");
+  background-image: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0)), url("../images/theme/footer-img.png");
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
