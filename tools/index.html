@@ -229,25 +229,74 @@
 </aside>
 
           <section id="main" aria-label="Main content">
+
+
 <div class="tools-page">
-  <div class="tools-grid">
+  
+  <nav class="tools-tabs" role="tablist">
     
-      <a class="tool-card" href="https://github.com" target="_blank" rel="noopener noreferrer">
+      <button
+        type="button"
+        class="tools-tab is-active"
+        data-category="全部"
+        role="tab"
+      >全部</button>
+    
+      <button
+        type="button"
+        class="tools-tab"
+        data-category="开发工具"
+        role="tab"
+      >开发工具</button>
+    
+      <button
+        type="button"
+        class="tools-tab"
+        data-category="AI 工具"
+        role="tab"
+      >AI 工具</button>
+    
+      <button
+        type="button"
+        class="tools-tab"
+        data-category="实用工具"
+        role="tab"
+      >实用工具</button>
+    
+      <button
+        type="button"
+        class="tools-tab"
+        data-category="影视资源"
+        role="tab"
+      >影视资源</button>
+    
+      <button
+        type="button"
+        class="tools-tab"
+        data-category="动漫资源"
+        role="tab"
+      >动漫资源</button>
+    
+  </nav>
+  
+
+  <div class="tools-grid" id="toolsGrid">
+    
+      <a
+        class="tool-card"
+        href="https://chat.openai.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="AI 工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">1</span>
-            <span>GitHub</span>
-          </div>
-          
-            <div class="tool-card-desc">全球最大代码托管平台</div>
-          
-        </div>
-      </a>
-    
-      <a class="tool-card" href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">
-        <div class="tool-card-body">
-          <div class="tool-card-name">
-            <span class="tool-card-initial">2</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/chat.openai.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>ChatGPT</span>
           </div>
           
@@ -256,10 +305,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://hexo.io" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://hexo.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="开发工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">3</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/hexo.io?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>Hexo</span>
           </div>
           
@@ -268,10 +328,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://developer.mozilla.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="开发工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">4</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/developer.mozilla.org?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>MDN Web Docs</span>
           </div>
           
@@ -280,10 +351,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://tinypng.com" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://tinypng.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="实用工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">5</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/tinypng.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>Tinypng</span>
           </div>
           
@@ -292,10 +374,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://www.cloudflare.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="实用工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">6</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/www.cloudflare.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>Cloudflare</span>
           </div>
           
@@ -304,10 +397,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://jianpian25.com/#/home" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://jianpian25.com/#/home"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="影视资源"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">7</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/jianpian25.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>荐片</span>
           </div>
           
@@ -316,10 +420,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://www.kaolarj.com/" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://www.kaolarj.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="实用工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">8</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/www.kaolarj.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>考拉资源库</span>
           </div>
           
@@ -328,10 +443,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://hhh.oneghg.com/" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://hhh.oneghg.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="动漫资源"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">9</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/hhh.oneghg.com?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>动漫共和国</span>
           </div>
           
@@ -340,10 +466,21 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://webicon.cc/" target="_blank" rel="noopener noreferrer">
+      <a
+        class="tool-card"
+        href="https://webicon.cc/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-category="实用工具"
+      >
         <div class="tool-card-body">
           <div class="tool-card-name">
-            <span class="tool-card-initial">10</span>
+            
+            
+              <img class="tool-card-icon" src="https://favicon.im/webicon.cc?larger=true"
+                   alt="" loading="lazy" decoding="async"
+                   onerror="this.style.display='none'">
+            
             <span>Weblcon</span>
           </div>
           
@@ -352,20 +489,37 @@
         </div>
       </a>
     
-      <a class="tool-card" href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer">
-        <div class="tool-card-body">
-          <div class="tool-card-name">
-            <span class="tool-card-initial">11</span>
-            <span>哔哩哔哩</span>
-          </div>
-          
-            <div class="tool-card-desc">干杯</div>
-          
-        </div>
-      </a>
-    
   </div>
 </div>
+
+
+<script>
+(function () {
+  var tabs = document.querySelectorAll('.tools-tab');
+  var cards = document.querySelectorAll('.tool-card');
+  if (!tabs.length || !cards.length) return;
+
+  function filter(cat) {
+    cards.forEach(function (card) {
+      var c = card.getAttribute('data-category') || '';
+      if (cat === '全部' || c === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      filter(tab.getAttribute('data-category'));
+    });
+  });
+})();
+</script>
+
 </section>
         </div>
         <footer id="footer" aria-label="Site footer">

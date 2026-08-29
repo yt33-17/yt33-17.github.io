@@ -3,7 +3,7 @@
         fill="#000000"
         opacity="0.25"/>
   <path d="M 4 4 L 4 24 L 9 19 L 12 26 L 15 25 L 12 18 L 19 18 Z"
-        fill="#ff69b4"
+        fill="#4a90e2"
         stroke="#ffffff"
         stroke-width="1.5"
         stroke-linejoin="round"/>
