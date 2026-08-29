@@ -546,18 +546,28 @@ body,
 body {
   width: 100%;
   background-color: var(--color-background);
-  background-image: url("/images/theme/background.webp");
-  background-position: center top;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
   font-family: 'Mulish','Noto Serif SC', '-apple-system','PingFang SC','Microsoft YaHei','sans-serif';
-  transition: background 1s;
+  transition: background-color 1s;
   text-autospace: normal;
   color: var(--color-default);
+}
+body::before {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/theme/background.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: transform;
+  pointer-events: none;
 }
 body ::selection {
   background: var(--red-1);
