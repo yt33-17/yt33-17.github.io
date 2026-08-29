@@ -29,16 +29,26 @@
 #loader .spinner-box .loading-taichi {
   opacity: 0.8;
 }
+#loader .spinner-box .loading-taichi img {
+  width: 250px;
+  height: 250px;
+  display: block;
+}
+#loader .spinner-box .loading-taichi svg {
+  width: 150pxpx;
+  height: 150px;
+  display: block;
+}
 #loader .spinner-box .rotate {
   animation: rotate-all 2s linear infinite;
 }
 #loader .spinner-box .loading-word {
   position: absolute;
   color: var(--red-1, #ff5252);
-  top: calc(50% + 110px);
+  top: calc(50% + 160px);
   left: 50%;
   transform: translate(-50%, -50%);
-  font: 700 1.2rem  'Mulish','Noto Serif SC', '-apple-system','PingFang SC','Microsoft YaHei','sans-serif';
+  font: 700 1.5rem  'Mulish','Noto Serif SC', '-apple-system','PingFang SC','Microsoft YaHei','sans-serif';
 }
 #loader.loading .loading-left-bg {
   transform: translate(-100%, 0);
