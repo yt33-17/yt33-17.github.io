@@ -616,17 +616,12 @@
         );
 
         script.onload = () => {
-            const md5Script = loadScript(
-              'https://npm.webcache.cn/blueimp-md5@2.19.0/js/md5.min.js',
-              'sha384-JmVtRz6RWiXnA14QbIOJzPuU3MidULOpBP66deeLLyyoF4Tr/gZlbkHkL6vTthxH'
-            );
-            md5Script.onload = initGitalk;
-            document.head.appendChild(md5Script);
+            initGitalk();
         }
         document.head.appendChild(script);
 
         function initGitalk() {
-          var gitalkId = window.md5 ? window.md5(location.pathname) : location.pathname;
+          var gitalkId = location.pathname;
           var gitalk = new Gitalk({
             clientID: 'Ov23li8VW026NlQCDuES',
             clientSecret: '86a0ec760a6d6a60d3f76a9d1b0a606d63a6fd25',
