@@ -211,26 +211,29 @@
   };
 
   // 和风天气 API（数据源自中国气象局，国内准确）
+  // 新版专属 Host 仅支持 X-QW-Api-Key 请求头认证（key= 查询参数会返回 403）
   async function fetchQWeather(loc) {
     const { key, host } = config.qweather;
     const base = `https://${host}`;
+    const headers = { 'X-QW-Api-Key': key };
     // 城市查询：优先用访客坐标（更精确），否则用城市名
     const q =
       loc.latitude != null && loc.longitude != null
         ? `${loc.longitude},${loc.latitude}`
         : encodeURIComponent(loc.city);
     const lookup = await fetch(
-      `${base}/geo/v2/city/lookup?location=${q}&number=1&key=${key}`
+      `${base}/geo/v2/city/lookup?location=${q}&number=1`,
+      { headers }
     ).then((r) => r.json());
     if (lookup.code !== '200' || !lookup.location || !lookup.location.length) {
-      throw new Error('qweather lookup failed: ' + lookup.code);
+      throw new Error('qweather lookup failed: ' + (lookup.code || JSON.stringify(lookup.error || lookup)));
     }
     const qid = lookup.location[0].id;
     // 和风返回的是中文城市名，用于显示（IP 定位拿到英文名时以它为准）
     const qwName = lookup.location[0].name;
     const [now, daily] = await Promise.all([
-      fetch(`${base}/v7/weather/now?location=${qid}&key=${key}`).then((r) => r.json()),
-      fetch(`${base}/v7/weather/3d?location=${qid}&key=${key}`).then((r) => r.json()),
+      fetch(`${base}/v7/weather/now?location=${qid}`, { headers }).then((r) => r.json()),
+      fetch(`${base}/v7/weather/3d?location=${qid}`, { headers }).then((r) => r.json()),
     ]);
     if (now.code !== '200' || daily.code !== '200') {
       throw new Error('qweather fetch failed: ' + now.code + '/' + daily.code);
