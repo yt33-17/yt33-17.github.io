@@ -226,6 +226,8 @@
       throw new Error('qweather lookup failed: ' + lookup.code);
     }
     const qid = lookup.location[0].id;
+    // 和风返回的是中文城市名，用于显示（IP 定位拿到英文名时以它为准）
+    const qwName = lookup.location[0].name;
     const [now, daily] = await Promise.all([
       fetch(`${base}/v7/weather/now?location=${qid}&key=${key}`).then((r) => r.json()),
       fetch(`${base}/v7/weather/3d?location=${qid}&key=${key}`).then((r) => r.json()),
@@ -233,7 +235,7 @@
     if (now.code !== '200' || daily.code !== '200') {
       throw new Error('qweather fetch failed: ' + now.code + '/' + daily.code);
     }
-    return {
+    const norm = {
       current: {
         temp: now.now.temp,
         icon: QW_ICON[now.now.icon] || '🌤️',
@@ -252,6 +254,10 @@
         wind: qwWindLabel(d.windScaleDay),
       })),
     };
+    if (qwName && /[\u4e00-\u9fa5]/.test(qwName)) {
+      norm.cityName = qwName;
+    }
+    return norm;
   }
 
   // Open-Meteo 兜底（全球模型插值，国内精度一般）
@@ -348,7 +354,9 @@
   }
 
   function paintWeather(city, norm) {
-    root.querySelector('.cw-city').textContent = `📍${city || '--'}`;
+    // 和风天气返回的中文城市名优先（IP 定位拿英文名时以它为准）
+    const displayName = norm.cityName || city;
+    root.querySelector('.cw-city').textContent = `📍${displayName || '--'}`;
     root.querySelector('.cw-temp').innerHTML = `${norm.current.temp}<span>°C</span>`;
     root.querySelector('.cw-icon').textContent = norm.current.icon;
     root.querySelector('.cw-precip').textContent = `${norm.current.precip}mm`;
