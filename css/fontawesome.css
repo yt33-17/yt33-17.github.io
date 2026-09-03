@@ -140,8 +140,14 @@
 .icon-github:before {
   content: '\f09b';
 }
+.icon-facebook:before {
+  content: '\f09a';
+}
 .icon-bilibili:before {
   content: '\e3d9';
+}
+.icon-weibo:before {
+  content: '\f18a';
 }
 .sidebar-toc-btn:before {
   font-family: var(--font-icon);
@@ -171,6 +177,10 @@
 .icon-taichi:before {
   font-family: var(--font-icon);
   content: '\f6ad';
+}
+.icon-qq:before {
+  font-family: var(--font-icon);
+  content: '\f1d6';
 }
 .icon-image:before {
   font-family: var(--font-icon);
