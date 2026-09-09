@@ -132,6 +132,75 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
       <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
   </nav>
+  <nav id="i18n-nav" aria-label="Language selection">
+    <div class="custom-dropdown">
+      <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
+        <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
+        <span id="selected-lang">中文</span>
+      </div>
+      <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
+        <li data-value="zh-CN" role="option" class="selected" aria-selected="true">中文</li>
+        <li data-value="en" role="option" aria-selected="false">English</li>
+      </ul>
+    </div>
+    <div id="google_translate_element" aria-hidden="true"></div>
+    <script>
+      (function () {
+        if (!window.googleTranslateElementInit) {
+          window.googleTranslateElementInit = function () {
+            new google.translate.TranslateElement({
+              pageLanguage: 'zh-CN',
+              includedLanguages: 'zh-CN,en',
+              autoDisplay: false,
+              multilanguagePage: true
+            }, 'google_translate_element');
+          };
+          var script = document.createElement('script');
+          script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          script.async = true;
+          document.head.appendChild(script);
+        }
+
+        var selected = document.getElementById('select-selected');
+        var items = document.getElementById('select-items');
+        if (!selected || !items || selected.dataset.translateBound) return;
+        selected.dataset.translateBound = 'true';
+        selected.addEventListener('click', function () {
+          items.classList.toggle('show');
+          selected.setAttribute('aria-expanded', items.classList.contains('show').toString());
+        });
+        items.addEventListener('click', function (event) {
+          var item = event.target.closest('li[data-value]');
+          if (!item) return;
+          var combo = document.querySelector('.goog-te-combo');
+          if (!combo) {
+            window.setTimeout(function () { item.click(); }, 500);
+            return;
+          }
+          combo.value = item.dataset.value;
+          combo.dispatchEvent(new Event('change'));
+          document.getElementById('selected-lang').textContent = item.textContent;
+          items.classList.remove('show');
+          selected.setAttribute('aria-expanded', 'false');
+          items.querySelectorAll('li').forEach(function (option) {
+            option.classList.toggle('selected', option === item);
+            option.setAttribute('aria-selected', (option === item).toString());
+          });
+        });
+        document.addEventListener('click', function (event) {
+          if (!event.target.closest('#i18n-nav')) {
+            items.classList.remove('show');
+            selected.setAttribute('aria-expanded', 'false');
+          }
+        });
+      })();
+    </script>
+    <style>
+      #google_translate_element { display: none; }
+      .goog-te-banner-frame.skiptranslate { display: none !important; }
+      body { top: 0 !important; }
+    </style>
+  </nav>
 </div>
 <header id="header" aria-label="Site header">
       <picture>
@@ -205,7 +274,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -309,8 +378,31 @@
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/08/13/2-4%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/" aria-label="生产实习笔记（四）" title="生产实习笔记（四）"></a>
+      <a class="post-link" href="/2026/09/05/%E6%AD%A2%E6%88%98%E4%B9%8B%E6%AE%87/" aria-label="" title=""></a>
     <div class="post-cover right">
+          <img data-src="/images/theme/banner.png" data-sizes="auto" alt="" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-09-05</span>
+        <span><span class="icon-pencil"></span>621 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title"></h2>
+      <article class="post-article">
+          止战之殇雷德王还有3个小时降临地球，世界各大媒体平台将这条消息传唤的沸沸扬扬，他的到来，是救赎还是毁灭，我无从得知，众说纷纭，我只想先吃个汉堡吧。
+宇宙无穷，人生微渺，我从一无所有中来，自当归于虚无。唯独让我牵挂难
+以放下执念的，便是学校的汉堡了，汉堡不大，面包很干，初相识于三年前，我
+年少，它缥缈，浅尝一口：“哇”很好吃。可惜后来吃饭时间越来越晚，与曾经的挚爱想重逢却要隔着人山人海，我等了一次又一次。
+可惜不悔梦归处，只恨太匆匆，不知什么时候起，汉堡的肉饼变成了自制小牛肉，陈然多了一份人情味，少了一份预制感，但干燥的触感与同样燥干的面饼相结合，让我失去了对其往日的热爱，或者它也不能称之为那个
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/08/13/2-4%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/" aria-label="生产实习笔记（四）" title="生产实习笔记（四）"></a>
+    <div class="post-cover left">
         <img data-src="/images/post-cover/4.png" data-sizes="auto" alt="生产实习笔记（四）" class="lazyload">
     </div>
     <div class="post-info">
@@ -327,9 +419,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/08/12/2-3%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/" aria-label="生产实习笔记（三）" title="生产实习笔记（三）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
         <img data-src="/images/post-cover/4.png" data-sizes="auto" alt="生产实习笔记（三）" class="lazyload">
     </div>
     <div class="post-info">
@@ -346,9 +438,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/08/11/2-2%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/" aria-label="生产实习笔记（二）" title="生产实习笔记（二）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
         <img data-src="/images/post-cover/4.png" data-sizes="auto" alt="生产实习笔记（二）" class="lazyload">
     </div>
     <div class="post-info">
@@ -360,25 +452,6 @@
       <h2 class="post-title">生产实习笔记（二）</h2>
       <article class="post-article">
           GEC6818开发板的使用_文件IO_显示颜色
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/08/10/2-1%E7%94%9F%E4%BA%A7%E5%AE%9E%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" aria-label="生产实习笔记（一）" title="生产实习笔记（一）"></a>
-    <div class="post-cover left">
-        <img data-src="/images/post-cover/4.png" data-sizes="auto" alt="生产实习笔记（一）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-08-10</span>
-        <span><span class="icon-pencil"></span>2.2k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">生产实习笔记（一）</h2>
-      <article class="post-article">
-          搭建开发环境_Linux基础
       </article>
     </div>
   </div>
@@ -406,10 +479,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        12.8k
+        13.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:52
+        00:55
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -437,7 +510,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">8</div>
+    <div class="sidebar-state-number">9</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
