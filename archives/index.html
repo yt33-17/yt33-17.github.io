@@ -132,75 +132,6 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
       <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
   </nav>
-  <nav id="i18n-nav" aria-label="Language selection">
-    <div class="custom-dropdown">
-      <div class="select-selected" id="select-selected" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language menu">
-        <span id="nav-language-btn" class="nav-icon" style="padding: 0 20px 0 0"></span>
-        <span id="selected-lang">中文</span>
-      </div>
-      <ul class="select-items" id="select-items" role="listbox" aria-label="Languages">
-        <li data-value="zh-CN" role="option" class="selected" aria-selected="true">中文</li>
-        <li data-value="en" role="option" aria-selected="false">English</li>
-      </ul>
-    </div>
-    <div id="google_translate_element" aria-hidden="true"></div>
-    <script>
-      (function () {
-        if (!window.googleTranslateElementInit) {
-          window.googleTranslateElementInit = function () {
-            new google.translate.TranslateElement({
-              pageLanguage: 'zh-CN',
-              includedLanguages: 'zh-CN,en',
-              autoDisplay: false,
-              multilanguagePage: true
-            }, 'google_translate_element');
-          };
-          var script = document.createElement('script');
-          script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-          script.async = true;
-          document.head.appendChild(script);
-        }
-
-        var selected = document.getElementById('select-selected');
-        var items = document.getElementById('select-items');
-        if (!selected || !items || selected.dataset.translateBound) return;
-        selected.dataset.translateBound = 'true';
-        selected.addEventListener('click', function () {
-          items.classList.toggle('show');
-          selected.setAttribute('aria-expanded', items.classList.contains('show').toString());
-        });
-        items.addEventListener('click', function (event) {
-          var item = event.target.closest('li[data-value]');
-          if (!item) return;
-          var combo = document.querySelector('.goog-te-combo');
-          if (!combo) {
-            window.setTimeout(function () { item.click(); }, 500);
-            return;
-          }
-          combo.value = item.dataset.value;
-          combo.dispatchEvent(new Event('change'));
-          document.getElementById('selected-lang').textContent = item.textContent;
-          items.classList.remove('show');
-          selected.setAttribute('aria-expanded', 'false');
-          items.querySelectorAll('li').forEach(function (option) {
-            option.classList.toggle('selected', option === item);
-            option.setAttribute('aria-selected', (option === item).toString());
-          });
-        });
-        document.addEventListener('click', function (event) {
-          if (!event.target.closest('#i18n-nav')) {
-            items.classList.remove('show');
-            selected.setAttribute('aria-expanded', 'false');
-          }
-        });
-      })();
-    </script>
-    <style>
-      #google_translate_element { display: none; }
-      .goog-te-banner-frame.skiptranslate { display: none !important; }
-      body { top: 0 !important; }
-    </style>
-  </nav>
 </div>
 <header id="header" aria-label="Site header">
       <picture>
@@ -340,16 +271,16 @@
           <section id="main" aria-label="Main content"><div class="archives-outer-wrap" data-aos="fade-up">
     <div class="tag-wrap">
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
-    </div>
-    <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
+      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/Git/">Git</a>
+    </div>
+    <div class="archives-tag-list-item" data-aos="zoom-in">
+      <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
