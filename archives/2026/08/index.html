@@ -272,16 +272,16 @@
           <section id="main" aria-label="Main content"><div class="archives-outer-wrap" data-aos="fade-up">
     <div class="tag-wrap">
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
-    </div>
-    <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/Git/">Git</a>
+      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
+    </div>
+    <div class="archives-tag-list-item" data-aos="zoom-in">
+      <a class="archives-tag-list-link" href="/tags/Git/">Git</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
@@ -608,7 +608,7 @@
 
   <script>
     window.CW_CONFIG = {
-      auto_locate: true,
+      auto_locate: false,
       city: "北京",
       latitude: null,
       longitude: null,
@@ -619,9 +619,34 @@
       }
     };
   </script>
-  
-<script src="/js/calendar_weather.js" data-pjax></script>
-
+  <script data-pjax>
+    (() => {
+      const loadWeather = () => {
+        const script = document.createElement('script');
+        script.src = '/js/calendar_weather.js';
+        script.dataset.pjax = '';
+        document.body.appendChild(script);
+      };
+      const fallback = () => loadWeather();
+      if (!navigator.geolocation) {
+        fallback();
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          window.CW_CONFIG.latitude = position.coords.latitude;
+          window.CW_CONFIG.longitude = position.coords.longitude;
+          loadWeather();
+        },
+        fallback,
+        {
+          enableHighAccuracy: true,
+          maximumAge: 10 * 60 * 1000,
+          timeout: 10000,
+        }
+      );
+    })();
+  </script>
 
   
 <script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>

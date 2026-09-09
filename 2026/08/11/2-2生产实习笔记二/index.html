@@ -731,7 +731,7 @@
 
   <script>
     window.CW_CONFIG = {
-      auto_locate: true,
+      auto_locate: false,
       city: "北京",
       latitude: null,
       longitude: null,
@@ -742,9 +742,34 @@
       }
     };
   </script>
-  
-<script src="/js/calendar_weather.js" data-pjax></script>
-
+  <script data-pjax>
+    (() => {
+      const loadWeather = () => {
+        const script = document.createElement('script');
+        script.src = '/js/calendar_weather.js';
+        script.dataset.pjax = '';
+        document.body.appendChild(script);
+      };
+      const fallback = () => loadWeather();
+      if (!navigator.geolocation) {
+        fallback();
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          window.CW_CONFIG.latitude = position.coords.latitude;
+          window.CW_CONFIG.longitude = position.coords.longitude;
+          loadWeather();
+        },
+        fallback,
+        {
+          enableHighAccuracy: true,
+          maximumAge: 10 * 60 * 1000,
+          timeout: 10000,
+        }
+      );
+    })();
+  </script>
 
   
 <script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
