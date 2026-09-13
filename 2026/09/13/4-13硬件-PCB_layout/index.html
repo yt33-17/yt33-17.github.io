@@ -1,0 +1,800 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    PCB_layout | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="PCB_layout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PCB_layout">
+<meta property="og:url" content="https://yt33-17.github.io/2026/09/13/4-13%E7%A1%AC%E4%BB%B6-PCB_layout/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="PCB_layout">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20250422/803954498_1745330188988/.jpg">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T04:40:34.737Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploadfiles.nowcoder.com/files/20250422/803954498_1745330188988/.jpg">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/theme/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/theme/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word">查克拉流动中，请稍候……</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/theme/6.png" alt="PCB_layout">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">PCB_layout</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+    <div id="calendar-weather" data-aos="fade-up">
+  <div class="cw-card">
+    <div class="cw-main">
+      <div class="cw-left">
+        <div class="cw-top">
+          <span class="cw-city">📍--</span>
+          <span class="cw-now">
+            <span class="cw-temp">--<span>°C</span></span>
+            <span class="cw-icon">🌡️</span>
+          </span>
+        </div>
+        <div class="cw-date-block">
+          <div class="cw-date"></div>
+          <div class="cw-sub">
+            <span class="cw-weekday"></span>
+            <span class="cw-lunar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cw-forecast"></div>
+    </div>
+    <div class="cw-stats">
+      <div class="cw-stat">
+        <span class="cw-stat-label">降水</span>
+        <span class="cw-stat-value cw-precip">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">风</span>
+        <span class="cw-stat-value cw-wind">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">湿度</span>
+        <span class="cw-stat-value cw-humidity">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">气压</span>
+        <span class="cw-stat-value cw-pressure">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E3%80%90%E5%B8%83%E7%BA%BF%E8%A7%84%E5%88%99%E3%80%91pcb%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B8%83%E7%BA%BF%E8%A7%84%E5%88%99%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">1、【布线规则】pcb的常用布线规则有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E3%80%90-500M-%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E3%80%91%E5%A6%82%E6%9E%9C%E7%BB%99%E4%B8%80%E4%B8%AA-500M-%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E5%B8%83%E7%BA%BF%EF%BC%9F"><span class="toc-text">2、【 500M 信号布线】如果给一个 500M 的信号，该如何布线？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E3%80%90%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E3%80%91%E7%AE%80%E8%BF%B0PCB-Layout%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-text">3、【基本步骤】简述PCB Layout的基本步骤。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E3%80%90%E9%AB%98%E9%80%9F%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E3%80%91%E9%AB%98%E9%80%9F%E4%BF%A1%E5%8F%B7%E8%A6%81%E5%A6%82%E4%BD%95%E5%B8%83%E7%BA%BF%EF%BC%8C%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BB%86%E8%8A%82%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">4、【高速信号布线】高速信号要如何布线，有哪些细节要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E3%80%90%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%EF%BC%9F"><span class="toc-text">5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E3%80%90%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E3%80%91%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">6、【阻抗匹配】阻抗匹配方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E3%80%90%E8%BF%87%E5%AD%94%E3%80%91%E7%AE%80%E8%BF%B0%E8%BF%87%E5%AD%94%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%88%86%E7%B1%BB%E3%80%82"><span class="toc-text">7、【过孔】简述过孔的作用和分类。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E3%80%90%E8%BF%87%E5%AD%94%E3%80%91%E8%BF%87%E5%AD%94%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E9%87%8F%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%EF%BC%9F"><span class="toc-text">8、【过孔】过孔的大小和数量如何确定？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E3%80%90%E7%BA%BF%E5%AE%BD%E7%BA%BF%E8%B7%9D%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E7%BA%BF%E5%AE%BD%E5%92%8C%E7%BA%BF%E8%B7%9D%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%EF%BC%9F"><span class="toc-text">9、【线宽线距】在 PCB Layout 中，线宽和线距如何设置？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E3%80%90%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%EF%BC%9F%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">10、【差分信号】什么是差分信号？差分信号布线有什么要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E3%80%90%E6%95%A3%E7%83%AD%E9%97%AE%E9%A2%98%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%95%A3%E7%83%AD%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">11、【散热问题】在 PCB Layout 中，如何处理散热问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E3%80%90BGA-%E5%B0%81%E8%A3%85%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF-BGA-%E5%B0%81%E8%A3%85%EF%BC%9FBGA-%E5%B0%81%E8%A3%85%E7%9A%84%E5%85%83%E4%BB%B6%E5%9C%A8-Layout-%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">12、【BGA 封装】什么是 BGA 封装？BGA 封装的元件在 Layout 时，需要注意什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E3%80%90%E7%9B%B2%E5%AD%94%E5%92%8C%E5%9F%8B%E5%AD%94%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9B%B2%E5%AD%94%E5%92%8C%E5%9F%8B%E5%AD%94%E7%9A%84%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-text">13、【盲孔和埋孔】在 PCB Layout 中，如何进行盲孔和埋孔的设计？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E3%80%90DFM%E5%8E%9F%E5%88%99%E3%80%91%E7%AE%80%E8%BF%B0-PCB-Layout-%E4%B8%AD%E7%9A%84-DFM%EF%BC%88%E5%8F%AF%E5%88%B6%E9%80%A0%E6%80%A7%E8%AE%BE%E8%AE%A1%EF%BC%8CDesign-for-Manufacturability%EF%BC%89%E5%8E%9F%E5%88%99%E3%80%82"><span class="toc-text">14、【DFM原则】简述 PCB Layout 中的 DFM（可制造性设计，Design for Manufacturability）原则。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E3%80%90%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%EF%BC%9F"><span class="toc-text">15、【信号串扰】什么是信号串扰？如何避免信号串扰？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E3%80%90%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%9F%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%90%88%E7%90%86%E7%9A%84%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-text">16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E3%80%90%E5%A4%9A%E7%94%B5%E6%BA%90%E7%B3%BB%E7%BB%9F%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%A4%9A%E7%94%B5%E6%BA%90%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">17、【多电源系统】在 PCB Layout 中，如何处理多电源系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E3%80%90%E5%AE%89%E8%A7%84%E8%AE%BE%E8%AE%A1%E3%80%91%E7%AE%80%E8%BF%B0-PCB-Layout-%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A7%84%E8%AE%BE%E8%AE%A1%E8%A6%81%E6%B1%82%E3%80%82"><span class="toc-text">18、【安规设计】简述 PCB Layout 中的安规设计要求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E3%80%90%E6%97%B6%E9%92%9F%E4%BF%A1%E5%8F%B7Clock%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%97%B6%E9%92%9F%E4%BF%A1%E5%8F%B7Clock%EF%BC%9F"><span class="toc-text">19、【时钟信号Clock】在 PCB Layout 中，如何处理时钟信号Clock？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E3%80%90%E7%94%B5%E6%BA%90%E5%AE%8C%E6%95%B4%E6%80%A7%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%94%B5%E6%BA%90%E5%AE%8C%E6%95%B4%E6%80%A7%EF%BC%9F"><span class="toc-text">20、【电源完整性】在 PCB Layout 中，如何优化电源完整性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E3%80%90%E6%89%87%E5%87%BA%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%89%87%E5%87%BA%EF%BC%88Fan-Out%EF%BC%89%EF%BC%9F%E6%89%87%E5%87%BA%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E3%80%90%E8%9B%87%E5%BD%A2%E8%B5%B0%E7%BA%BF%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E9%AB%98%E9%80%9F%E5%B7%AE%E5%88%86%E7%BA%BF%E7%9A%84%E8%9B%87%E5%BD%A2%E8%B5%B0%E7%BA%BF%EF%BC%9F"><span class="toc-text">22、【蛇形走线】在 PCB Layout 中，如何处理高速差分线的蛇形走线？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23%E3%80%81%E3%80%903W%E5%8E%9F%E5%88%99%E3%80%91%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-text">23、【3W原则】非常重要！！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24%E3%80%81%E3%80%903W%E5%8E%9F%E5%88%99%E3%80%913W%E5%8E%9F%E5%88%99%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">24、【3W原则】3W原则的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25%E3%80%81%E3%80%9020H%E5%8E%9F%E5%88%99%E3%80%91"><span class="toc-text">25、【20H原则】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26%E3%80%81%E3%80%90%E4%BA%94%E4%BA%94%E5%8E%9F%E5%88%99%E3%80%91"><span class="toc-text">26、【五五原则】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27%E3%80%81%E3%80%90%E9%93%BA%E9%93%9C%E3%80%91PCB%E9%93%BA%E9%93%9C%E7%9A%84%E6%84%8F%E4%B9%89%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">27、【铺铜】PCB铺铜的意义、优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28%E3%80%81%E3%80%90%E5%BC%80%E6%94%BE%E9%A2%98%E3%80%91%E4%BD%A0%E5%9C%A8%E8%AE%BE%E8%AE%A1PCB-layout%E6%97%B6%E9%80%9A%E5%B8%B8%E4%BC%9A%E9%81%B5%E5%BE%AA%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%88%99%E5%92%8C%E8%A7%84%E8%8C%83"><span class="toc-text">28、【开放题】你在设计PCB layout时通常会遵循哪些原则和规范?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29%E3%80%81%E3%80%90%E5%A4%9A%E5%B1%82%E6%9D%BF%E3%80%91%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A82%E5%B1%82%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A84%E5%B1%82%EF%BC%8C%E7%94%A84%E5%B1%82%E7%94%B5%E8%B7%AF%E6%9D%BF%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%8C%E6%80%8E%E4%B9%88%E6%8A%91%E5%88%B6%E7%94%B5%E7%A3%81%E8%BE%90%E5%B0%84%E7%9A%84%EF%BC%9F"><span class="toc-text">29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-4-13硬件-PCB_layout" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">2026-09-13</time>
+    <time style="display: none;" id="post-update-time">2026-09-13</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="1、【布线规则】pcb的常用布线规则有哪些"><a href="#1、【布线规则】pcb的常用布线规则有哪些" class="headerlink" title="1、【布线规则】pcb的常用布线规则有哪些"></a>1、【布线规则】pcb的常用布线规则有哪些</h3><p>PCB布线是一项较为重要且繁琐的工作，其规则有很大。首先要知道布线优先次序，一般应该优先布关键信号线，即模拟小信号、时钟信号和同步信号等关键信号优先布线。其次布线的时候有以下常用的规则：</p>
+<p>①走线方向控制规则：即相邻层的走线成正交结构；</p>
+<p>②走线开环检查规则：不允许浮空布线；</p>
+<p>③阻抗匹配原则：即同一网络的不限宽度应该一致；</p>
+<p>④走线长度控制规则：即布线长度尽量短，以减少干扰；</p>
+<p>⑤倒角规则：即布线应该避免锐角和直角，一般为钝角布线等。</p>
+<h3 id="2、【-500M-信号布线】如果给一个-500M-的信号，该如何布线？"><a href="#2、【-500M-信号布线】如果给一个-500M-的信号，该如何布线？" class="headerlink" title="2、【 500M 信号布线】如果给一个 500M 的信号，该如何布线？"></a><strong>2、【 500M 信号布线】如果给一个 500M 的信号，该如何布线？</strong></h3><p>答：针对<strong>高速信号的布线</strong>需要注意：</p>
+<p>①<strong>尽可能使用直线布线</strong>：直线布线可以<strong>最大限度地减小信号路径的长度</strong>，从而<strong>减小信号的延迟和失真</strong>。</p>
+<p>②<strong>避免使用锐角弯曲</strong>：<strong>锐角弯曲会导致信号的反射和串扰</strong>，应尽可能使用圆弧或者 45 度斜角弯曲，或者采用直角转角来实现转向。</p>
+<p>③尽可能<strong>减少信号路径上的接口和连接器数量</strong>：接口和连接器都会导致信号的反射、串扰和噪声。因此，应尽可能减少信号路径上的接口和连接器数量。</p>
+<p>④<strong>使用差分对布线</strong>：对于高速信号，可以使用差分对布线来<strong>减小串扰和噪声</strong>。差分对布线指的是同时将正负两个信号导线一起布线，并尽量保持两条导线之间的距离相等。</p>
+<p>⑤<strong>对于长距离传输，可以采用屏蔽电缆或者同轴电缆来减小干扰和信号失真</strong>。屏蔽电缆指的是将信号线包裹在一个金属屏蔽层中，可以减小外界干扰和信号反射；同轴电缆指的是信号线和屏蔽层分别被包裹在两个同心圆管中，可以有效减小串扰和信号失真。</p>
+<p>⑥<strong>尽量远离其他高速信号源，避免互相干扰。</strong></p>
+<p>⑦<strong>选择合适的线宽和层数</strong>：线宽和层数决定了电路板的阻抗特性和信号传输质量，需要根据具体信号频率和板子大小来确定。</p>
+<h3 id="3、【基本步骤】简述PCB-Layout的基本步骤。"><a href="#3、【基本步骤】简述PCB-Layout的基本步骤。" class="headerlink" title="3、【基本步骤】简述PCB Layout的基本步骤。"></a>3、【基本步骤】简述PCB Layout的基本步骤。</h3><p>答：A、首先对原理图进行编译打包，确保编译打包能通过，即能导入到PCB Layout软件中。</p>
+<p>B、然后，把网表导入到PCB设计软件中。</p>
+<p>C、接着，进行元件布局，按照结构DXF图纸、功能模块等原则摆放元件或模块。（模块摆放位置要考虑辐射、散热、干扰等问题）</p>
+<p>D、设置好相应的Layout规则，如线宽、线距、差分线规则、过孔等。</p>
+<p>E、完成布线后，进行DRC检查、工艺检查、相关人员评审。</p>
+<p>F、最后，输出Gerber文件、叠层、阻抗要求等生产文件。</p>
+<h3 id="4、【高速信号布线】高速信号要如何布线，有哪些细节要求？"><a href="#4、【高速信号布线】高速信号要如何布线，有哪些细节要求？" class="headerlink" title="4、【高速信号布线】高速信号要如何布线，有哪些细节要求？"></a>4、【高速信号布线】高速信号要如何布线，有哪些细节要求？</h3><p>答：A、走线长度，尽量短（越长越容易受到干扰或被干扰）；</p>
+<p>B、避免打孔换层（过孔会有寄生电容和电感，造成阻抗不匹配及回流问题）；</p>
+<p>C、高速信号的回流地要完整，即参考层要完整；</p>
+<p>D、要包地处理，减少干扰或被干扰或EMC问题；</p>
+<p>E、高速信号走线不能有锐角或直角，尽量弧度处理。</p>
+<h3 id="5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？"><a href="#5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？" class="headerlink" title="5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？"></a>5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？</h3><p>答：阻抗匹配就是指在信号传输中的源端、传输线、负载端之间的阻抗相等。</p>
+<p>阻抗匹配目的是为了防止信号反射，保证信号的完整性。</p>
+<p>如果阻抗不匹配，信号就会在源端和阻抗不匹配点之间来回反射，可能导致信号衰减、失真。</p>
+<h3 id="6、【阻抗匹配】阻抗匹配方法有哪些？"><a href="#6、【阻抗匹配】阻抗匹配方法有哪些？" class="headerlink" title="6、【阻抗匹配】阻抗匹配方法有哪些？"></a>6、【阻抗匹配】阻抗匹配方法有哪些？</h3><p>答：A、有串联电阻匹配或并联电阻匹配，可以放在源端或负载端，根据实际信号要求来选择电阻大小，一般是用于低频信号；</p>
+<p>B、有阻抗匹配网络设计，如Π网络、LC网络等，一般是用于高速信号，比如WIFI模组的RF走线上的匹配网络（WIFI模组和天线之间）。</p>
+<h3 id="7、【过孔】简述过孔的作用和分类。"><a href="#7、【过孔】简述过孔的作用和分类。" class="headerlink" title="7、【过孔】简述过孔的作用和分类。"></a>7、【过孔】简述过孔的作用和分类。</h3><p>答：过孔（Via）的主要作用：实现不同层之间的电气连接。过孔Via分类：通孔，贯穿整个PCB板所有层，从Top层到Bottom层，用于连接不同层之间的电气连接；盲孔，从表面层（Top层或Bottom层）连接到内层，不贯穿整个PCB板所有层；埋孔，连接PCB板内层与内层之间的过孔，不露出表面，一般在高端产品上使用，也即是HDI高密度互连板子，相对来说Layout上复杂些。</p>
+<h3 id="8、【过孔】过孔的大小和数量如何确定？"><a href="#8、【过孔】过孔的大小和数量如何确定？" class="headerlink" title="8、【过孔】过孔的大小和数量如何确定？"></a>8、【过孔】过孔的大小和数量如何确定？</h3><p>答：过孔Via的内径大小决定了PCB板厂的能力，过孔Via的孔径越小，制作良率也会越低，相应成本也越高。过孔Via的内径孔径大小要与合作的PCB板厂协商好，避免孔径太小而生产不良导致Layout返工。</p>
+<p>一般1个过孔按照0.5A电流来估算（不同孔径大小，电流也不一样）。网上有过孔载流能力计算器，会考虑孔径、孔壁铜厚、温升等来计算。</p>
+<h3 id="9、【线宽线距】在-PCB-Layout-中，线宽和线距如何设置？"><a href="#9、【线宽线距】在-PCB-Layout-中，线宽和线距如何设置？" class="headerlink" title="9、【线宽线距】在 PCB Layout 中，线宽和线距如何设置？"></a>9、【线宽线距】在 PCB Layout 中，线宽和线距如何设置？</h3><p>答：线宽和线距要根据所合作的PCB板厂的能力来决定的，比如线宽最低0.1mm，线距最低0.1mm，低于0.1mm的话，可能导致连线断开或线与线短路等异常。当然，有一些特殊信号的线宽线距是有要求的，比如WIFI的RF线，线宽太小的话（即使设置阻抗是50欧姆），信号在该RF线上就会有更大的损耗。有的高速信号要求3W原则（3W原则：相邻信号之间的距离，不少于3倍线宽），减少信号之间的串扰或干扰。有的电流比较大的话，要按照1mm过流1A来估算。</p>
+<h3 id="10、【差分信号】什么是差分信号？差分信号布线有什么要求？"><a href="#10、【差分信号】什么是差分信号？差分信号布线有什么要求？" class="headerlink" title="10、【差分信号】什么是差分信号？差分信号布线有什么要求？"></a>10、【差分信号】什么是差分信号？差分信号布线有什么要求？</h3><p>答：差分信号的定义指在两个导线上传输的信号，这两个信号的幅度相等但相位相反，用两者的差值来表示信号（信号是信息的载体）。差分信号布线要求等长、等距，保持差分对的完整性。不同信号（如MIPI、USB、HDMI、SATA等）对差分信号的对内和对外的等长长度要求是不一样的。</p>
+<h3 id="11、【散热问题】在-PCB-Layout-中，如何处理散热问题？"><a href="#11、【散热问题】在-PCB-Layout-中，如何处理散热问题？" class="headerlink" title="11、【散热问题】在 PCB Layout 中，如何处理散热问题？"></a>11、【散热问题】在 PCB Layout 中，如何处理散热问题？</h3><p>答：将发热量大的元件放置在通风良好的位置，如靠近散热孔或风扇；使用大面积的铜箔作为散热层，增加散热面积；对于功率较大的元件，可安装散热器，并确保元件与散热器之间有良好的热传导，如涂抹导热硅脂或采用导热硅胶（衡量指标是导热系数，单位为 W&#x2F;m·K）；SOC底部的地要大面积连通，并且连接到外部的地，这样散热更快；大面积的铜箔也可以露铜上锡，增加散热面积；将发热量大的模块与对热量要求敏感的模块直接挖空隔离热传导。</p>
+<h3 id="12、【BGA-封装】什么是-BGA-封装？BGA-封装的元件在-Layout-时，需要注意什么？"><a href="#12、【BGA-封装】什么是-BGA-封装？BGA-封装的元件在-Layout-时，需要注意什么？" class="headerlink" title="12、【BGA 封装】什么是 BGA 封装？BGA 封装的元件在 Layout 时，需要注意什么？"></a>12、【BGA 封装】什么是 BGA 封装？BGA 封装的元件在 Layout 时，需要注意什么？</h3><p>答：BGA(Ball Grid Array)封装即球栅阵列封装，元件底部有大量的锡球作为焊接引脚。Layout 时要注意扇出设计，从 BGA 的焊球引出走线；合理规划过孔的大小和位置，确保过孔与焊球的连接可靠；对 BGA 区域进行良好的散热和接地处理。</p>
+<h3 id="13、【盲孔和埋孔】在-PCB-Layout-中，如何进行盲孔和埋孔的设计？"><a href="#13、【盲孔和埋孔】在-PCB-Layout-中，如何进行盲孔和埋孔的设计？" class="headerlink" title="13、【盲孔和埋孔】在 PCB Layout 中，如何进行盲孔和埋孔的设计？"></a>13、【盲孔和埋孔】在 PCB Layout 中，如何进行盲孔和埋孔的设计？</h3><p>答：一般只有高端SOC芯片才会采用到盲孔和埋孔设计，如RK3588。要考虑 PCB 板的制造工艺能力，确保盲孔和埋孔的尺寸、深度等参数符合制造要求；注意盲孔和埋孔与其他层的连接可靠性，避免出现断路或短路。盲埋孔（有分几阶盲埋孔）的生产工艺很复杂，成本会贵很多，要选择好的板厂，不然容易出问题。</p>
+<h3 id="14、【DFM原则】简述-PCB-Layout-中的-DFM（可制造性设计，Design-for-Manufacturability）原则。"><a href="#14、【DFM原则】简述-PCB-Layout-中的-DFM（可制造性设计，Design-for-Manufacturability）原则。" class="headerlink" title="14、【DFM原则】简述 PCB Layout 中的 DFM（可制造性设计，Design for Manufacturability）原则。"></a>14、【DFM原则】简述 PCB Layout 中的 DFM（可制造性设计，Design for Manufacturability）原则。</h3><p>答：设计的 PCB 板要符合生产厂家的制造工艺能力，如最小线宽、线距、过孔大小等；元件布局要便于贴片和插件操作，避免元件过于密集或难以操作的位置；焊盘设计要满足焊接要求，减少焊接缺陷；考虑PCB板的尺寸大小、厚度、形状，使其在过炉后不易出现板子变形，便于生产加工和后续的组装。</p>
+<h3 id="15、【信号串扰】什么是信号串扰？如何避免信号串扰？"><a href="#15、【信号串扰】什么是信号串扰？如何避免信号串扰？" class="headerlink" title="15、【信号串扰】什么是信号串扰？如何避免信号串扰？"></a>15、【信号串扰】什么是信号串扰？如何避免信号串扰？</h3><p>答：信号串扰（Crosstalk）是指在电路中，一条信号线上的电磁干扰不经意间耦合到另一条相邻的信号线上，从而影响其正常信号传输的现象。</p>
+<p>信号串扰有容性耦合干扰和感性耦合干扰。信号串扰会导致信号失真，引起通信异常、误触发等问题。</p>
+<p>增大信号线之间的距离，比如3W原则等；对易受干扰的信号进行包地处理，并两边合理打孔；合理安排信号层和电源层的叠层结构；避免平行走线过长，不同层之间的走线也要避免平行走线。</p>
+<h3 id="16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？"><a href="#16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？" class="headerlink" title="16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？"></a>16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？</h3><p>答：叠层结构是指 PCB板上信号层、电源层、地层的排列。</p>
+<p>比如四层板子，SOC面为Top面，作为信号层。那么第二层，就是作为地层（因为SOC上有很多高速信号，地层就作为参考层，给高速信号回流）。第三层就作为电源层，Bottom面就作为信号层。</p>
+<p>更多层板子的话，要考虑信号完整性、EMC性能等因素。一般将电源层和地层相邻放置，以减小电源平面的阻抗；将高速信号层与地层相邻，减少信号干扰。</p>
+<p>如果有方案设计的Demo，尤其涉及DDR，叠层结构就参考Demo来。毕竟Demo是有经过仿真和测试验证的。</p>
+<h3 id="17、【多电源系统】在-PCB-Layout-中，如何处理多电源系统？"><a href="#17、【多电源系统】在-PCB-Layout-中，如何处理多电源系统？" class="headerlink" title="17、【多电源系统】在 PCB Layout 中，如何处理多电源系统？"></a>17、【多电源系统】在 PCB Layout 中，如何处理多电源系统？</h3><p>答：在多电源系统中，要弄清电源拓扑中，每路电源的电流大小，尤其要优先规划好小系统的电源，如CPU、GPU、NPU、DDR等关键电源，这些电源电流大，纹波要求高。</p>
+<p>再者，一些模拟模块的电压，要做好分割或单点接地，多点接地处理。</p>
+<p>一些电流相对比较大的电源，也要先处理规划。</p>
+<p>一些对电源比较高的多路模拟模块电压，可以采用星型拓扑的方式，这样每路电源的相互影响比较小。</p>
+<p>每路电源的去耦和旁路电容的位置要处理好，减少电源噪声。</p>
+<h3 id="18、【安规设计】简述-PCB-Layout-中的安规设计要求。"><a href="#18、【安规设计】简述-PCB-Layout-中的安规设计要求。" class="headerlink" title="18、【安规设计】简述 PCB Layout 中的安规设计要求。"></a>18、【安规设计】简述 PCB Layout 中的安规设计要求。</h3><p>答：在有高压的产品Layout设计中，要满足电气间隙和爬电距离的要求，以防止电气击穿和漏电。</p>
+<p>对于有高压的部分，要进行特殊的防护设计，如增加绝缘层、使用隔离槽等。</p>
+<p>选择符合安规标准的材料，如PCB板材料、阻焊油墨等。</p>
+<p>电源的高压部分的安规要求都有明确的标准，且要做相应的认证，可按照认证标准来执行。</p>
+<h3 id="19、【时钟信号Clock】在-PCB-Layout-中，如何处理时钟信号Clock？"><a href="#19、【时钟信号Clock】在-PCB-Layout-中，如何处理时钟信号Clock？" class="headerlink" title="19、【时钟信号Clock】在 PCB Layout 中，如何处理时钟信号Clock？"></a>19、【时钟信号Clock】在 PCB Layout 中，如何处理时钟信号Clock？</h3><p>答：时钟信号的走线越短越好，可减少EMC问题。</p>
+<p>对时钟信号进行包地处理，减少对其他信号的干扰或被其他信号干扰。</p>
+<p>时钟信号要有完整的参考地，即回流路径。</p>
+<p>时钟信号的走线，尽量减少过孔，如有过孔，边上要打地孔，让时钟信号有更短的回流路径。</p>
+<p>采用差分时钟信号，提高抗干扰能力。</p>
+<p>在时钟上串的RC阻容，要靠近时钟源端。</p>
+<p>时钟线优化为弧度线，弧度线优于钝角。</p>
+<p>整条时钟线的线径要一致，线宽不一致的位置会阻抗不匹配。</p>
+<h3 id="20、【电源完整性】在-PCB-Layout-中，如何优化电源完整性？"><a href="#20、【电源完整性】在-PCB-Layout-中，如何优化电源完整性？" class="headerlink" title="20、【电源完整性】在 PCB Layout 中，如何优化电源完整性？"></a>20、【电源完整性】在 PCB Layout 中，如何优化电源完整性？</h3><p>答：做好电源完整性（Power Integrity，PI）是确保电路板运行稳定、性能可靠的关键。</p>
+<p>在多层板设计时，通常电源层与地层会紧密相邻，这样能给电源提供低阻抗路径。电源上的高频噪声会通过电源层与地层之间的寄生电容流过。</p>
+<p>评估好每路电源的电流大小，线宽或电源面要符合要求，不然会有电压幅度不够或跌落。避免过孔把电源层打断。</p>
+<p>芯片上的每路电压都要放置去耦电容，进行滤波、稳定电压、抑制干扰。</p>
+<p>可以用EDA软件，对电源完整性进行仿真和优化。</p>
+<h3 id="21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？"><a href="#21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？" class="headerlink" title="21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？"></a>21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？</h3><p>答：扇出是指从 BGA 等封装的焊球引出走线的过程。</p>
+<p>扇出设计原则是尽量缩短走线长度，减少过孔数量。</p>
+<p>保证扇出的走线均匀分布，避免出现局部密集或稀疏的情况。</p>
+<p>要满足信号完整性和电气性能的要求。</p>
+<h3 id="22、【蛇形走线】在-PCB-Layout-中，如何处理高速差分线的蛇形走线？"><a href="#22、【蛇形走线】在-PCB-Layout-中，如何处理高速差分线的蛇形走线？" class="headerlink" title="22、【蛇形走线】在 PCB Layout 中，如何处理高速差分线的蛇形走线？"></a>22、【蛇形走线】在 PCB Layout 中，如何处理高速差分线的蛇形走线？</h3><p>答：蛇形走线的目的是用于调整差分线对的长度匹配，满足信号的时序要求。</p>
+<p>高速差分线对之间的距离尽量满足5W原则，即达到5倍走线宽度的间距。</p>
+<p>高速差分线也需要地平面作为回流路径。</p>
+<p>差分线走线弯曲角度要大于135度。</p>
+<p>差分线对间距尽量满足3W原则。</p>
+<h3 id="23、【3W原则】非常重要！！！"><a href="#23、【3W原则】非常重要！！！" class="headerlink" title="23、【3W原则】非常重要！！！"></a>23、【3W原则】非常重要！！！</h3><p>3W原则是指在PCB设计中，为了减少线间串扰，应保证线间距足够大，即两根线之间的中心距离不少于3倍线宽。</p>
+<p>这个原则特别适用于高速信号线，如时钟线、差分线、视频、音频信号线、复位信号线等。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20250422/803954498_1745330188988/.jpg" alt="img"></p>
+<h3 id="24、【3W原则】3W原则的重要性"><a href="#24、【3W原则】3W原则的重要性" class="headerlink" title="24、【3W原则】3W原则的重要性"></a><strong>24、【3W原则】3W原则的重要性</strong></h3><p><strong>1、减少串扰</strong></p>
+<p>满足3W原则能使信号间的串扰减少70%，而满足10W原则则能使信号间的串扰减少近98%。这个原则成立的条件与电路板的物理因素有关，如叠层高度和导线线宽。</p>
+<p><strong>2、信号衰减和延迟</strong></p>
+<p>走线间距过小会导致寄生容性增大，增加信号衰减和传输延迟，影响信号的时序和同步。</p>
+<p><strong>3、3W条件限制</strong></p>
+<p>需要注意的是，3W原则的成立是有先前条件的。它与叠层高度、导线线宽相关，对于不同的PCB层叠结构和线宽，3W原则的适用性可能会有所不同。例如，在四层板中，走线与参考平面高度距离(5<del>10mils)，3W是够了；但两层板，走线与参考层高度距离(45</del>55mils)，3W对高速信号走线可能不够。</p>
+<h3 id="25、【20H原则】"><a href="#25、【20H原则】" class="headerlink" title="25、【20H原则】"></a><strong>25、【20H原则】</strong></h3><p>20H原则关注的是电源层与地层之间的边缘辐射效应。在PCB设计中，将电源层内缩相当于两个平面间层距的20倍，可以有效抑制边缘辐射效应，提高EMC性能。若内缩20H，则可以将70%的电场限制在接地边沿内；内缩100H，则可以将98%的电场限制在内。这个规则在特定条件下效果明显，包括电源总线中电流波动的上升&#x2F;下降时间要小于1ns，电源平面处在PCB的内部层面上，并且与它相邻的上下两个层面都为0V平面。</p>
+<h3 id="26、【五五原则】"><a href="#26、【五五原则】" class="headerlink" title="26、【五五原则】"></a><strong>26、【五五原则】</strong></h3><p>五五原则指的是，当时钟频率达到5MHz或脉冲上升时间小于5ns时，PCB板应采用多层板设计。这一原则的核心在于，随着信号频率的提高和信号上升时间的缩短，单层或双层板可能无法提供足够的信号完整性，因此需要通过增加层数来改善信号传输性能和降低干扰。</p>
+<h3 id="27、【铺铜】PCB铺铜的意义、优缺点"><a href="#27、【铺铜】PCB铺铜的意义、优缺点" class="headerlink" title="27、【铺铜】PCB铺铜的意义、优缺点"></a>27、【铺铜】PCB铺铜的意义、优缺点</h3><p>PCB铺铜就是将PCB上无布线区域闲置的空间用固体铜填充，铺铜可以减小地线阻抗，提高抗干扰能力，降低压降，提高电源效率，与地线相连，还可以减小环路面积。</p>
+<p>数字电路中存在大量尖峰脉冲电流，因此降低地线阻抗显得更有必要，普遍认为，对于全由数字器件组成的电路，应该大面积铺地，但对于模拟电路，铺铜所形成的地线环路，反而会引起电磁耦合干扰得不偿失（高频电路例外）。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>对于EMC（电磁兼容性）要求，大面积的地或电源需铺铜，会起到屏蔽作用，有些特殊地，如PGND（保护地）起到防护作用。</li>
+<li>对于PCB工艺制造要求，一般为了保证电镀的镀铜均匀效果，或者层压不变形弯曲，对于布线较少的PCB板层铺铜。</li>
+<li>对于信号完整性要求，给高频数字信号一个完整的回流路径，并减少直流网络的布线。当然还有散热，特殊器件安装要求铺铜等等原因。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>如果对元器件管脚进行铺铜全覆盖，可能导致散热过快，从而导致拆焊和返修时困难。所以有时为了避免这种情况，对元器件采用十字连接（引脚接触和焊盘接触为“十”字）。</li>
+<li>在天线部分周围区域铺铜容易导致信号弱，采集信号受到干扰，铺铜的阻抗会影响到放大电路的性能。所以天线部分的周围区域一般不会铺铜。</li>
+</ul>
+<h3 id="28、【开放题】你在设计PCB-layout时通常会遵循哪些原则和规范"><a href="#28、【开放题】你在设计PCB-layout时通常会遵循哪些原则和规范" class="headerlink" title="28、【开放题】你在设计PCB layout时通常会遵循哪些原则和规范?"></a>28、【开放题】你在设计PCB layout时通常会遵循哪些原则和规范?</h3><p>我在PCB layout时，通常会遵行以下几个原则。第一：“模块化布局”，就说根据原理图划分的模块进行大致布局，然后再进行微调。第二：“先大后小”，就说器件大的先摆放，这里的“大”还有另一重意思就是，核心器件，如多引脚的芯片可以先进行布局。第三：“就近原则”，就是根据原理图上的连接关系，然后在PCB中就近布局。第四：“信号流向”，根据原理图中的信号流向来进行布局与连线。第五：”数模分离“，尽量将敏感的模拟信号远离数字信号或者电源线。</p>
+<p>规范的话，第一，就是器件的摆放，比如说开关我一般放置在右下角、固定孔放置四个角落、USB接口放置板子边沿。第二，就是器件位号丝印标注，标注信息遵行”从下往上，从左往右“的规范，以便大家阅读。</p>
+<h3 id="29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？"><a href="#29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？" class="headerlink" title="29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？"></a>29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？</h3><p>为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的在电路设计中，通常会选择2层或4层电路板，其中4层电路板适用于需要更高的信号完整性、更佳的抗干扰性能和更高的可靠性要求的电路设计。在以下情况下，可以考虑使用4层电路板：</p>
+<ol>
+<li>信号完整性要求较高：4层电路板可以在内层增加信号和电源层，以减少外部噪声和信号干扰，提高信号完整性和稳定性。</li>
+<li>多层高速数字信号：多层PCB设计中，可以将高速数字信号通过内层，减少延时、降低反射和串扰。</li>
+<li>高功率&#x2F;高频率电路：4层电路板可以有效地抑制电磁辐射，减少信号耦合和交叉干扰，提高电路的可靠性和稳定性。</li>
+<li>复杂性高：在设计较复杂的电路时，4层电路板的布线和布局更加灵活，可以更好地解决电路布线和电源分配的问题。使用4层电路板需要注意以下问题：</li>
+<li>布局和布线：在设计4层电路板时，需要仔细规划布局和布线，以确保信号和电源的分配符合电路设计要求。</li>
+<li>接地和电源分布：在设计4层电路板时，需要合理分配地面和电源层，确保电路中的信号和电源供应充足。</li>
+<li>信号干扰：由于4层电路板的层数较多，信号干扰问题更加突出。因此，在设计时应采取有效措施抑制信号干扰和降噪，如合理布局和屏蔽。</li>
+<li>电磁辐射：4层电路板在高功率和高频率电路设计时容易产生电磁辐射。需要采用合适的抑制措施，如增加电磁屏蔽和地面平面，降低电路中的噪声和干扰。抑制电磁辐射还可以采用差模驱动和使用低ESR电容器等方法。</li>
+</ol>
+
+    </div>
+    <footer class="article-footer">
+        <div class="share-wrapper">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-13%25E7%25A1%25AC%25E4%25BB%25B6-PCB_layout%2F" target="_blank" rel="noopener noreferrer" title="PCB_layout">
+      <div class="share-icon icon icon-facebook">
+      </div>
+    </a>
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-13%25E7%25A1%25AC%25E4%25BB%25B6-PCB_layout%2F&amp;appkey=&amp;title=PCB_layout&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="PCB_layout">
+      <div class="share-icon icon icon-weibo">
+      </div>
+    </a>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-13%25E7%25A1%25AC%25E4%25BB%25B6-PCB_layout%2F&amp;title=PCB_layout&amp;desc=PCB_layout&amp;source=https%3A%2F%2Fyt33-17.github.io" target="_blank" rel="noopener noreferrer" title="PCB_layout">
+      <div class="share-icon icon icon-qq">
+      </div>
+    </a>
+</div>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag" title="硬件">硬件</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="电源" class="lazyload">
+        <a href="/2026/09/13/4-10%E7%A1%AC%E4%BB%B6-%E7%94%B5%E6%BA%90/" aria-label="前一篇: 电源" title="前一篇: 电源"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            电源
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="硬件测试" class="lazyload">
+      <a href="/2026/09/13/4-14%E7%A1%AC%E4%BB%B6-%E7%A1%AC%E4%BB%B6%E6%B5%8B%E8%AF%95/" aria-label="后一篇: 硬件测试"  title="后一篇: 硬件测试"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          硬件测试
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2024-2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        75.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:38
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E3%80%90%E5%B8%83%E7%BA%BF%E8%A7%84%E5%88%99%E3%80%91pcb%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B8%83%E7%BA%BF%E8%A7%84%E5%88%99%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">1、【布线规则】pcb的常用布线规则有哪些</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E3%80%90-500M-%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E3%80%91%E5%A6%82%E6%9E%9C%E7%BB%99%E4%B8%80%E4%B8%AA-500M-%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E5%B8%83%E7%BA%BF%EF%BC%9F"><span class="toc-text">2、【 500M 信号布线】如果给一个 500M 的信号，该如何布线？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E3%80%90%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E3%80%91%E7%AE%80%E8%BF%B0PCB-Layout%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E3%80%82"><span class="toc-text">3、【基本步骤】简述PCB Layout的基本步骤。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E3%80%90%E9%AB%98%E9%80%9F%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E3%80%91%E9%AB%98%E9%80%9F%E4%BF%A1%E5%8F%B7%E8%A6%81%E5%A6%82%E4%BD%95%E5%B8%83%E7%BA%BF%EF%BC%8C%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BB%86%E8%8A%82%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">4、【高速信号布线】高速信号要如何布线，有哪些细节要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E3%80%90%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%EF%BC%9F"><span class="toc-text">5、【阻抗匹配】什么是阻抗匹配？为什么要进行阻抗匹配？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E3%80%90%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E3%80%91%E9%98%BB%E6%8A%97%E5%8C%B9%E9%85%8D%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">6、【阻抗匹配】阻抗匹配方法有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E3%80%90%E8%BF%87%E5%AD%94%E3%80%91%E7%AE%80%E8%BF%B0%E8%BF%87%E5%AD%94%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E5%88%86%E7%B1%BB%E3%80%82"><span class="toc-text">7、【过孔】简述过孔的作用和分类。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E3%80%90%E8%BF%87%E5%AD%94%E3%80%91%E8%BF%87%E5%AD%94%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%95%B0%E9%87%8F%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%EF%BC%9F"><span class="toc-text">8、【过孔】过孔的大小和数量如何确定？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E3%80%90%E7%BA%BF%E5%AE%BD%E7%BA%BF%E8%B7%9D%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E7%BA%BF%E5%AE%BD%E5%92%8C%E7%BA%BF%E8%B7%9D%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%EF%BC%9F"><span class="toc-text">9、【线宽线距】在 PCB Layout 中，线宽和线距如何设置？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E3%80%90%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%EF%BC%9F%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7%E5%B8%83%E7%BA%BF%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">10、【差分信号】什么是差分信号？差分信号布线有什么要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E3%80%90%E6%95%A3%E7%83%AD%E9%97%AE%E9%A2%98%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%95%A3%E7%83%AD%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-text">11、【散热问题】在 PCB Layout 中，如何处理散热问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E3%80%90BGA-%E5%B0%81%E8%A3%85%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF-BGA-%E5%B0%81%E8%A3%85%EF%BC%9FBGA-%E5%B0%81%E8%A3%85%E7%9A%84%E5%85%83%E4%BB%B6%E5%9C%A8-Layout-%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">12、【BGA 封装】什么是 BGA 封装？BGA 封装的元件在 Layout 时，需要注意什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E3%80%90%E7%9B%B2%E5%AD%94%E5%92%8C%E5%9F%8B%E5%AD%94%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9B%B2%E5%AD%94%E5%92%8C%E5%9F%8B%E5%AD%94%E7%9A%84%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-text">13、【盲孔和埋孔】在 PCB Layout 中，如何进行盲孔和埋孔的设计？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E3%80%90DFM%E5%8E%9F%E5%88%99%E3%80%91%E7%AE%80%E8%BF%B0-PCB-Layout-%E4%B8%AD%E7%9A%84-DFM%EF%BC%88%E5%8F%AF%E5%88%B6%E9%80%A0%E6%80%A7%E8%AE%BE%E8%AE%A1%EF%BC%8CDesign-for-Manufacturability%EF%BC%89%E5%8E%9F%E5%88%99%E3%80%82"><span class="toc-text">14、【DFM原则】简述 PCB Layout 中的 DFM（可制造性设计，Design for Manufacturability）原则。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E3%80%90%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BF%A1%E5%8F%B7%E4%B8%B2%E6%89%B0%EF%BC%9F"><span class="toc-text">15、【信号串扰】什么是信号串扰？如何避免信号串扰？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E3%80%90%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%9F%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%90%88%E7%90%86%E7%9A%84%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="toc-text">16、【叠层结构】什么是叠层结构？如何设计合理的叠层结构？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E3%80%90%E5%A4%9A%E7%94%B5%E6%BA%90%E7%B3%BB%E7%BB%9F%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%A4%9A%E7%94%B5%E6%BA%90%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">17、【多电源系统】在 PCB Layout 中，如何处理多电源系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E3%80%90%E5%AE%89%E8%A7%84%E8%AE%BE%E8%AE%A1%E3%80%91%E7%AE%80%E8%BF%B0-PCB-Layout-%E4%B8%AD%E7%9A%84%E5%AE%89%E8%A7%84%E8%AE%BE%E8%AE%A1%E8%A6%81%E6%B1%82%E3%80%82"><span class="toc-text">18、【安规设计】简述 PCB Layout 中的安规设计要求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E3%80%90%E6%97%B6%E9%92%9F%E4%BF%A1%E5%8F%B7Clock%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%97%B6%E9%92%9F%E4%BF%A1%E5%8F%B7Clock%EF%BC%9F"><span class="toc-text">19、【时钟信号Clock】在 PCB Layout 中，如何处理时钟信号Clock？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E3%80%90%E7%94%B5%E6%BA%90%E5%AE%8C%E6%95%B4%E6%80%A7%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E7%94%B5%E6%BA%90%E5%AE%8C%E6%95%B4%E6%80%A7%EF%BC%9F"><span class="toc-text">20、【电源完整性】在 PCB Layout 中，如何优化电源完整性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E3%80%90%E6%89%87%E5%87%BA%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%89%87%E5%87%BA%EF%BC%88Fan-Out%EF%BC%89%EF%BC%9F%E6%89%87%E5%87%BA%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">21、【扇出】什么是扇出（Fan-Out）？扇出设计的原则是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E3%80%90%E8%9B%87%E5%BD%A2%E8%B5%B0%E7%BA%BF%E3%80%91%E5%9C%A8-PCB-Layout-%E4%B8%AD%EF%BC%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E9%AB%98%E9%80%9F%E5%B7%AE%E5%88%86%E7%BA%BF%E7%9A%84%E8%9B%87%E5%BD%A2%E8%B5%B0%E7%BA%BF%EF%BC%9F"><span class="toc-text">22、【蛇形走线】在 PCB Layout 中，如何处理高速差分线的蛇形走线？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23%E3%80%81%E3%80%903W%E5%8E%9F%E5%88%99%E3%80%91%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%81%EF%BC%81%EF%BC%81"><span class="toc-text">23、【3W原则】非常重要！！！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24%E3%80%81%E3%80%903W%E5%8E%9F%E5%88%99%E3%80%913W%E5%8E%9F%E5%88%99%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">24、【3W原则】3W原则的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25%E3%80%81%E3%80%9020H%E5%8E%9F%E5%88%99%E3%80%91"><span class="toc-text">25、【20H原则】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26%E3%80%81%E3%80%90%E4%BA%94%E4%BA%94%E5%8E%9F%E5%88%99%E3%80%91"><span class="toc-text">26、【五五原则】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27%E3%80%81%E3%80%90%E9%93%BA%E9%93%9C%E3%80%91PCB%E9%93%BA%E9%93%9C%E7%9A%84%E6%84%8F%E4%B9%89%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">27、【铺铜】PCB铺铜的意义、优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28%E3%80%81%E3%80%90%E5%BC%80%E6%94%BE%E9%A2%98%E3%80%91%E4%BD%A0%E5%9C%A8%E8%AE%BE%E8%AE%A1PCB-layout%E6%97%B6%E9%80%9A%E5%B8%B8%E4%BC%9A%E9%81%B5%E5%BE%AA%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%88%99%E5%92%8C%E8%A7%84%E8%8C%83"><span class="toc-text">28、【开放题】你在设计PCB layout时通常会遵循哪些原则和规范?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29%E3%80%81%E3%80%90%E5%A4%9A%E5%B1%82%E6%9D%BF%E3%80%91%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A82%E5%B1%82%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A84%E5%B1%82%EF%BC%8C%E7%94%A84%E5%B1%82%E7%94%B5%E8%B7%AF%E6%9D%BF%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%8C%E6%80%8E%E4%B9%88%E6%8A%91%E5%88%B6%E7%94%B5%E7%A3%81%E8%BE%90%E5%B0%84%E7%9A%84%EF%BC%9F"><span class="toc-text">29、【多层板】为什么用2层，为什么用4层，用4层电路板要注意什么问题，怎么抑制电磁辐射的？</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":25,"duration":[1300,1700],"shapeOptions":{"radius":[20,30],"alpha":[0,1]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":0,"duration":[1300,1700],"shapeOptions":{"radius":12,"alpha":[0.2,0.5],"lineWidth":3}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "PCB_layout",
+          url: "https://yt33-17.github.io/2026/09/13/4-13%E7%A1%AC%E4%BB%B6-PCB_layout/",
+          excerpt: "",
+          description: "PCB_layout",
+          stripContent: "1、【布线规则】pcb的常用布线规则有哪些PCB布线是一项较为重要且繁琐的工作，其规则有很大。首先要知道布线优先次序，一般应该优先布关键信号线，即模拟小信号、时钟信号和同步信号等关键信号优先布线。其次布线的时候有以下常用的规则： ①走线方向控制规则：即相邻层的走线成正交结构； ②走线开环检查规则：不允许浮空布线； ③阻抗匹配原则：即同一网络的不限宽度应该一致； ④走线长度控制规则：即布线长度尽量短，以减少干扰； ⑤倒角规则：即布线应该避免锐角和直角，一般为钝角布线等。 2、【 500M 信号布线",
+          date: "Sun Sep 13 2026 00:00:00 GMT+0800",
+          updated: "Sun Sep 13 2026 12:40:34 GMT+0800",
+          cover: "/images/post-cover/7.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"一直很安静","artist":"阿桑","url":"/music/mp3/一直很安静.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一直很安静-阿桑-歌词.lrc"},{"name":"喜欢两个人","artist":"彭佳慧","url":"/music/mp3/喜欢两个人.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/喜欢两个人-彭佳慧-歌词.lrc"},{"name":"出现又离开(Live)","artist":"梁博","url":"/music/mp3/出现又离开(Live).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/出现又离开(Live)-梁博-歌词.lrc"},{"name":"一生所爱","artist":"卢冠廷;莫文蔚","url":"/music/mp3/一生所爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生所爱-卢冠廷;莫文蔚-歌词.lrc"},{"name":"你走(Demo)","artist":"松紧先生(李宗锦)","url":"/music/mp3/你走(Demo).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/你走(Demo)-松紧先生(李宗锦)-歌词.lrc"},{"name":"晴天","artist":"周杰伦","url":"/music/mp3/晴天.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/晴天-周杰伦-歌词.lrc"},{"name":"不负众望","artist":"陈婉菁","url":"/music/mp3/不负众望.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/不负众望-陈婉菁-歌词.lrc"},{"name":"明天过后","artist":"张杰","url":"/music/mp3/明天过后.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/明天过后-张杰-歌词.lrc"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/mp3/春娇与志明.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/春娇与志明-街道办GDC;欧阳耀莹-歌词.lrc"},{"name":"蜚蜚","artist":"陈僖仪","url":"/music/mp3/蜚蜚.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/蜚蜚-陈僖仪-歌词.lrc"},{"name":"枫","artist":"周杰伦","url":"/music/mp3/枫.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/枫-周杰伦-歌词.lrc"},{"name":"海阔天空","artist":"Beyond","url":"/music/mp3/海阔天空.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/海阔天空-Beyond-歌词.lrc"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/mp3/偏偏喜欢你.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/偏偏喜欢你-陈百强-歌词.lrc"},{"name":"七里香","artist":"周杰伦","url":"/music/mp3/七里香.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/七里香-周杰伦-歌词.lrc"},{"name":"日落大道","artist":"梁博","url":"/music/mp3/日落大道.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/日落大道-梁博-歌词.lrc"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/mp3/身骑白马.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/身骑白马-徐佳莹-歌词.lrc"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/mp3/一生中最爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生中最爱-谭咏麟-歌词.lrc"},{"name":"萤火飞光","artist":"圈9","url":"/music/mp3/萤火飞光.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/萤火飞光-圈9-歌词.lrc"},{"name":"勇气","artist":"梁静茹","url":"/music/mp3/勇气.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/勇气-梁静茹-歌词.lrc"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: 3 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  <script>
+    window.CW_CONFIG = {
+      auto_locate: true,
+      city: "北京",
+      latitude: null,
+      longitude: null,
+      update_interval: 10,
+      qweather: {
+        key: "93537501860943b2938616e06693c491",
+        host: "nm6e4gxpfu.re.qweatherapi.com"
+      }
+    };
+  </script>
+  
+<script src="/js/calendar_weather.js" data-pjax></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

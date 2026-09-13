@@ -1,0 +1,724 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    嵌入式系统与MCU | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="嵌入式系统与MCU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嵌入式系统与MCU">
+<meta property="og:url" content="https://yt33-17.github.io/2026/09/13/4-11%E7%A1%AC%E4%BB%B6-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="嵌入式系统与MCU">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T04:40:13.626Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/theme/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/theme/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word">查克拉流动中，请稍候……</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/theme/6.png" alt="嵌入式系统与MCU">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">嵌入式系统与MCU</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+    <div id="calendar-weather" data-aos="fade-up">
+  <div class="cw-card">
+    <div class="cw-main">
+      <div class="cw-left">
+        <div class="cw-top">
+          <span class="cw-city">📍--</span>
+          <span class="cw-now">
+            <span class="cw-temp">--<span>°C</span></span>
+            <span class="cw-icon">🌡️</span>
+          </span>
+        </div>
+        <div class="cw-date-block">
+          <div class="cw-date"></div>
+          <div class="cw-sub">
+            <span class="cw-weekday"></span>
+            <span class="cw-lunar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cw-forecast"></div>
+    </div>
+    <div class="cw-stats">
+      <div class="cw-stat">
+        <span class="cw-stat-label">降水</span>
+        <span class="cw-stat-value cw-precip">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">风</span>
+        <span class="cw-stat-value cw-wind">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">湿度</span>
+        <span class="cw-stat-value cw-humidity">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">气压</span>
+        <span class="cw-stat-value cw-pressure">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8A%E7%94%B5%E5%90%8E%E6%B2%A1%E6%9C%89%E8%BF%90%E8%BD%AC%EF%BC%8C%E9%A6%96%E5%85%88%E8%A6%81%E6%A3%80%E6%9F%A5%E4%BB%80%E4%B9%88"><span class="toc-text">1**、单片机上电后没有运转，首先要检查什么**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81STM32-%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">2**、STM32 最小系统？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81%E6%A8%A1%E6%8B%9F%E6%8E%A7%E5%88%B6-PWM-%E5%92%8C%E8%BD%AF%E4%BB%B6%E6%8E%A7%E5%88%B6-PWM-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">3**、模拟控制 PWM 和软件控制 PWM 的优缺点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81MCU-%E5%92%8C-FPAG-%E5%AF%B9%E6%AF%94%EF%BC%8C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">4**、MCU 和 FPAG 对比，优缺点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E3%80%81PWM%E6%B3%A2%E6%80%8E%E4%B9%88%E8%B0%83%E5%88%B6"><span class="toc-text">5**、PWM波怎么调制**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81DSP%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E5%90%88"><span class="toc-text">6、DSP和单片机的区别，应用场合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%8D%95%E7%89%87%E6%9C%BA%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E9%A9%B1%E5%8A%A8%E8%83%BD%E5%8A%9B"><span class="toc-text">7、单片机如何提高驱动能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81MCU%E9%80%89%E5%8F%96%E8%80%83%E8%99%91"><span class="toc-text">8、MCU选取考虑</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-4-11硬件-嵌入式系统与MCU" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">2026-09-13</time>
+    <time style="display: none;" id="post-update-time">2026-09-13</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="1-、单片机上电后没有运转，首先要检查什么"><a href="#1-、单片机上电后没有运转，首先要检查什么" class="headerlink" title="1**、单片机上电后没有运转，首先要检查什么**"></a>1**、单片机上电后没有运转，首先要检查什么**</h3><p>**答：**①检查电源是否正常，若装有复位芯片，也需查看复位芯片是否工作正常；</p>
+<p>②检查硬件复位电路是否正常；</p>
+<p>③查看外部晶振是否启振，一般用示波器 X10 挡位，应选取较高带宽；</p>
+<p>④查看 BOOT 位设置启动方式是否正确。</p>
+<h3 id="2-、STM32-最小系统？"><a href="#2-、STM32-最小系统？" class="headerlink" title="2**、STM32 最小系统？**"></a>2**、STM32 最小系统？**</h3><p>**答：**STM32 最小系统是一种包含 STM32 微控制器、时钟电路、复位电路、调试电路、 电源电路等基本元件的硬件电路。</p>
+<p><strong>STM32 最小系统的组成部分通常包括：一个 STM32 微控制器芯片、一个外部晶体振荡器（或者是内部 RC 振荡器）、一个复位电路、一个调试电路（通常是 SWD 接口）、一个稳压器电路以及一些必要的电阻、电容和连接线等。</strong></p>
+<p>在 STM32 最小系统中，芯片和各种电路的连接方式非常重要。具体来说，STM32 芯片的引脚需要和外部电路连接，比如时钟电路、复位电路、调试电路等。在实际设计过程中，还需要<strong>注意电路的布局和线路的走向，以最小化信号干扰和噪声。</strong></p>
+<h3 id="3-、模拟控制-PWM-和软件控制-PWM-的优缺点"><a href="#3-、模拟控制-PWM-和软件控制-PWM-的优缺点" class="headerlink" title="3**、模拟控制 PWM 和软件控制 PWM 的优缺点**"></a>3**、模拟控制 PWM 和软件控制 PWM 的优缺点**</h3><p>答：<strong>PWM，即脉冲宽度调制（Pulse-width modulation）</strong>，是一种<strong>模拟控制方式</strong>，<strong>它通过改变晶体管栅极或基极的偏置，进而改变开关稳压电源输出晶体管或晶体管的导通时间，从而确保电源的输出电压在工作条件变化时保持恒定。其核心思想是将有效的电信号分散成离散形式，以此降低电信号所传递的平均功率。</strong></p>
+<p><strong>（1）模拟控制 PWM</strong></p>
+<p>主要通过模拟电路实现<strong>三角波载波</strong>和<strong>正弦调制波</strong>发生电路，使用<strong>比较器确定它们的交点</strong>，<strong>在交点时刻对开关器件的通断进行控制，从而生成 PWM 波</strong>。这种方法的优点是**响应速度快，实时性好。**但由于模拟电路本身的特性，其稳定性和精度可能受到温度、电源电压等环境因素的影响，且设计调试相对复杂。</p>
+<p><strong>（2）软件控制 PWM</strong></p>
+<p>是通过<strong>编程方式生成 PWM 信号</strong>，实现对<strong>系统</strong>的控制。这种方式<strong>灵活性高</strong>，可以方便地<strong>修改 PWM 信号的参数，且不受硬件限制</strong>。此外，软件控制还可以**实现复杂的控制算法和逻辑。**然而，软件控制 PWM 的实时性可能不如模拟控制，且需要消耗处理器的资源，如果处理不当可能会影响系统的整体性能。</p>
+<p><strong>对比</strong></p>
+<p>在<strong>实时性要求高、环境因素影响小的场合，模拟控制 PWM 可能更为合适</strong>；而<strong>在需要灵活调整控制参数、实现复杂控制逻辑的场合，软件控制 PWM 则更具优势</strong>。</p>
+<h3 id="4-、MCU-和-FPAG-对比，优缺点"><a href="#4-、MCU-和-FPAG-对比，优缺点" class="headerlink" title="4**、MCU 和 FPAG 对比，优缺点**"></a>4**、MCU 和 FPAG 对比，优缺点**</h3><p><strong>答：MCU 和 FPGA 都是嵌入式系统中常用的芯片。</strong></p>
+<p>**MCU 是一种内置有 CPU、内存、I&#x2F;O 口、中断控制器、定时器&#x2F;计数器、模拟&#x2F;数字转换器（ADC&#x2F;DAC）等外设的单芯片微型计算机系统。**MCU 主要用于低端、小型、低功耗的应用，如传感器、智能家居、工业控制等。</p>
+<p>**FPGA 是一种可编程逻辑芯片，用户可以根据需要在芯片内部实现不同的数字电路，例如算术逻辑单元（ALU）、寄存器、计数器、存储器、乘法器、数据通路等。**FPGA 主要用于高速、高灵活性、高性能的应用，如数字信号处理、图像处理、网络通信等。</p>
+<p><strong>MCU 和 FPGA 的优缺点如下：</strong></p>
+<p>（1）MCU 的优点：<strong>内置大量外设，能够满足很多嵌入式应用的需求；易于编程，有成熟的开发工具链和编程语言；价格便宜，性价比高。</strong></p>
+<p>（2）MCU 的缺点：<strong>外设固定，不易扩展；性能和灵活性不足；可编程性差，不支持自定义电路的实现。</strong></p>
+<p>（3）FPGA 的优点：<strong>灵活性高，能够实现各种复杂的数字电路；性能高，支持高速、并行处理；可编程性好，能够根据需要自定义实现电路。</strong></p>
+<p>（4）FPGA 的缺点：<strong>开发难度大，需要专业的硬件设计知识；价格高，成本较高；功耗较高，适用范围受限。</strong></p>
+<h3 id="5-、PWM波怎么调制"><a href="#5-、PWM波怎么调制" class="headerlink" title="5**、PWM波怎么调制**"></a>5**、PWM波怎么调制**</h3><p>答：<strong>PWM（脉宽调制）波是一种模拟信号，它由高电平时间（即脉宽）和周期时间组成。通过改变脉宽的占空比，可以模拟出不同的模拟信号。</strong></p>
+<p><strong>PWM 调制可以通过以下步骤实现：</strong></p>
+<p>（1）选择一个计数器，并将其初始化为 0。</p>
+<p>（2）选择一个比较器，将其与计数器相连，并将其值初始化为 0。将一个参考信号与计数器相连。</p>
+<p>（3）当计数器的值等于比较器的值时，输出 PWM 波的高电平。</p>
+<p>（4）当计数器的值达到计数器的最大值时，重置计数器为 0，并将比较器的值更新为下一个周期的脉宽值。</p>
+<p>在硬件设计中，需要考虑到脉宽和频率的要求，并选择合适的计数器和比较器，以满足需要输出的PWM 信号的要求。同时还需要考虑到电路的抗干扰能力，以确保输出的 PWM 波形的稳定性和可靠性。</p>
+<h3 id="6、DSP和单片机的区别，应用场合"><a href="#6、DSP和单片机的区别，应用场合" class="headerlink" title="6、DSP和单片机的区别，应用场合"></a>6、DSP和单片机的区别，应用场合</h3><p>DSP一般指的是数字信号处理器(开发板)，多用于数据算法处理，其具有强大的数据处理能力和运行速度。而单片机是一种集成电路芯片，单片机是一种系统设计方案，将计算机的CPU，定时器和多种接口集成在一片芯片上，可以满足多种应用场合。 在实际生活中，DSP的应用一般为DVD、蓝光播放器、电视机顶盒等，而单片机在工业控制领域，如数控机床，以及智能设备，例如智能音箱，消费类电子领域应用较多。</p>
+<p>单片机死机、跑飞的原因是什么？</p>
+<p>单片机死机、跑飞一般可以归结为以下几个原因：①单片机打开了中断但没有清除中断命令，导致程序一直进入中断，造成死机的假象；②没有正确地处理中断向量；③指针操作错误导致地址溢出；④循环忘了给定义条件，造成死循环；⑤堆栈溢出；</p>
+<h3 id="7、单片机如何提高驱动能力"><a href="#7、单片机如何提高驱动能力" class="headerlink" title="7、单片机如何提高驱动能力"></a>7、单片机如何提高驱动能力</h3><p>单片机的驱动电流并不高，但单片机具有低电流驱动能力强的特点，因此，要想提高单片机的驱动能力，优先使用低电流驱动。此外，若要再提高驱动能力，可以外接三极管来扩充电流，进一步增大单片机的驱动能力。</p>
+<h3 id="8、MCU选取考虑"><a href="#8、MCU选取考虑" class="headerlink" title="8、MCU选取考虑"></a>8、MCU选取考虑</h3><p><strong>答：选择MCU时需要考虑以下几个方面</strong></p>
+<p><strong>(1)性能:</strong> 包括运行速度、存储容量、外设数量和类型等。根据具体应用场景选择不同的MCU型号</p>
+<p><strong>(2)功耗:</strong> 需要考虑应用场景对功耗的要求。如果需要长时间运行，需要选择低功耗MCU。</p>
+<p><strong>(3)可靠性:</strong> 需要考虑MCU的可靠性和稳定性。选择品牌知名、经过验证的MCU可以降低故障率</p>
+<p><strong>(4)成本:</strong> 需要考虑MCU的成本和性价比，根据具体应用场景选择合适的MCU型号。</p>
+<p><strong>(5)生态环境:</strong> 需要考虑MCU的开发工具、支持社区、示例代码等生态环境。</p>
+<p><strong>(6)供应链:</strong> 需要考虑MCU的供应链稳定性和可靠性，避免由于MCU供应问题导致项目延误。</p>
+
+    </div>
+    <footer class="article-footer">
+        <div class="share-wrapper">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-11%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%25B5%258C%25E5%2585%25A5%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E4%25B8%258EMCU%2F" target="_blank" rel="noopener noreferrer" title="嵌入式系统与MCU">
+      <div class="share-icon icon icon-facebook">
+      </div>
+    </a>
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-11%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%25B5%258C%25E5%2585%25A5%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E4%25B8%258EMCU%2F&amp;appkey=&amp;title=%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="嵌入式系统与MCU">
+      <div class="share-icon icon icon-weibo">
+      </div>
+    </a>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-11%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%25B5%258C%25E5%2585%25A5%25E5%25BC%258F%25E7%25B3%25BB%25E7%25BB%259F%25E4%25B8%258EMCU%2F&amp;title=%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU&amp;desc=%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU&amp;source=https%3A%2F%2Fyt33-17.github.io" target="_blank" rel="noopener noreferrer" title="嵌入式系统与MCU">
+      <div class="share-icon icon icon-qq">
+      </div>
+    </a>
+</div>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag" title="硬件">硬件</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="通信与总线协议" class="lazyload">
+        <a href="/2026/09/13/4-12%E7%A1%AC%E4%BB%B6-%E9%80%9A%E4%BF%A1%E4%B8%8E%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE/" aria-label="前一篇: 通信与总线协议" title="前一篇: 通信与总线协议"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            通信与总线协议
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="电源" class="lazyload">
+      <a href="/2026/09/13/4-10%E7%A1%AC%E4%BB%B6-%E7%94%B5%E6%BA%90/" aria-label="后一篇: 电源"  title="后一篇: 电源"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          电源
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2024-2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        75.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:38
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8A%E7%94%B5%E5%90%8E%E6%B2%A1%E6%9C%89%E8%BF%90%E8%BD%AC%EF%BC%8C%E9%A6%96%E5%85%88%E8%A6%81%E6%A3%80%E6%9F%A5%E4%BB%80%E4%B9%88"><span class="toc-text">1**、单片机上电后没有运转，首先要检查什么**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81STM32-%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">2**、STM32 最小系统？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81%E6%A8%A1%E6%8B%9F%E6%8E%A7%E5%88%B6-PWM-%E5%92%8C%E8%BD%AF%E4%BB%B6%E6%8E%A7%E5%88%B6-PWM-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">3**、模拟控制 PWM 和软件控制 PWM 的优缺点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81MCU-%E5%92%8C-FPAG-%E5%AF%B9%E6%AF%94%EF%BC%8C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">4**、MCU 和 FPAG 对比，优缺点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E3%80%81PWM%E6%B3%A2%E6%80%8E%E4%B9%88%E8%B0%83%E5%88%B6"><span class="toc-text">5**、PWM波怎么调制**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81DSP%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E5%90%88"><span class="toc-text">6、DSP和单片机的区别，应用场合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%8D%95%E7%89%87%E6%9C%BA%E5%A6%82%E4%BD%95%E6%8F%90%E9%AB%98%E9%A9%B1%E5%8A%A8%E8%83%BD%E5%8A%9B"><span class="toc-text">7、单片机如何提高驱动能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81MCU%E9%80%89%E5%8F%96%E8%80%83%E8%99%91"><span class="toc-text">8、MCU选取考虑</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":25,"duration":[1300,1700],"shapeOptions":{"radius":[20,30],"alpha":[0,1]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":0,"duration":[1300,1700],"shapeOptions":{"radius":12,"alpha":[0.2,0.5],"lineWidth":3}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "嵌入式系统与MCU",
+          url: "https://yt33-17.github.io/2026/09/13/4-11%E7%A1%AC%E4%BB%B6-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU/",
+          excerpt: "",
+          description: "嵌入式系统与MCU",
+          stripContent: "1**、单片机上电后没有运转，首先要检查什么****答：**①检查电源是否正常，若装有复位芯片，也需查看复位芯片是否工作正常； ②检查硬件复位电路是否正常； ③查看外部晶振是否启振，一般用示波器 X10 挡位，应选取较高带宽； ④查看 BOOT 位设置启动方式是否正确。 2**、STM32 最小系统？****答：**STM32 最小系统是一种包含 STM32 微控制器、时钟电路、复位电路、调试电路、 电源电路等基本元件的硬件电路。 STM32 最小系统的组成部分通常包括：一个 STM32 微控制",
+          date: "Sun Sep 13 2026 00:00:00 GMT+0800",
+          updated: "Sun Sep 13 2026 12:40:13 GMT+0800",
+          cover: "/images/post-cover/7.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"一直很安静","artist":"阿桑","url":"/music/mp3/一直很安静.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一直很安静-阿桑-歌词.lrc"},{"name":"喜欢两个人","artist":"彭佳慧","url":"/music/mp3/喜欢两个人.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/喜欢两个人-彭佳慧-歌词.lrc"},{"name":"出现又离开(Live)","artist":"梁博","url":"/music/mp3/出现又离开(Live).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/出现又离开(Live)-梁博-歌词.lrc"},{"name":"一生所爱","artist":"卢冠廷;莫文蔚","url":"/music/mp3/一生所爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生所爱-卢冠廷;莫文蔚-歌词.lrc"},{"name":"你走(Demo)","artist":"松紧先生(李宗锦)","url":"/music/mp3/你走(Demo).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/你走(Demo)-松紧先生(李宗锦)-歌词.lrc"},{"name":"晴天","artist":"周杰伦","url":"/music/mp3/晴天.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/晴天-周杰伦-歌词.lrc"},{"name":"不负众望","artist":"陈婉菁","url":"/music/mp3/不负众望.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/不负众望-陈婉菁-歌词.lrc"},{"name":"明天过后","artist":"张杰","url":"/music/mp3/明天过后.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/明天过后-张杰-歌词.lrc"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/mp3/春娇与志明.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/春娇与志明-街道办GDC;欧阳耀莹-歌词.lrc"},{"name":"蜚蜚","artist":"陈僖仪","url":"/music/mp3/蜚蜚.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/蜚蜚-陈僖仪-歌词.lrc"},{"name":"枫","artist":"周杰伦","url":"/music/mp3/枫.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/枫-周杰伦-歌词.lrc"},{"name":"海阔天空","artist":"Beyond","url":"/music/mp3/海阔天空.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/海阔天空-Beyond-歌词.lrc"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/mp3/偏偏喜欢你.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/偏偏喜欢你-陈百强-歌词.lrc"},{"name":"七里香","artist":"周杰伦","url":"/music/mp3/七里香.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/七里香-周杰伦-歌词.lrc"},{"name":"日落大道","artist":"梁博","url":"/music/mp3/日落大道.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/日落大道-梁博-歌词.lrc"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/mp3/身骑白马.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/身骑白马-徐佳莹-歌词.lrc"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/mp3/一生中最爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生中最爱-谭咏麟-歌词.lrc"},{"name":"萤火飞光","artist":"圈9","url":"/music/mp3/萤火飞光.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/萤火飞光-圈9-歌词.lrc"},{"name":"勇气","artist":"梁静茹","url":"/music/mp3/勇气.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/勇气-梁静茹-歌词.lrc"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: 3 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  <script>
+    window.CW_CONFIG = {
+      auto_locate: true,
+      city: "北京",
+      latitude: null,
+      longitude: null,
+      update_interval: 10,
+      qweather: {
+        key: "93537501860943b2938616e06693c491",
+        host: "nm6e4gxpfu.re.qweatherapi.com"
+      }
+    };
+  </script>
+  
+<script src="/js/calendar_weather.js" data-pjax></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

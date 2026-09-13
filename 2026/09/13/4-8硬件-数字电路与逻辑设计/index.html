@@ -1,0 +1,838 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    数字电路与逻辑设计 | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="数字电路与逻辑设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字电路与逻辑设计">
+<meta property="og:url" content="https://yt33-17.github.io/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="数字电路与逻辑设计">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449786/.jpg">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449764/.jpg">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449793/.jpg">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449737/.jpg">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T04:39:27.701Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449786/.jpg">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/theme/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/theme/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word">查克拉流动中，请稍候……</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/theme/6.png" alt="数字电路与逻辑设计">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">数字电路与逻辑设计</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+    <div id="calendar-weather" data-aos="fade-up">
+  <div class="cw-card">
+    <div class="cw-main">
+      <div class="cw-left">
+        <div class="cw-top">
+          <span class="cw-city">📍--</span>
+          <span class="cw-now">
+            <span class="cw-temp">--<span>°C</span></span>
+            <span class="cw-icon">🌡️</span>
+          </span>
+        </div>
+        <div class="cw-date-block">
+          <div class="cw-date"></div>
+          <div class="cw-sub">
+            <span class="cw-weekday"></span>
+            <span class="cw-lunar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cw-forecast"></div>
+    </div>
+    <div class="cw-stats">
+      <div class="cw-stat">
+        <span class="cw-stat-label">降水</span>
+        <span class="cw-stat-value cw-precip">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">风</span>
+        <span class="cw-stat-value cw-wind">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">湿度</span>
+        <span class="cw-stat-value cw-humidity">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">气压</span>
+        <span class="cw-stat-value cw-pressure">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%9E%E4%BA%89%E4%B8%8E%E5%86%92%E9%99%A9%E7%8E%B0%E8%B1%A1%EF%BC%9F%E6%80%8E%E6%A0%B7%E5%88%A4%E6%96%AD%EF%BC%9F%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%EF%BC%9F"><span class="toc-text">1**、什么是竞争与冒险现象？怎样判断？如何消除？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81OD-%E9%97%A8%E5%8E%9F%E7%90%86"><span class="toc-text">2**、OD 门原理**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81OC%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3、OC门电路是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81OD%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">4、OD门电路是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81I2C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFOD%E9%97%A8%EF%BC%9F"><span class="toc-text">5、I2C为什么是OD门？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%81%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E5%92%8C%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E6%98%AF%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E9%87%8D%E8%A6%81%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E5%AD%98%E5%9C%A8%E4%BB%A5%E4%B8%8B%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">6**、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别：**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E7%AE%80%E8%BF%B0%E9%9D%99%E6%80%81%E3%80%81%E5%8A%A8%E6%80%81%E6%97%B6%E5%BA%8F%E6%A8%A1%E6%8B%9F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="toc-text">7、简述静态、动态时序模拟的优缺点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E3%80%81%E8%A7%A3%E9%87%8A%E4%BA%9A%E7%A8%B3%E6%80%81%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%BA%9A%E7%A8%B3%E6%80%81%EF%BC%9F"><span class="toc-text">8**、解释亚稳态，如何解决亚稳态？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%BD%A0%E6%89%80%E8%AE%A4%E8%AF%86%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%94%A8%E9%80%94%E7%89%B9%E7%82%B9"><span class="toc-text">9**、请简述你所认识的触发器的种类及用途特点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%92%8C%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">10**、请简述组合逻辑电路和时序逻辑电路的区别**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%BD%A0%E6%89%80%E8%AE%A4%E8%AF%86%E7%9A%84-OCL-%E7%94%B5%E8%B7%AF%EF%BC%9F"><span class="toc-text">11**、请简述你所认识的 OCL 电路？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AF%B9%E6%97%B6%E5%BA%8F%E6%9C%89%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">12**、为什么对时序有要求？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-CMOS-%E5%92%8C-TTL-%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E5%8A%9F%E8%80%97%E5%A4%A7%E5%B0%8F%E3%80%81%E7%94%B5%E5%B9%B3"><span class="toc-text">13、简述一下 CMOS 和 TTL 的区别、功耗大小、电平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81TTL%E7%94%B5%E8%B7%AF%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">14、TTL电路的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81TTL%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E7%94%B1%E4%BB%80%E4%B9%88%E6%9E%84%E6%88%90%E7%9A%84%EF%BC%9F%E5%AE%83%E7%9A%84%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">15、TTL门电路是由什么构成的？它的特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81CMOS%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E7%94%B1%E4%BB%80%E4%B9%88%E6%9E%84%E6%88%90%E7%9A%84%EF%BC%9F%E5%AE%83%E7%9A%84%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">16、CMOS门电路是由什么构成的？它的特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E2%80%9D%E7%BA%BF%E4%B8%8E%E2%80%9D%E9%80%BB%E8%BE%91%EF%BC%8C%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%AE%83%EF%BC%8C%E5%9C%A8%E7%A1%AC%E4%BB%B6%E7%89%B9%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B7%E4%BD%93%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E6%96%BD%E5%AF%86%E7%89%B9%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">18、施密特触发器的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E6%96%BD%E5%AF%86%E7%89%B9%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">19、施密特触发器的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E5%8D%95%E7%A8%B3%E6%80%81%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E7%A7%8D%E7%B1%BB"><span class="toc-text">20、单稳态触发器的特点和种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E5%A4%9A%E8%B0%90%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">21、多谐振荡器的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E5%A4%9A%E8%B0%90%E6%8C%AF%E8%8D%A1%E5%99%A8%E5%88%86%E7%B1%BB"><span class="toc-text">22、多谐振荡器分类</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-4-8硬件-数字电路与逻辑设计" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">2026-09-13</time>
+    <time style="display: none;" id="post-update-time">2026-09-13</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="1-、什么是竞争与冒险现象？怎样判断？如何消除？"><a href="#1-、什么是竞争与冒险现象？怎样判断？如何消除？" class="headerlink" title="1**、什么是竞争与冒险现象？怎样判断？如何消除？**"></a>1**、什么是竞争与冒险现象？怎样判断？如何消除？**</h3><p>答：在组合逻辑电路中，<strong>门电路的输入信号经过的通路不相同，会产生的延时也就会不同，从而导致到达该门的信号时间不一致，这种现象叫做竞争</strong>。<strong>由于竞争而在电路输出端可能产生尖峰脉冲或毛刺的现象叫冒险</strong>。 如果布尔式中有相反的信号则可能产生竞争和冒险现象。<strong>解决方法：一是添加布尔式的消去项，二是在芯片外部加电容。</strong></p>
+<h3 id="2-、OD-门原理"><a href="#2-、OD-门原理" class="headerlink" title="2**、OD 门原理**"></a>2**、OD 门原理**</h3><p>答：<strong>OD 门</strong>，称为<strong>开漏门</strong>，也称<strong>开路集电极门</strong>，是数字电路中常见的一种输出方式。</p>
+<p>与普通门不同的是，<strong>OD 门的输出端没有连接到高电平或低电平，而是直接连接到电源电压 VCC 上通</strong></p>
+<p>**过一个电阻，因此只能输出低电平信号。**OD 门有两个状态：正常状态和截止状态。<strong>正常状态下</strong>，<strong>OD 门的输出端与 VCC 连接，输出低电平。</strong></p>
+<p><strong>此时，输入端的电压高于门的输入电压阈值时，输出为低电平；低于门的输入电压阈值时，输出为高阻态。</strong></p>
+<p>在<strong>截止状态下</strong>，<strong>输出端不与 VCC 连接，此时输出为高阻态。此时，无论输入端电压高低，都不能通过 OD</strong></p>
+<p><strong>门的输出端提供电流。</strong></p>
+<p><strong>应用</strong>：<strong>OD 门常用于数字电路中的信号接口，可以实现信号隔离、多路复用、电平转换等功能。此外，OD</strong></p>
+<p><strong>门还可以和其他数字电路器件如三极管、光耦等结合使用，以实现更复杂的功能。</strong></p>
+<h3 id="3、OC门电路是什么？"><a href="#3、OC门电路是什么？" class="headerlink" title="3、OC门电路是什么？"></a>3、OC门电路是什么？</h3><p>OC门电路：集电极开路（opencollector)</p>
+<p>OC门电路的工作原理：</p>
+<p>1）当INPUT输入高电平，Ube&gt;0.7V，三极管U3导通，三极管U4的b点电位为0，U4截止，OUTPUT输出高电平；</p>
+<p>2）当INPUT输入高电平，Ube&lt;0.7V，三极管U3截止，三极管U4的b点电位为高，U4导通，OUTPUT输出低电平；</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449786/.jpg" alt="img"></p>
+<p>其中R25为上拉电阻：何为上拉电阻?将不确定的信号上拉至高电平。</p>
+<p>假设：没有R25，那么OUTPUT的输出是通过ce与地连接在一起的，输出端是空了，即高阻态。这时候OUTPUT的电平状态未知，如果后面一个电阻负载（即使很轻的负载）到地，那么输出端的电平就被这个负载拉到低电平，它是不能输出高电平的。因此，需要接一个电阻到VCC，而这个电阻就叫上拉电阻。</p>
+<h3 id="4、OD门电路是什么？"><a href="#4、OD门电路是什么？" class="headerlink" title="4、OD门电路是什么？"></a>4、OD门电路是什么？</h3><p>OC门与OD门是十分相似的，只是将三极管换成了MOS管：</p>
+<p>1）当INPUT输入高电平，GS&gt;阔值电压，MOS管Q1导通，Q3的G点电位为0，Q3截止，OUTPUT高电平；</p>
+<p>2）当INPUT输入低电平，GS&lt;阔值电压，MOS管Q1截止，Q3的G点电位为高，Q3导通，OUTPUT低电平；</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449764/.jpg" alt="img"></p>
+<h3 id="5、I2C为什么是OD门？"><a href="#5、I2C为什么是OD门？" class="headerlink" title="5、I2C为什么是OD门？"></a>5、I2C为什么是OD门？</h3><p>I2C是有很多设备线与连接而成，如果采用push-pull的话，难免会出现下面的情况，一个设备输出高，另外设备输出低，也就是左边设备的PMOS打开而右边设备的NMOS打开，这样就在VCC和GND之间形成短路，此时大的电流会把设备烧毁，后果是灾难性的。这种现象叫bus contention总线碰撞。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449793/.jpg" alt="img"></p>
+<p>采用OD门就可以避免这样的问题。</p>
+<p><img src="https://uploadfiles.nowcoder.com/files/20250720/803954498_1752987449737/.jpg" alt="img"></p>
+<p>一个输出高，一个输出低，电流经过电阻流向低。I2C本质就是一个线与的逻辑。</p>
+<h3 id="6-、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别："><a href="#6-、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别：" class="headerlink" title="6**、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别：**"></a>6**、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别：**</h3><p><strong>（1）逻辑功能</strong></p>
+<p>组合逻辑的输出仅取决于当前输入，不受以前输入或输出状态的影响，因此具有无记忆 性。例如，当一根导线与逻辑门组合时，其输出完全取决于当前时刻的输入。 时序逻辑的输出不仅受当前输入的影响，还受过去输入&#x2F;输出状态的影响，即具有记忆性。在时序逻辑中，边沿信号没来之前，输出保持之前的输入；边沿信号来时，输出状态跟随输入信号变化。</p>
+<p><strong>（2）电路构成</strong></p>
+<p>组合逻辑电路主要由门电路构成，如与、或、非门等，常用于实现布尔函数 。</p>
+<p>时序逻辑电路则包含寄存器、触发器等元件，用于处理时序信号，如 D 触发器。</p>
+<p><strong>（3）应用范围</strong></p>
+<p>两者均可通过基本逻辑块进行构造，实现更复杂的功能。在某些应用中，需要将组合逻辑电路和时序逻辑电路结合起来，以实现更为复杂的数字电路设计。例如，在 CPU 的控制电路中，既有组合逻辑电路又有时序逻辑电路，以实现指令解码、分支判断等操作。</p>
+<h3 id="7、简述静态、动态时序模拟的优缺点？"><a href="#7、简述静态、动态时序模拟的优缺点？" class="headerlink" title="7、简述静态、动态时序模拟的优缺点？"></a><strong>7、简述静态、动态时序模拟的优缺点？</strong></h3><p><strong>静态时序模拟（Static Timing Analysis，STA）的优点包括：</strong></p>
+<p><strong>（1）速度快</strong></p>
+<p>静态时序分析<strong>不需要输入向量</strong>，因此能够比动态时序模拟<strong>更快</strong>地完成分析。</p>
+<p><strong>（2）覆盖率高</strong></p>
+<p>静态时序分析能够<strong>覆盖所有的路径</strong>，确保没有遗漏。</p>
+<p><strong>（3）适用于大型设计</strong></p>
+<p>静态时序分析适合大型设计，因为它不依赖于测试向量，所以<strong>能够处理具有大量路径和复杂性的设计。</strong></p>
+<p><strong>静态时序模拟的缺点：</strong></p>
+<p><strong>（1）精度限制</strong></p>
+<p>静态时序分析<strong>基于时序模型的假设</strong>，<strong>可能无法捕获到某些动态行为</strong>，如时序依赖关系。</p>
+<p><strong>（2）不能验证功能</strong></p>
+<p>静态时序分析<strong>只能分析时序要求</strong>，而<strong>不能</strong>进行<strong>功能验证</strong>。</p>
+<p><strong>（3）对异步电路的限制</strong></p>
+<p>静态时序分析<strong>主要适用于同步电路</strong>，对于<strong>异步电路</strong>的时序分析<strong>可能不太准确。</strong></p>
+<p><strong>动态时序模拟（Dynamic Timing Simulation，DTS）的优点包括：</strong></p>
+<p><strong>（1）精确度高</strong></p>
+<p>动态时序模拟在<strong>验证功能的同时验证时序</strong>，能够更准确地模拟电路的实际行为。</p>
+<p><strong>（2）适用于更多设计类型</strong></p>
+<p>动态时序模拟<strong>不仅适用于同步电路</strong>，还适用于<strong>异步电路</strong>和<strong>其他更复杂的设计类型。</strong></p>
+<p><strong>动态时序模拟的缺点：</strong></p>
+<p><strong>（1）分析速度慢</strong></p>
+<p>动态时序模拟<strong>需要输入向量作为激励</strong>，随着设计规模的增大，所需要的<strong>向量数量以指数增长，导致分析速度变慢。</strong></p>
+<p><strong>（2）覆盖率问题</strong></p>
+<p>动态时序模拟<strong>难以保证足够的覆盖率</strong>，因为输入向量<strong>可能无法覆盖所有相关的路径</strong>。</p>
+<h3 id="8-、解释亚稳态，如何解决亚稳态？"><a href="#8-、解释亚稳态，如何解决亚稳态？" class="headerlink" title="8**、解释亚稳态，如何解决亚稳态？**"></a>8**、解释亚稳态，如何解决亚稳态？**</h3><p>**亚稳态是指触发器无法在某个规定时间段内达到一个可确认的状态。当触发器进入亚稳态时，其输出可能会出现中间级电平，或者可能处于振荡状态，**这种无用的输出电平可能会沿信号通道上的各个触发器级联式传播下去。</p>
+<p><strong>为了解决触发器的亚稳态问题，可以采取以下几种方法：</strong></p>
+<p><strong>（1）降低系统时钟频率</strong></p>
+<p>降低系统时钟频率可以延长触发器稳定所需的时间，从而减少亚稳态发生的概率。</p>
+<p><strong>（2）使用反应更快的触发器（FF）</strong></p>
+<p>选择反应速度更快的触发器，可以在更短的时间内达到稳定状态，从而减少亚稳态的发生。</p>
+<p><strong>（3）引入同步机制，防止亚稳态传播</strong></p>
+<p>在信号传输过程中，引入同步机制可以确保信号在传输过程中始终保持稳定的状态，从而防止亚稳态的发生和传播。</p>
+<p><strong>（4）改善时钟质量，使用边沿变化快速的时钟信号</strong></p>
+<p>使用高质量的时钟信号，可以确保时钟边沿的快速变化，从而减少触发器进入亚稳态的可能性。</p>
+<p><strong>如何避免亚稳态的发生，还需要注意以下几点：</strong></p>
+<p>**（1）<strong>确保器件使</strong>用较好的工艺和时钟周期的裕量要大，**以减少触发器进入亚稳态的可能性；</p>
+<p>**（2）<strong>在设计中使用的</strong>寄存器都应指定建立和保持时间，在时钟上升沿前后的这个时间内输入数据被禁止发生任何变动，以防止数据信号两次变化发生的时间间隔太过靠近，**从而导致输出陷入亚稳态；</p>
+<p><strong>（3）<strong>当需要</strong>在两个时钟域传输信号时</strong>，需要<strong>考虑信号的同步问题，以确保信号在接收时钟域中保持稳定状态。</strong></p>
+<h3 id="9-、请简述你所认识的触发器的种类及用途特点"><a href="#9-、请简述你所认识的触发器的种类及用途特点" class="headerlink" title="9**、请简述你所认识的触发器的种类及用途特点**"></a>9**、请简述你所认识的触发器的种类及用途特点**</h3><p><strong>（1）RS 触发器</strong></p>
+<p>最基础的触发器类型，有两个输入端：<strong>R（Reset）和 S（Set）。当 R 为 1 时，无论 S的状态如何，输出 Q 都会变为 0</strong>；**当 S 为 1 时，无论 R 的状态如何，输出 Q 都会变为 1。**这种触发器主要用于基本的逻辑控制。</p>
+<p><strong>（2）SR 触发器</strong></p>
+<p>与 RS 触发器类似，但<strong>不允许 R 和 S 同时为 1，否则输出状态不确定。</strong></p>
+<p><strong>（3）D 触发器</strong></p>
+<p><strong>有一个数据输入端 D 和一个时钟输入端 CP。当 CP 为 0 时，触发器保持当前状态；当CP 为 1 时，输出 Q 的状态与 D 的状态相同。<strong>D 触发器主要</strong>用于数据的传输和同步</strong>。</p>
+<p><strong>（4）JK 触发器</strong></p>
+<p><strong>有两个输入端 J 和 K 以及一个时钟输入端 CP。J 和 K 的状态组合决定了在 CP 为 1 时触发器的动作。<strong>这种触发器在</strong>时序控制和计数器中很常见</strong>。</p>
+<p><strong>（5）T 触发器</strong></p>
+<p><strong>只有一个输入端 T 和一个时钟输入端 CP。当 CP 为 1 时，如果 T 为 1，触发器翻转其状态；如果 T 为 0，触发器保持当前状态。</strong></p>
+<p><strong>（6）触点触发器</strong></p>
+<p>这是<strong>物理开关或触点操作的触发器</strong>，<strong>当触点闭合或断开时，触发器会改变其状态。</strong></p>
+<p><strong>触发器的用途特点</strong></p>
+<p><strong>（1）时序控制</strong> 触发器可以<strong>用于控制数字电路中的时序逻辑</strong>，如<strong>计数器和分频器</strong>等。</p>
+<p><strong>（2）频率分频 JK触发器和 T 触发器常常用于实现频率分频，将高频信号转化为低频信号。</strong></p>
+<p><strong>（3）边沿检测</strong> 触发器可以<strong>检测输入信号的边沿（如上升沿或下降沿）</strong></p>
+<p><strong>（4）状态锁存</strong> 触发器可以<strong>存储一个位的状态，<strong>即使在外部输入发生变化时也能保持。这种特性使其在</strong>数据锁存和数据存储</strong>中有广泛应用。</p>
+<p><strong>（5）数据传输</strong> D 触发器常用于在数字系统中进行<strong>数据传输</strong>，<strong>特别是在同步数据传输中。</strong></p>
+<p><strong>（6）逻辑处理</strong> 触发器是<strong>构建复杂逻辑电路</strong>的基本单元，可以<strong>用于实现各种逻辑运算和处理任务。</strong></p>
+<h3 id="10-、请简述组合逻辑电路和时序逻辑电路的区别"><a href="#10-、请简述组合逻辑电路和时序逻辑电路的区别" class="headerlink" title="10**、请简述组合逻辑电路和时序逻辑电路的区别**"></a>10**、请简述组合逻辑电路和时序逻辑电路的区别**</h3><p>**（1）在输入输出关系上组合逻辑电路的输出只取决于当前的输入，而与电路以前的状态无关。即：如果输入发生变化，输出也会立即发生变化，且输出与输入之间存在一定的逻辑关系。时序逻辑电路的输出不仅取决于当前的输入，还取决于电路以前的状态或以前的输入。**即：时序逻辑电路具有记忆功能，能够保存过去的状态或输入信息，从而影响当前的输出。</p>
+<p>（2）<strong>在结构特点上</strong></p>
+<p><strong>组合逻辑电路由基本的逻辑门电路组成，如与门、或门、非门等，不包含任何记忆元件。信号在组合逻辑电路中单向传输，不存在任何反馈回路。时序逻辑电路则包含了组合逻辑电路和存储电路（如触发器、寄存器等），具有对过去输入进行记忆的功能。时序逻辑电路中包括反馈回路，通过反馈使电路功能与“时序”相关，即电路的输出由电路当前的输入和状态（过去的输入）共同决定。</strong></p>
+<p>（3）**存储记忆功能：**组合逻辑电路没有存储记忆功能，而时序逻辑电路则包含了存储记忆功能。这意味着时序逻辑电路能够保存过去的输入或状态信息，并在需要时将其用于计算输出。</p>
+<h3 id="11-、请简述你所认识的-OCL-电路？"><a href="#11-、请简述你所认识的-OCL-电路？" class="headerlink" title="11**、请简述你所认识的 OCL 电路？**"></a>11**、请简述你所认识的 OCL 电路？**</h3><p>OCL（Open Collector Less）电路是一种普遍应用于电子设备中的基本输出电路。</p>
+<p><strong>特点：控制器只能控制输出电路的 ON&#x2F;OFF 状态，而无法控制其输出电压。</strong></p>
+<p><strong>OCL 电路的结构主要包括两部分：</strong></p>
+<p><strong>（1）开路收集器</strong></p>
+<p>通常采用<strong>标准的 NPN 晶体管</strong>，<strong>其基极接地，收集器接控制信号，发射极接输出电路。主要作用是控制输出电路的 ON&#x2F;OFF 状态。</strong></p>
+<p><strong>（2）输出电路</strong></p>
+<p>这是 OCL 电路的核心部分，<strong>由一个或多个晶体管组成。<strong>其主要作用是</strong>控制输出电路的电压，并将输出信号传递到外部设备。<strong>OCL 电路有单极和双极之分。单极电路只能提供一个输出信号，而双极电路则能提供两个输出信号，其中一个信号为正值，另一个信号为负值。OCL（Output Capacitor Less）也可以指省去输出端大电容的功率放大电路，OTL 电路的升级。这种电路省去了输出电容，使得系统的低频响应更加平滑。</strong>！！！这种电路必须用双电源供电，这增加了电源的复杂性。</strong></p>
+<h3 id="12-、为什么对时序有要求？"><a href="#12-、为什么对时序有要求？" class="headerlink" title="12**、为什么对时序有要求？**"></a>12**、为什么对时序有要求？**</h3><p>答：对时序有要求的<strong>主要原因在于电子系统中的各个组件和单元之间存在着依赖和相互作用。<strong>对时序的要求是为了</strong>确保系统组件能够按照设计的要求安全</strong>、<strong>可靠地启动和运行</strong>，同时<strong>优化系统的性能和功耗</strong>。在设计和实施电子系统时，<strong>必须仔细考虑并测试上电时序</strong>，以确保满足这些要求。</p>
+<p><strong>（1）组件依赖性</strong></p>
+<p>系统中的<strong>某些组件可能依赖于其他组件提供的电压或信号才能正常工作</strong>。如果这些组件在上电时没有按照正确的顺序被激活，可能会导致某些组件在没有必要的先决条件（如稳定的电压或时钟信号）的情况下尝试工作，从而导致故障或损坏。</p>
+<p><strong>（2）稳定性问题</strong></p>
+<p><strong>不当的上电时序可能导致电源轨的电压波动或瞬态效应</strong>，这些可能影响到敏感电路的正确操作。Eg：在电源电压尚未稳定的情况下，某些数字逻辑电路可能会接收到错误的信号或进入不确定状态。</p>
+<p><strong>（3）信号同步</strong></p>
+<p><strong>在复杂的系统中，信号需要在不同的组件之间同步传输。上电时序确保了时钟信号和其他关键控制信号在组件激活时是可用的</strong>，从而保证了数据的有效传输和系统的正确响应。</p>
+<p>**（4）减少热应力有序的上电过程可以减少电路中的热应力。**if 所有组件同时上电，可能会产生过大的瞬时电流，导致热量集中并可能损坏电路或组件。<strong>通过控制上电时序，可以平滑地分配电流，减少热量并延长系统寿命。</strong></p>
+<p><strong>（5）减少功耗</strong></p>
+<p>通过优化上电时序，可以更<strong>有效地管理系统的功耗</strong>。Eg：可以延迟激活那些不需要立即工作的组件，以节省能源。</p>
+<p><strong>（6）提高系统可靠性</strong></p>
+<p>通过<strong>确保每个组件在正确的时间点以正确的条件启动</strong>，上电时序有助于<strong>提高</strong>系统的<strong>整体可靠性和稳定性。</strong></p>
+<h3 id="13、简述一下-CMOS-和-TTL-的区别、功耗大小、电平"><a href="#13、简述一下-CMOS-和-TTL-的区别、功耗大小、电平" class="headerlink" title="13、简述一下 CMOS 和 TTL 的区别、功耗大小、电平"></a><strong>13、简述一下 CMOS 和 TTL 的区别、功耗大小、电平</strong></h3><p>答：CMOS 和 TTL 都是数字集成电路的主要类型。它们之间的区别如下：</p>
+<p>**（1）工作电压：**CMOS 工作电压范围较广，通常在 3V 到 15V 之间，而 TTL 通常在 5V 左右。</p>
+<p>**（2）功耗大小：**CMOS 电路由于采用的是 MOSFET 管，具有很高的输入阻抗，因此功耗比 TTL 低得多。</p>
+<p>**（3）电平：**CMOS 和 TTL 的逻辑电平标准不同。 CMOS 电路中的高电平电压范围通常在 2&#x2F;3VDD 到 VDD 之间，低电平电压范围通常在 0V 到1&#x2F;3VDD 之间。TTL 电路中的高电平电压范围通常在 2.4V 到 5V 之间，低电平电压范围通常在 0V 到 0.8V 之间。</p>
+<p>**（4）噪声容限：**由于 CMOS 具有高的输入阻抗和大的电压范围，因此比 TTL 具有更高的噪声容限。</p>
+<p>**（5）输出电流能力：**TTL 输出电流较大，CMOS 输出电流较小，因此 CMOS 电路在驱动电容负载时需要增加输出级。</p>
+<p>总的来说，CMOS 电路比 TTL 电路功耗更低、噪声容限更高，但是需要考虑驱动能力和输出级的问题。</p>
+<h3 id="14、TTL电路的优缺点"><a href="#14、TTL电路的优缺点" class="headerlink" title="14、TTL电路的优缺点"></a>14、TTL电路的优缺点</h3><p>TTL是用是用三极管BJT和电阻来实现的逻辑电路。最大优点就是响应速度快，通常传输延时在5~10ns；另外由于TTL的输入输出信号是电流，因此其接口电路非常简单，不需要过分考虑电平匹配的问题；BJT器件的ESD性能远远好于CMOS。</p>
+<p>缺点：首先是芯片面积，相比起CMOS工艺，单个器件的尺寸会达到几倍甚至十几倍以上，这就限制了芯片的集成度；其次是功耗，BJT工作是有静态功耗的。</p>
+<h3 id="15、TTL门电路是由什么构成的？它的特点是什么？"><a href="#15、TTL门电路是由什么构成的？它的特点是什么？" class="headerlink" title="15、TTL门电路是由什么构成的？它的特点是什么？"></a>15、TTL门电路是由什么构成的？它的特点是什么？</h3><p>TTL门电路是由双极性三极管构成的，他的特点是速度快，抗静电能力强，集成度低，功耗大。广泛应用于中，小规模集成电路中。</p>
+<h3 id="16、CMOS门电路是由什么构成的？它的特点是什么？"><a href="#16、CMOS门电路是由什么构成的？它的特点是什么？" class="headerlink" title="16、CMOS门电路是由什么构成的？它的特点是什么？"></a>16、CMOS门电路是由什么构成的？它的特点是什么？</h3><p>CMOS门电路由场效应管构成的，它的特点是集成度高，功耗低，速度慢，抗静电能力差，因此在大规模集成电路和微处理器中占支配地位。</p>
+<h3 id="17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？"><a href="#17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？" class="headerlink" title="17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？"></a>17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？</h3><p>线与逻辑是两个输出信号相连可以实现与的功能。在硬件上,要用OC&#x2F;OD门均可实现，由于不用OC&#x2F;OD门可能使灌电流过大,而烧坏逻辑门。同时在输出端口应加一个上拉电阻。</p>
+<h3 id="18、施密特触发器的特点"><a href="#18、施密特触发器的特点" class="headerlink" title="18、施密特触发器的特点"></a>18、施密特触发器的特点</h3><ul>
+<li>输入信号从低电平上升的过程中，电路状态转换时对应的输入电平，与输入信号从高电平下降过程中对应的输入转换电平不同;</li>
+<li>在电路状态转换时，通过电路内部的正反馈过程，使输出电压波形的边沿变得很陡。</li>
+</ul>
+<h3 id="19、施密特触发器的应用"><a href="#19、施密特触发器的应用" class="headerlink" title="19、施密特触发器的应用"></a>19、施密特触发器的应用</h3><p>1)用于波形变换</p>
+<p>2)用于脉冲整形</p>
+<p>3)用于脉冲鉴幅</p>
+<h3 id="20、单稳态触发器的特点和种类"><a href="#20、单稳态触发器的特点和种类" class="headerlink" title="20、单稳态触发器的特点和种类"></a>20、单稳态触发器的特点和种类</h3><p>1)有稳态和暂稳态两个不同的工作状态；</p>
+<p>2)在外界触发作用下，能从稳态翻转到暂稳态，在暂稳态维持一段时间后，再自动回到稳态；</p>
+<p>3)暂稳态维持时间的长短取决于电路本身的参数，与触发脉冲的宽度和幅度无关；</p>
+<p>4)常见的单稳态触发器有两类：微分型单稳态触发器和积分型单稳态触发器。</p>
+<h3 id="21、多谐振荡器的特点"><a href="#21、多谐振荡器的特点" class="headerlink" title="21、多谐振荡器的特点"></a>21、多谐振荡器的特点</h3><p>多谐振荡器是一种自激振荡器，在接通电源以后，不需要外加触发信号，便能自动的产生矩形脉冲，由于矩形波中含有丰富的高次谐波分量，所以又称多谐振荡器。</p>
+<p>它的特点有：</p>
+<p>1)信号直接输出；</p>
+<p>2)无需外加输入信号；</p>
+<p>3)输出波形周期性变化;</p>
+<p>4)没有稳态。</p>
+<h3 id="22、多谐振荡器分类"><a href="#22、多谐振荡器分类" class="headerlink" title="22、多谐振荡器分类"></a>22、多谐振荡器分类</h3><p>常见的多谐振荡器有：</p>
+<p>1)对称式多谐振荡器；</p>
+<p>2)非对称式多谐振荡器；</p>
+<p>3)环形振荡器;</p>
+<p>4)石英晶体多谐振荡器（晶振）。</p>
+<p>解释一下建立时间，保持时间，不满足时会发生什么？</p>
+<p>答：建立时间是指在触发器的时钟信号上升沿到来之前，数据稳定不变的时间。保持时间是指在触发器的时钟信号上升沿到来之后，数据稳定不变的时间。如果建立时间不够，则数据不能在这个时钟上升沿被稳定的打入触发器。如果保持时间不够，数据同样不能被稳定的打入触发器。</p>
+<p>简答：建立时间是上升沿之前的数据保持时间，保持时间是上升沿到来之后数据的保持时间</p>
+
+    </div>
+    <footer class="article-footer">
+        <div class="share-wrapper">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-8%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%2595%25B0%25E5%25AD%2597%25E7%2594%25B5%25E8%25B7%25AF%25E4%25B8%258E%25E9%2580%25BB%25E8%25BE%2591%25E8%25AE%25BE%25E8%25AE%25A1%2F" target="_blank" rel="noopener noreferrer" title="数字电路与逻辑设计">
+      <div class="share-icon icon icon-facebook">
+      </div>
+    </a>
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-8%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%2595%25B0%25E5%25AD%2597%25E7%2594%25B5%25E8%25B7%25AF%25E4%25B8%258E%25E9%2580%25BB%25E8%25BE%2591%25E8%25AE%25BE%25E8%25AE%25A1%2F&amp;appkey=&amp;title=%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="数字电路与逻辑设计">
+      <div class="share-icon icon icon-weibo">
+      </div>
+    </a>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-8%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%2595%25B0%25E5%25AD%2597%25E7%2594%25B5%25E8%25B7%25AF%25E4%25B8%258E%25E9%2580%25BB%25E8%25BE%2591%25E8%25AE%25BE%25E8%25AE%25A1%2F&amp;title=%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1&amp;desc=%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1&amp;source=https%3A%2F%2Fyt33-17.github.io" target="_blank" rel="noopener noreferrer" title="数字电路与逻辑设计">
+      <div class="share-icon icon icon-qq">
+      </div>
+    </a>
+</div>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag" title="硬件">硬件</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="振荡器与锁相环" class="lazyload">
+        <a href="/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/" aria-label="前一篇: 振荡器与锁相环" title="前一篇: 振荡器与锁相环"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            振荡器与锁相环
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="模数数模转换与采样" class="lazyload">
+      <a href="/2026/09/13/4-9%E7%A1%AC%E4%BB%B6-%E6%A8%A1%E6%95%B0%E6%95%B0%E6%A8%A1%E8%BD%AC%E6%8D%A2%E4%B8%8E%E9%87%87%E6%A0%B7/" aria-label="后一篇: 模数数模转换与采样"  title="后一篇: 模数数模转换与采样"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          模数数模转换与采样
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2024-2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        75.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:38
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%9E%E4%BA%89%E4%B8%8E%E5%86%92%E9%99%A9%E7%8E%B0%E8%B1%A1%EF%BC%9F%E6%80%8E%E6%A0%B7%E5%88%A4%E6%96%AD%EF%BC%9F%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%EF%BC%9F"><span class="toc-text">1**、什么是竞争与冒险现象？怎样判断？如何消除？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81OD-%E9%97%A8%E5%8E%9F%E7%90%86"><span class="toc-text">2**、OD 门原理**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81OC%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">3、OC门电路是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81OD%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">4、OD门电路是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81I2C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFOD%E9%97%A8%EF%BC%9F"><span class="toc-text">5、I2C为什么是OD门？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%81%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E5%92%8C%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E6%98%AF%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E9%87%8D%E8%A6%81%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E5%AD%98%E5%9C%A8%E4%BB%A5%E4%B8%8B%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-text">6**、组合逻辑和时序逻辑是数字电路中的两种重要类型，它们之间存在以下区别：**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E7%AE%80%E8%BF%B0%E9%9D%99%E6%80%81%E3%80%81%E5%8A%A8%E6%80%81%E6%97%B6%E5%BA%8F%E6%A8%A1%E6%8B%9F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="toc-text">7、简述静态、动态时序模拟的优缺点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E3%80%81%E8%A7%A3%E9%87%8A%E4%BA%9A%E7%A8%B3%E6%80%81%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%BA%9A%E7%A8%B3%E6%80%81%EF%BC%9F"><span class="toc-text">8**、解释亚稳态，如何解决亚稳态？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%BD%A0%E6%89%80%E8%AE%A4%E8%AF%86%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%94%A8%E9%80%94%E7%89%B9%E7%82%B9"><span class="toc-text">9**、请简述你所认识的触发器的种类及用途特点**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%92%8C%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">10**、请简述组合逻辑电路和时序逻辑电路的区别**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E4%BD%A0%E6%89%80%E8%AE%A4%E8%AF%86%E7%9A%84-OCL-%E7%94%B5%E8%B7%AF%EF%BC%9F"><span class="toc-text">11**、请简述你所认识的 OCL 电路？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AF%B9%E6%97%B6%E5%BA%8F%E6%9C%89%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">12**、为什么对时序有要求？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-CMOS-%E5%92%8C-TTL-%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E5%8A%9F%E8%80%97%E5%A4%A7%E5%B0%8F%E3%80%81%E7%94%B5%E5%B9%B3"><span class="toc-text">13、简述一下 CMOS 和 TTL 的区别、功耗大小、电平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81TTL%E7%94%B5%E8%B7%AF%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">14、TTL电路的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81TTL%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E7%94%B1%E4%BB%80%E4%B9%88%E6%9E%84%E6%88%90%E7%9A%84%EF%BC%9F%E5%AE%83%E7%9A%84%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">15、TTL门电路是由什么构成的？它的特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81CMOS%E9%97%A8%E7%94%B5%E8%B7%AF%E6%98%AF%E7%94%B1%E4%BB%80%E4%B9%88%E6%9E%84%E6%88%90%E7%9A%84%EF%BC%9F%E5%AE%83%E7%9A%84%E7%89%B9%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">16、CMOS门电路是由什么构成的？它的特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E2%80%9D%E7%BA%BF%E4%B8%8E%E2%80%9D%E9%80%BB%E8%BE%91%EF%BC%8C%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%AE%83%EF%BC%8C%E5%9C%A8%E7%A1%AC%E4%BB%B6%E7%89%B9%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B7%E4%BD%93%E8%A6%81%E6%B1%82%EF%BC%9F"><span class="toc-text">17、什么是”线与”逻辑，要实现它，在硬件特性上有什么具体要求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E6%96%BD%E5%AF%86%E7%89%B9%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">18、施密特触发器的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E6%96%BD%E5%AF%86%E7%89%B9%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">19、施密特触发器的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E5%8D%95%E7%A8%B3%E6%80%81%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E7%A7%8D%E7%B1%BB"><span class="toc-text">20、单稳态触发器的特点和种类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E5%A4%9A%E8%B0%90%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">21、多谐振荡器的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E5%A4%9A%E8%B0%90%E6%8C%AF%E8%8D%A1%E5%99%A8%E5%88%86%E7%B1%BB"><span class="toc-text">22、多谐振荡器分类</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":25,"duration":[1300,1700],"shapeOptions":{"radius":[20,30],"alpha":[0,1]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":0,"duration":[1300,1700],"shapeOptions":{"radius":12,"alpha":[0.2,0.5],"lineWidth":3}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "数字电路与逻辑设计",
+          url: "https://yt33-17.github.io/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/",
+          excerpt: "",
+          description: "数字电路与逻辑设计",
+          stripContent: "1**、什么是竞争与冒险现象？怎样判断？如何消除？**答：在组合逻辑电路中，门电路的输入信号经过的通路不相同，会产生的延时也就会不同，从而导致到达该门的信号时间不一致，这种现象叫做竞争。由于竞争而在电路输出端可能产生尖峰脉冲或毛刺的现象叫冒险。 如果布尔式中有相反的信号则可能产生竞争和冒险现象。解决方法：一是添加布尔式的消去项，二是在芯片外部加电容。 2**、OD 门原理**答：OD 门，称为开漏门，也称开路集电极门，是数字电路中常见的一种输出方式。 与普通门不同的是，OD 门的输出端没有连接到",
+          date: "Sun Sep 13 2026 00:00:00 GMT+0800",
+          updated: "Sun Sep 13 2026 12:39:27 GMT+0800",
+          cover: "/images/post-cover/7.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"一直很安静","artist":"阿桑","url":"/music/mp3/一直很安静.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一直很安静-阿桑-歌词.lrc"},{"name":"喜欢两个人","artist":"彭佳慧","url":"/music/mp3/喜欢两个人.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/喜欢两个人-彭佳慧-歌词.lrc"},{"name":"出现又离开(Live)","artist":"梁博","url":"/music/mp3/出现又离开(Live).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/出现又离开(Live)-梁博-歌词.lrc"},{"name":"一生所爱","artist":"卢冠廷;莫文蔚","url":"/music/mp3/一生所爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生所爱-卢冠廷;莫文蔚-歌词.lrc"},{"name":"你走(Demo)","artist":"松紧先生(李宗锦)","url":"/music/mp3/你走(Demo).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/你走(Demo)-松紧先生(李宗锦)-歌词.lrc"},{"name":"晴天","artist":"周杰伦","url":"/music/mp3/晴天.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/晴天-周杰伦-歌词.lrc"},{"name":"不负众望","artist":"陈婉菁","url":"/music/mp3/不负众望.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/不负众望-陈婉菁-歌词.lrc"},{"name":"明天过后","artist":"张杰","url":"/music/mp3/明天过后.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/明天过后-张杰-歌词.lrc"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/mp3/春娇与志明.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/春娇与志明-街道办GDC;欧阳耀莹-歌词.lrc"},{"name":"蜚蜚","artist":"陈僖仪","url":"/music/mp3/蜚蜚.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/蜚蜚-陈僖仪-歌词.lrc"},{"name":"枫","artist":"周杰伦","url":"/music/mp3/枫.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/枫-周杰伦-歌词.lrc"},{"name":"海阔天空","artist":"Beyond","url":"/music/mp3/海阔天空.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/海阔天空-Beyond-歌词.lrc"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/mp3/偏偏喜欢你.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/偏偏喜欢你-陈百强-歌词.lrc"},{"name":"七里香","artist":"周杰伦","url":"/music/mp3/七里香.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/七里香-周杰伦-歌词.lrc"},{"name":"日落大道","artist":"梁博","url":"/music/mp3/日落大道.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/日落大道-梁博-歌词.lrc"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/mp3/身骑白马.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/身骑白马-徐佳莹-歌词.lrc"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/mp3/一生中最爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生中最爱-谭咏麟-歌词.lrc"},{"name":"萤火飞光","artist":"圈9","url":"/music/mp3/萤火飞光.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/萤火飞光-圈9-歌词.lrc"},{"name":"勇气","artist":"梁静茹","url":"/music/mp3/勇气.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/勇气-梁静茹-歌词.lrc"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: 3 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  <script>
+    window.CW_CONFIG = {
+      auto_locate: true,
+      city: "北京",
+      latitude: null,
+      longitude: null,
+      update_interval: 10,
+      qweather: {
+        key: "93537501860943b2938616e06693c491",
+        host: "nm6e4gxpfu.re.qweatherapi.com"
+      }
+    };
+  </script>
+  
+<script src="/js/calendar_weather.js" data-pjax></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

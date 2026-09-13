@@ -1,0 +1,781 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    基本放大电路 | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="基本放大电路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本放大电路">
+<meta property="og:url" content="https://yt33-17.github.io/2026/09/13/4-2%E7%A1%AC%E4%BB%B6-%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="基本放大电路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T04:36:23.213Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/theme/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/theme/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word">查克拉流动中，请稍候……</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/theme/6.png" alt="基本放大电路">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">基本放大电路</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+    <div id="calendar-weather" data-aos="fade-up">
+  <div class="cw-card">
+    <div class="cw-main">
+      <div class="cw-left">
+        <div class="cw-top">
+          <span class="cw-city">📍--</span>
+          <span class="cw-now">
+            <span class="cw-temp">--<span>°C</span></span>
+            <span class="cw-icon">🌡️</span>
+          </span>
+        </div>
+        <div class="cw-date-block">
+          <div class="cw-date"></div>
+          <div class="cw-sub">
+            <span class="cw-weekday"></span>
+            <span class="cw-lunar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cw-forecast"></div>
+    </div>
+    <div class="cw-stats">
+      <div class="cw-stat">
+        <span class="cw-stat-label">降水</span>
+        <span class="cw-stat-value cw-precip">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">风</span>
+        <span class="cw-stat-value cw-wind">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">湿度</span>
+        <span class="cw-stat-value cw-humidity">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">气压</span>
+        <span class="cw-stat-value cw-pressure">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%A6%82%E4%BD%95%E8%AF%84%E4%BB%B7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E6%80%A7%E8%83%BD-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87%EF%BC%9F"><span class="toc-text">1、如何评价放大电路的性能?有哪些主要指标？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E9%A2%91%E7%8E%87%E8%A1%A5%E5%81%BF%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%AE%E7%9A%84%E5%92%8C%E6%96%B9%E6%B3%95%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2**、放大电路频率补偿的概念，目的和方法分别是什么？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%A4%A7%E5%99%A8%E9%80%9A%E5%B8%B8%E9%9C%80%E8%A6%81%E9%AB%98%E7%9A%84%E8%BE%93%E5%85%A5%E7%94%B5%E9%98%BB%E3%80%81%E4%BD%8E%E7%9A%84%E8%BE%93%E5%87%BA%E7%94%B5%E9%98%BB%EF%BC%9F"><span class="toc-text">3、为什么放大器通常需要高的输入电阻、低的输出电阻？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E7%A7%8D%E7%B1%BB%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%8C%E5%B9%BF%E6%B3%9B%E9%87%87%E7%94%A8%E5%B7%AE%E5%88%86%E7%BB%93%E6%9E%84%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="toc-text">4**、基本放大电路的种类及优缺点，广泛采用差分结构的原因？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%9C%A8%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E4%B8%AD%EF%BC%8C%E6%8A%91%E5%88%B6%E6%B8%A9%E6%BC%82%E7%9A%84%E6%96%B9%E6%B3%95%E5%8C%85%E6%8B%AC%E4%B8%8B%E5%88%97%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95"><span class="toc-text">5、在放大电路中，抑制温漂的方法包括下列哪些方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E7%BB%84%E6%88%90%E5%8E%9F%E5%88%99"><span class="toc-text">6、放大电路的组成原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E9%A2%91%E7%8E%87%E8%A1%A5%E5%81%BF%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%EF%BC%9F"><span class="toc-text">7**、放大电路的频率补偿目的是什么？有哪些方法可以实现？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%A2%E7%89%B9%E5%9B%BE%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%B3%A2%E7%89%B9%E5%9B%BE%E8%A1%A8%E7%A4%BA%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7"><span class="toc-text">8、什么是波特图？为什么用波特图表示频率特性?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%85%E9%A2%91%E7%89%B9%E6%80%A7%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E7%9B%B8%E9%A2%91%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="toc-text">9、什么是幅频特性？什么是相频特性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E3%80%81%E4%BD%8E%E9%A2%91%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7%E4%B8%BB%E8%A6%81%E5%8F%97%E9%82%A3%E4%BA%9B%E5%9B%A0%E7%B4%A0%E5%BD%B1%E5%93%8D%EF%BC%9F"><span class="toc-text">10**、低频放大电路的频率特性主要受那些因素影响？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E4%BD%8E%E9%80%9A%E3%80%81%E9%AB%98%E9%80%9A%E7%94%B5%E8%B7%AF%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-text">11、低通、高通电路频率特性有什么特点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%A4%B1%E7%9C%9F%E5%AE%9A%E4%B9%89%EF%BC%8C%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0%EF%BC%8C%E5%BD%B1%E5%93%8D%EF%BC%8C%E8%A7%A3%E5%86%B3"><span class="toc-text">12、非线性失真定义，产生原因，影响，解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E7%9A%84%E7%A1%AE%E5%AE%9A%E5%AF%B9%E6%94%BE%E5%A4%A7%E5%99%A8%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%EF%BC%9F"><span class="toc-text">13、静态工作点的确定对放大器有什么意义？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%80%81%E6%9C%89%E5%87%A0%E7%A7%8D-%E5%AE%83%E4%BB%AC%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">14、放大电路的基本组态有几种?它们分别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E4%B8%80%E8%88%AC%E5%BA%94%E8%AF%A5%E5%A4%84%E4%BA%8E%E4%B8%89%E6%9E%81%E7%AE%A1%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%89%B9%E6%80%A7%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BB%80%E4%B9%88%E5%8C%BA%E5%9F%9F%EF%BC%9F"><span class="toc-text">15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E9%80%9A%E9%A2%91%E5%B8%A6%E6%98%AF%E5%90%A6%E8%B6%8A%E5%AE%BD%E8%B6%8A%E5%A5%BD-%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">16、放大器的通频带是否越宽越好?为什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E5%A4%B1%E7%9C%9F%E4%B8%80%E8%88%AC%E5%88%86%E4%B8%BA%E5%87%A0%E7%B1%BB%EF%BC%9F"><span class="toc-text">17、放大器的失真一般分为几类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%9F%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-text">18、基本放大电路有几种？各有什么特点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%B4%E7%BB%B4%E5%8D%97%E7%AD%89%E6%95%88%E5%AE%9A%E7%90%86%EF%BC%9F%EF%BC%88%E5%B8%B8%E7%94%A8%E6%9D%A5%E5%88%86%E6%9E%90%E5%A4%8D%E6%9D%82%E5%85%B1%E5%B0%84%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9"><span class="toc-text">19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%BA%E9%A1%BF%E5%AE%9A%E7%90%86%EF%BC%9F"><span class="toc-text">20、什么是诺顿定理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E3%80%81%E7%AE%80%E8%BF%B0%E4%BD%A0%E5%AF%B9-Q-%E7%82%B9%E7%9A%84%E8%AE%A4%E8%AF%86"><span class="toc-text">21**、简述你对 Q 点的认识**</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-4-2硬件-基本放大电路" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">2026-09-13</time>
+    <time style="display: none;" id="post-update-time">2026-09-13</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="1、如何评价放大电路的性能-有哪些主要指标？"><a href="#1、如何评价放大电路的性能-有哪些主要指标？" class="headerlink" title="1、如何评价放大电路的性能?有哪些主要指标？"></a>1、如何评价放大电路的性能?有哪些主要指标？</h3><p>答：放大电路的性能好坏一般由如下几项指标确定：增益、输入输出电阻、通频带、失真度、信噪比。</p>
+<h3 id="2-、放大电路频率补偿的概念，目的和方法分别是什么？"><a href="#2-、放大电路频率补偿的概念，目的和方法分别是什么？" class="headerlink" title="2**、放大电路频率补偿的概念，目的和方法分别是什么？**"></a>2**、放大电路频率补偿的概念，目的和方法分别是什么？**</h3><p>答：<strong>频率补偿是为了改变频率特性，减小时钟和相位差，使输入输出频率同步</strong></p>
+<p><strong>（1）频率补偿的目的</strong></p>
+<p>一是<strong>改善放大电路的高频特性</strong>，二是<strong>克服由于引入负反馈而可能出现自激振荡现象，使放大器能够稳定工作</strong>。在放大电路中，由于<strong>晶体管结电容的存在常常会使放大电路频率响应的高频段不理想</strong>，为了解决这一问题，常用的方法就是在电路中<strong>引入负反馈</strong>。然后，负反馈的引入又引入了新的问题，那就是<strong>负反馈电路会出现自激振荡现象</strong>，所以为了使放大电路能够正常稳定工作，必须对<strong>放大电路进行频率补偿。</strong></p>
+<p><strong>（2）频率补偿的方法</strong></p>
+<p>频率补偿的方法可以分为<strong>超前补偿和滞后补偿</strong>，主要是通过<strong>接入一些阻容元件来改变放大电路的开环增益在高频段的相频特性</strong>，目前<strong>使用最多的就是锁相环。</strong></p>
+<h3 id="3、为什么放大器通常需要高的输入电阻、低的输出电阻？"><a href="#3、为什么放大器通常需要高的输入电阻、低的输出电阻？" class="headerlink" title="3、为什么放大器通常需要高的输入电阻、低的输出电阻？"></a><strong>3、为什么放大器通常需要高的输入电阻、低的输出电阻？</strong></h3><p><strong>高的输入阻抗</strong></p>
+<p><strong>（1）减少信号源负载</strong></p>
+<p>高输入阻抗能<strong>减少放大器对信号源的负载效应</strong>。这意味着<strong>信号源能更高效地传输信号到放大器，减少了信号的失真。</strong></p>
+<p><strong>（2）提高信号传输效率</strong></p>
+<p>高输入阻抗能<strong>减少信号在传输过程中的损耗</strong>，确保<strong>信号能完整地到达放大器。</strong></p>
+<p><strong>（3）增强抗干扰能力</strong></p>
+<p>高输入阻抗能<strong>有效抵抗系统中的电磁干扰和信号串扰</strong>，从而提高系统的稳定性和可靠性。</p>
+<p><strong>低的输出阻抗</strong></p>
+<p><strong>（1）提高功率传输效率</strong></p>
+<p>低输出阻抗意味着<strong>放大器能更有效地将功率传输到负载上，减少了能量的损失。</strong></p>
+<p><strong>（2）稳定输出电压</strong></p>
+<p>当负载变化时，低输出阻抗的放大器<strong>能维持相对稳定的输出电压</strong>，这对于许多应用是非常重要的。</p>
+<p><strong>（3）提高电路稳定性</strong></p>
+<p>低输出阻抗有助于<strong>提高整个电路的稳定性</strong>，使其在各种工作条件下都能保持良好的性能。</p>
+<h3 id="4-、基本放大电路的种类及优缺点，广泛采用差分结构的原因？"><a href="#4-、基本放大电路的种类及优缺点，广泛采用差分结构的原因？" class="headerlink" title="4**、基本放大电路的种类及优缺点，广泛采用差分结构的原因？**"></a>4**、基本放大电路的种类及优缺点，广泛采用差分结构的原因？**</h3><p>答：<strong>基本放大电路按其接法分为共基、共射、共集放大电路。</strong></p>
+<p>①<strong>共射放大电路</strong>：<strong>既能放大电流又能放大电压，输入电阻在三种电路中居中，输出电阻较大，频带较窄。</strong></p>
+<p><strong>②共基放大电路：只能放大电压不能放大电流，输入电阻小，电压放大倍数和输出电阻与共射放大电路相当，频率特性是三种接法中最好的电路。常用于宽频带放大电路。</strong></p>
+<p><strong>③共集放大电路：只能放大电流不能放大电压，是三种接法中输入电阻最大、输出电阻最小的电路，并具有电压跟随的特点。常用于电压大电路的输入级和输出级，在功率放大电路中也常采用射极输出的形式。广泛采用差分结构的原因是差分结构可以抑制温度漂移现象。</strong></p>
+<h3 id="5、在放大电路中，抑制温漂的方法包括下列哪些方法"><a href="#5、在放大电路中，抑制温漂的方法包括下列哪些方法" class="headerlink" title="5、在放大电路中，抑制温漂的方法包括下列哪些方法"></a><strong>5、在放大电路中，抑制温漂的方法包括下列哪些方法</strong></h3><p><strong>答：输入电压为零而输出电压的变化不为零的现象称为零点漂移现象，<strong>由于由温度变化所引起的半导体器件参数的变化是产生零点漂移现象的主要原因</strong>，因此也称零点漂移为温度漂移，简称温漂。</strong></p>
+<p><strong>抑制温漂的方法如下：</strong></p>
+<p>**(1)在电路中引入直流负反馈，**例如典型的静态工作点稳定电路中 Re 所起的作用</p>
+<p><strong>(2)采用温度补偿的方法，<strong>利用</strong>热敏元件来抵消放大管的变化</strong></p>
+<p><strong>(3)采用特性相同的管子</strong>，使<strong>他们的温漂相互抵消，构成“差分放大电路”</strong></p>
+<h3 id="6、放大电路的组成原则"><a href="#6、放大电路的组成原则" class="headerlink" title="6、放大电路的组成原则"></a><strong>6、放大电路的组成原则</strong></h3><p><strong>答：</strong>（1）必须根据所用放大管的类型提供直流电源，以便设置合适的静态工作点，并作为输出 。</p>
+<p>（2）电阻的取值要与电源配合，使放大管有合适的静态工作电流 。</p>
+<p>（3）输入信号必须能够作用于放大管的输入回路 。</p>
+<p>（4）当负载接入时，必须保证放大管输出回路的动态电流能够作用于负载，从而使负载获得比输入信号大得多的信号电流或信号电压 。</p>
+<h3 id="7-、放大电路的频率补偿目的是什么？有哪些方法可以实现？"><a href="#7-、放大电路的频率补偿目的是什么？有哪些方法可以实现？" class="headerlink" title="7**、放大电路的频率补偿目的是什么？有哪些方法可以实现？**"></a>7**、放大电路的频率补偿目的是什么？有哪些方法可以实现？**</h3><p><strong>（1）频率补偿的目的</strong></p>
+<p>放大电路的频率补偿主要是为了改善电路的频率特性，确保输入输出频率的同步性；提高电路的性能和稳定性。具体目的有两点：<strong>一是优化放大电路的高频特性，减少高频信号的损失或畸变；二是避免由于引入负反馈而产生的自激振荡现象，保证放大电路的稳定工作。</strong></p>
+<p><strong>（2）频率补偿的方法</strong></p>
+<p><strong>①超前补偿和滞后补偿</strong></p>
+<p>这是两种基本的频率补偿方法。<strong>通过接入特定的阻容元件，可以改变放大电路在高频段的开环增益和相频特性。<strong>其中，<strong>超前补偿主要用于提高高频响</strong>，而</strong>滞后补偿则更多地用于减小相位差。</strong></p>
+<p><strong>②峰值保持电路</strong></p>
+<p><strong>这种电路通过增强放大电路在特定频率范围内的放大能力来实现频率补偿。<strong>通常，这种电路</strong>由电容、电感和电阻组成，<strong>旨在</strong>提高放大电路在某一特定频率下的放大倍数。</strong></p>
+<p><strong>③反馈电路调整</strong></p>
+<p>反馈电路是放大电路中的重要组成部分，<strong>通过调整反馈电路的参数，可以改变放大器的频率响应特性，从而实现频率补偿。</strong></p>
+<p><strong>④使用多级放大电路</strong></p>
+<p><strong>通过串联两个或多个放大器级别，每个级别的放大器负责放大一定频率范围的信号，从而实现对整个频率范围的优化。</strong></p>
+<h3 id="8、什么是波特图？为什么用波特图表示频率特性"><a href="#8、什么是波特图？为什么用波特图表示频率特性" class="headerlink" title="8、什么是波特图？为什么用波特图表示频率特性?"></a>8、什么是波特图？为什么用波特图表示频率特性?</h3><p>频率特性曲线采用对数坐标时，称为波特图。</p>
+<p>因为在研究放大电路的频率响应时，输入信号的频率范围常常设置在几赫到上百万兆赫；而放大电路的放大倍数可从几倍到上百万倍；为了在同一坐标系中表示如此宽的变化范围，所以采用对数坐标，即波特图。</p>
+<h3 id="9、什么是幅频特性？什么是相频特性？"><a href="#9、什么是幅频特性？什么是相频特性？" class="headerlink" title="9、什么是幅频特性？什么是相频特性？"></a>9、什么是幅频特性？什么是相频特性？</h3><p>幅频特性，也被称为幅度频率特性，指的是一个系统或电路在不同频率下输入和输出信号之间的幅度比值关系。</p>
+<p>相频特性则描述了输入信号与输出信号之间的相角差随频率变化的特性。</p>
+<h3 id="10-、低频放大电路的频率特性主要受那些因素影响？"><a href="#10-、低频放大电路的频率特性主要受那些因素影响？" class="headerlink" title="10**、低频放大电路的频率特性主要受那些因素影响？**"></a>10**、低频放大电路的频率特性主要受那些因素影响？**</h3><p>(1)放大电路的级数越多，其通频带越窄，频率特性越差。</p>
+<p>(2)在电路中引入负反馈，可以展宽通频带，提高频率特性。</p>
+<p>(3)耦合电容、前级放大电路输出电阻和后级放大电路的输入电阻对频率特性</p>
+<p>也有影响。</p>
+<h3 id="11、低通、高通电路频率特性有什么特点？"><a href="#11、低通、高通电路频率特性有什么特点？" class="headerlink" title="11、低通、高通电路频率特性有什么特点？"></a>11、低通、高通电路频率特性有什么特点？</h3><p>低通电路在高频段放大倍数数值下降，且产生滞后相移。高通电路在低频段放大倍数数值下降，且产生超前。</p>
+<h3 id="12、非线性失真定义，产生原因，影响，解决"><a href="#12、非线性失真定义，产生原因，影响，解决" class="headerlink" title="12、非线性失真定义，产生原因，影响，解决"></a>12、非线性失真定义，产生原因，影响，解决</h3><p>方法</p>
+<p>非线性失真定义：非线性失真亦称波形失真、非线性畸变，表现为系统输出信号与输入信号不成线性关系。</p>
+<p>产生原因：由电子元器特性：曲线的非线性所引起，使输出信号中产生新的谐波成分，改变了原信号频谱，包括谐波失真、瞬态互调失真、互调失真等。</p>
+<p>影响：非线性失真不仅会破坏音质，还有可能由于过量的高频谐波和直流分量烧毁音箱高音扬声器和低音扬声器。</p>
+<p>解决方法：引入负反馈，形成补偿，减少非线性失真。</p>
+<p>（1）截止失真</p>
+<p>产生原因—Q点设置过低</p>
+<p>失真现象—NPN 管削顶，PNP 管削底。</p>
+<p>消除方法–减小 Rb，提高Q。</p>
+<p>（2）饱和失真</p>
+<p>产生原因—Q点设置过高</p>
+<p>失真现象—NPN 管削底，PNP 管削顶。</p>
+<p>消除方法—增大Rb、减小Rc、增大VCC。</p>
+<h3 id="13、静态工作点的确定对放大器有什么意义？"><a href="#13、静态工作点的确定对放大器有什么意义？" class="headerlink" title="13、静态工作点的确定对放大器有什么意义？"></a>13、静态工作点的确定对放大器有什么意义？</h3><p>答：对于放大电路的最基本的要求，一是不失真，二是能够放大。如果输出波形严重失真，所谓“放大”毫无意义。因此，正确地确定静态工作点能够使放大器有最小的截止失真和饱和失真，同时还可以获得最大的动态范围，提高三极管的使用效率。</p>
+<h3 id="14、放大电路的基本组态有几种-它们分别是什么？"><a href="#14、放大电路的基本组态有几种-它们分别是什么？" class="headerlink" title="14、放大电路的基本组态有几种?它们分别是什么？"></a>14、放大电路的基本组态有几种?它们分别是什么？</h3><p>三种，分别是共发射极、共基极和共集电极。</p>
+<h3 id="15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？"><a href="#15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？" class="headerlink" title="15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？"></a>15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？</h3><p>通常应该处于三极管输入输出特性曲线的放大区中央。</p>
+<h3 id="16、放大器的通频带是否越宽越好-为什么？"><a href="#16、放大器的通频带是否越宽越好-为什么？" class="headerlink" title="16、放大器的通频带是否越宽越好?为什么？"></a>16、放大器的通频带是否越宽越好?为什么？</h3><p>一方面，较宽的通频带可以使放大电路对不同频率的信号具有几乎相同的电压放大倍数，从而减轻或避免频率失真。这对于需要处理多种频率信号的电路来说是有益的，例如音频放大器或宽带通信系统等。然而，另一方面，通频带越宽也可能带来一些不利因素。首先，较宽的通频带可能导致电路对噪声和干扰的敏感性增加，从而降低信号质量。其次，较宽的通频带可能要求电路具有更高的复杂性和成本，因为需要使用更高性能的元件和更复杂的电路设计。</p>
+<h3 id="17、放大器的失真一般分为几类？"><a href="#17、放大器的失真一般分为几类？" class="headerlink" title="17、放大器的失真一般分为几类？"></a>17、放大器的失真一般分为几类？</h3><p>单管交流小信号放大器一般有饱和失真、截止失真和非线性失真三类、推挽功率放大器还可能存在交越失真。</p>
+<h3 id="18、基本放大电路有几种？各有什么特点？"><a href="#18、基本放大电路有几种？各有什么特点？" class="headerlink" title="18、基本放大电路有几种？各有什么特点？"></a>18、基本放大电路有几种？各有什么特点？</h3><p>按放大信号分类，电压放大，电流放大，功率放大。按工作状态类型分类，A,B,C,D 或甲乙丙丁类放大器。按 BJT 或 FET 的连接方式，有共基、共射、共集，放大电路。</p>
+<p><strong>共发射极特点：</strong></p>
+<p>1．放大电路的核心元件晶体管工作在放大状态，即要求其发射结正偏、集电结反偏。</p>
+<p>2.输入回路的设置应当使输入信号耦合到晶体管的输入电极，并形成变化的基极电流Ib，进而产生晶体管的电流控制关系，变成集电极电流Ic 的变化。</p>
+<p>3.输出回路的设置应当保证晶体管放大后的电流信号能够转换成负载需要的电压形式。</p>
+<p>4.信号通过放大电路时不允许出现失真。</p>
+<p><strong>共集电极特点：</strong></p>
+<p>电压增益（放大倍数）共集电极放大电路小于1但近似等于1，输出电压与输入电压同相位，输入电阻高、输出电阻低。虽然共集电极放大电路的电压增益小于1，但是它的输入电阻高，当信号源（或前极）提供给放大电路同样大小的信号电压时，由于具有较高的输入电阻，使所需提供的电流减小，从而减轻了信号源的负载。</p>
+<p><strong>共基极特点：</strong></p>
+<p>共基极放大电路的输入电阻很低，一般只有几欧到几十欧，但其输出电阻却很高。另外，共基放大电路允许的工作频率较高，高频特性比较好，所以它多用于高频和宽频带电路或恒流源电路中。</p>
+<h3 id="19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点"><a href="#19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点" class="headerlink" title="19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点)"></a>19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点)</h3><p>一个含有独立电压源、独立电流源及电阻的线性网络的两端，就其外部型态而言，在电性上可以用一个独立电压源V和一个松弛二端网络的串联电阻组合来等效。这个电压源的电压，就是此单口网络（二端网络）的开路电压，这个串联电阻就是从此单口网络（二端网络）两端看进去，当网络内部所有独立源均置零以后的等效电阻。</p>
+<h3 id="20、什么是诺顿定理？"><a href="#20、什么是诺顿定理？" class="headerlink" title="20、什么是诺顿定理？"></a>20、什么是诺顿定理？</h3><p>诺顿定理，也被称为诺顿等效电路定理或诺顿转换，是电路理论中的一个重要定理。这个定理指出，任何具有电压源和电阻的线性有源二端网络，总可以用个等效电流源和电阻的并联组合来替代。这个等效电流源的电流等于有源二端网络的开路电压除以电阻，而电阻则是有源二端网络内所有独立源为零时的等效电阻。</p>
+<h3 id="21-、简述你对-Q-点的认识"><a href="#21-、简述你对-Q-点的认识" class="headerlink" title="21**、简述你对 Q 点的认识**"></a>21**、简述你对 Q 点的认识**</h3><p><strong>静态工作点，通常简称为 Q 点</strong>，是**指放大器在没有输入信号时的工作点。**在放大器电路中，它表示三极管的工作电压和电流，即三极管的基极电流 Ib、集电极电流 Ic 以及集电极与发射极之间的电压 Uce，**Q 点确定了放大器在放大过程中的工作区域，即其是否工作在截止区、 饱和区或放大区。**正确设置静态工作点对放大器来说至关重要。<strong>它确保了放大器在输入信号变化时能够保持它有优异的放大性能，如低失真、高增益、高带宽和高信噪比等，并优化效率。</strong></p>
+<p><strong>静态工作点的设置</strong></p>
+<p>静态工作点的设置是<strong>通过调整放大器的偏置电路来实现的</strong>。<strong>偏置电路用于为三极管提供稳定的直流电压和电流，从而确保三极管工作在所需的 Q 点。常见的偏置电路包括固定偏置、自偏置和集电极负反馈偏置等。</strong></p>
+<p><strong>影响静态工作点的因素</strong></p>
+<p>静态工作点可能受到多种因素的影响，包括**电源电压的变化、环境温度的变化、三极管的老化以及输入信号的幅度和频率等。**这些因素可能导致静态工作点偏离理想位置，进而影响放大器的性能。</p>
+<p><strong>★★静态工作点与性能关系</strong></p>
+<p><strong>静态工作点的位置对放大器的性能有着直接影响</strong>。<strong>Q 点是放大器截止和饱和区之间的直流工作点。当输入信号为零时，这个点就是放大器的输出电压与输入电压相等的点，也就是放大器运行的起点。</strong></p>
+<p>∴ Q 点可以用于表征放大器工作状态的基础参数。<strong>如果 Q 点设置得太高，放大器可能进入饱和区，导致输出信号失真</strong> ； <strong>如果 Q 点设置得太低，放大器可能进入截止区，同样会导致失真。当放大器电路处于 Q 点周围的区域时，可以确保放大器具有最小的失真、最大的增益和最佳的信噪比。</strong></p>
+<p><strong>★★★静态工作点的优化方法</strong></p>
+<p><strong>（1）选用性能稳定的三极管；</strong></p>
+<p><strong>（2）设计合理的偏置电路，确保三极管在宽温度和电源电压范围内都能稳定工作；</strong></p>
+<p><strong>（3）使用温度补偿电路来减小温度对静态工作点的影响；</strong></p>
+<p><strong>（4）定期对放大器进行校准和调整，确保静态工作点处于最佳位置。 简述你对示波器带宽的理解和选择示波器带宽是指示波器能够准确显示信号频率的范围</strong>，通常以**赫兹（Hz）**为单位表示。在示波器的显示中，高频信号可能会出现失真或衰减，这取决于示波器的带宽。在选择示波器带宽时，一般应遵循的原则是：<strong>示波器的带宽应为所测信号最高频率的 3~5倍。<strong>如果</strong>要对波形进行准确测量，应该让示波器的带宽大于波形的主要谐波分量。</strong></p>
+<p>**Tips：带宽的定义是：输入一个幅度相同、频率变化的信号，当示波器读数比真值衰减 3dB时，此时的频率即为示波器的带宽。**即：输入信号在示波器带宽处测试值为真值-3dB。</p>
+
+    </div>
+    <footer class="article-footer">
+        <div class="share-wrapper">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-2%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%259F%25BA%25E6%259C%25AC%25E6%2594%25BE%25E5%25A4%25A7%25E7%2594%25B5%25E8%25B7%25AF%2F" target="_blank" rel="noopener noreferrer" title="基本放大电路">
+      <div class="share-icon icon icon-facebook">
+      </div>
+    </a>
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-2%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%259F%25BA%25E6%259C%25AC%25E6%2594%25BE%25E5%25A4%25A7%25E7%2594%25B5%25E8%25B7%25AF%2F&amp;appkey=&amp;title=%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="基本放大电路">
+      <div class="share-icon icon icon-weibo">
+      </div>
+    </a>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-2%25E7%25A1%25AC%25E4%25BB%25B6-%25E5%259F%25BA%25E6%259C%25AC%25E6%2594%25BE%25E5%25A4%25A7%25E7%2594%25B5%25E8%25B7%25AF%2F&amp;title=%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF&amp;desc=%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF&amp;source=https%3A%2F%2Fyt33-17.github.io" target="_blank" rel="noopener noreferrer" title="基本放大电路">
+      <div class="share-icon icon icon-qq">
+      </div>
+    </a>
+</div>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag" title="硬件">硬件</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="常规电子基础与理论" class="lazyload">
+        <a href="/2026/09/13/4-15%E5%B8%B8%E8%A7%84%E7%94%B5%E5%AD%90%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%90%86%E8%AE%BA/" aria-label="前一篇: 常规电子基础与理论" title="前一篇: 常规电子基础与理论"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            常规电子基础与理论
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="放大电路中的反馈" class="lazyload">
+      <a href="/2026/09/13/4-5%E7%A1%AC%E4%BB%B6-%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E5%8F%8D%E9%A6%88/" aria-label="后一篇: 放大电路中的反馈"  title="后一篇: 放大电路中的反馈"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          放大电路中的反馈
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2024-2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        75.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:38
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%A6%82%E4%BD%95%E8%AF%84%E4%BB%B7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E6%80%A7%E8%83%BD-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%BB%E8%A6%81%E6%8C%87%E6%A0%87%EF%BC%9F"><span class="toc-text">1、如何评价放大电路的性能?有哪些主要指标？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E9%A2%91%E7%8E%87%E8%A1%A5%E5%81%BF%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%AE%E7%9A%84%E5%92%8C%E6%96%B9%E6%B3%95%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">2**、放大电路频率补偿的概念，目的和方法分别是什么？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%A4%A7%E5%99%A8%E9%80%9A%E5%B8%B8%E9%9C%80%E8%A6%81%E9%AB%98%E7%9A%84%E8%BE%93%E5%85%A5%E7%94%B5%E9%98%BB%E3%80%81%E4%BD%8E%E7%9A%84%E8%BE%93%E5%87%BA%E7%94%B5%E9%98%BB%EF%BC%9F"><span class="toc-text">3、为什么放大器通常需要高的输入电阻、低的输出电阻？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E7%A7%8D%E7%B1%BB%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%8C%E5%B9%BF%E6%B3%9B%E9%87%87%E7%94%A8%E5%B7%AE%E5%88%86%E7%BB%93%E6%9E%84%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="toc-text">4**、基本放大电路的种类及优缺点，广泛采用差分结构的原因？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%9C%A8%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E4%B8%AD%EF%BC%8C%E6%8A%91%E5%88%B6%E6%B8%A9%E6%BC%82%E7%9A%84%E6%96%B9%E6%B3%95%E5%8C%85%E6%8B%AC%E4%B8%8B%E5%88%97%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95"><span class="toc-text">5、在放大电路中，抑制温漂的方法包括下列哪些方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E7%BB%84%E6%88%90%E5%8E%9F%E5%88%99"><span class="toc-text">6、放大电路的组成原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E9%A2%91%E7%8E%87%E8%A1%A5%E5%81%BF%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%EF%BC%9F"><span class="toc-text">7**、放大电路的频率补偿目的是什么？有哪些方法可以实现？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%A2%E7%89%B9%E5%9B%BE%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E6%B3%A2%E7%89%B9%E5%9B%BE%E8%A1%A8%E7%A4%BA%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7"><span class="toc-text">8、什么是波特图？为什么用波特图表示频率特性?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%85%E9%A2%91%E7%89%B9%E6%80%A7%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E7%9B%B8%E9%A2%91%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="toc-text">9、什么是幅频特性？什么是相频特性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E3%80%81%E4%BD%8E%E9%A2%91%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7%E4%B8%BB%E8%A6%81%E5%8F%97%E9%82%A3%E4%BA%9B%E5%9B%A0%E7%B4%A0%E5%BD%B1%E5%93%8D%EF%BC%9F"><span class="toc-text">10**、低频放大电路的频率特性主要受那些因素影响？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E4%BD%8E%E9%80%9A%E3%80%81%E9%AB%98%E9%80%9A%E7%94%B5%E8%B7%AF%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-text">11、低通、高通电路频率特性有什么特点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%A4%B1%E7%9C%9F%E5%AE%9A%E4%B9%89%EF%BC%8C%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0%EF%BC%8C%E5%BD%B1%E5%93%8D%EF%BC%8C%E8%A7%A3%E5%86%B3"><span class="toc-text">12、非线性失真定义，产生原因，影响，解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E7%9A%84%E7%A1%AE%E5%AE%9A%E5%AF%B9%E6%94%BE%E5%A4%A7%E5%99%A8%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%EF%BC%9F"><span class="toc-text">13、静态工作点的确定对放大器有什么意义？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%80%81%E6%9C%89%E5%87%A0%E7%A7%8D-%E5%AE%83%E4%BB%AC%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">14、放大电路的基本组态有几种?它们分别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9%E4%B8%80%E8%88%AC%E5%BA%94%E8%AF%A5%E5%A4%84%E4%BA%8E%E4%B8%89%E6%9E%81%E7%AE%A1%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%89%B9%E6%80%A7%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BB%80%E4%B9%88%E5%8C%BA%E5%9F%9F%EF%BC%9F"><span class="toc-text">15、放大器的静态工作点一般应该处于三极管输入输出特性曲线的什么区域？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E9%80%9A%E9%A2%91%E5%B8%A6%E6%98%AF%E5%90%A6%E8%B6%8A%E5%AE%BD%E8%B6%8A%E5%A5%BD-%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">16、放大器的通频带是否越宽越好?为什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E6%94%BE%E5%A4%A7%E5%99%A8%E7%9A%84%E5%A4%B1%E7%9C%9F%E4%B8%80%E8%88%AC%E5%88%86%E4%B8%BA%E5%87%A0%E7%B1%BB%EF%BC%9F"><span class="toc-text">17、放大器的失真一般分为几类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%9F%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="toc-text">18、基本放大电路有几种？各有什么特点？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%88%B4%E7%BB%B4%E5%8D%97%E7%AD%89%E6%95%88%E5%AE%9A%E7%90%86%EF%BC%9F%EF%BC%88%E5%B8%B8%E7%94%A8%E6%9D%A5%E5%88%86%E6%9E%90%E5%A4%8D%E6%9D%82%E5%85%B1%E5%B0%84%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E9%9D%99%E6%80%81%E5%B7%A5%E4%BD%9C%E7%82%B9"><span class="toc-text">19、什么是戴维南等效定理？（常用来分析复杂共射放大电路静态工作点)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E8%AF%BA%E9%A1%BF%E5%AE%9A%E7%90%86%EF%BC%9F"><span class="toc-text">20、什么是诺顿定理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E3%80%81%E7%AE%80%E8%BF%B0%E4%BD%A0%E5%AF%B9-Q-%E7%82%B9%E7%9A%84%E8%AE%A4%E8%AF%86"><span class="toc-text">21**、简述你对 Q 点的认识**</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":25,"duration":[1300,1700],"shapeOptions":{"radius":[20,30],"alpha":[0,1]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":0,"duration":[1300,1700],"shapeOptions":{"radius":12,"alpha":[0.2,0.5],"lineWidth":3}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "基本放大电路",
+          url: "https://yt33-17.github.io/2026/09/13/4-2%E7%A1%AC%E4%BB%B6-%E5%9F%BA%E6%9C%AC%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF/",
+          excerpt: "",
+          description: "基本放大电路",
+          stripContent: "1、如何评价放大电路的性能?有哪些主要指标？答：放大电路的性能好坏一般由如下几项指标确定：增益、输入输出电阻、通频带、失真度、信噪比。 2**、放大电路频率补偿的概念，目的和方法分别是什么？**答：频率补偿是为了改变频率特性，减小时钟和相位差，使输入输出频率同步 （1）频率补偿的目的 一是改善放大电路的高频特性，二是克服由于引入负反馈而可能出现自激振荡现象，使放大器能够稳定工作。在放大电路中，由于晶体管结电容的存在常常会使放大电路频率响应的高频段不理想，为了解决这一问题，常用的方法就是在电路中引",
+          date: "Sun Sep 13 2026 00:00:00 GMT+0800",
+          updated: "Sun Sep 13 2026 12:36:23 GMT+0800",
+          cover: "/images/post-cover/7.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"一直很安静","artist":"阿桑","url":"/music/mp3/一直很安静.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一直很安静-阿桑-歌词.lrc"},{"name":"喜欢两个人","artist":"彭佳慧","url":"/music/mp3/喜欢两个人.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/喜欢两个人-彭佳慧-歌词.lrc"},{"name":"出现又离开(Live)","artist":"梁博","url":"/music/mp3/出现又离开(Live).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/出现又离开(Live)-梁博-歌词.lrc"},{"name":"一生所爱","artist":"卢冠廷;莫文蔚","url":"/music/mp3/一生所爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生所爱-卢冠廷;莫文蔚-歌词.lrc"},{"name":"你走(Demo)","artist":"松紧先生(李宗锦)","url":"/music/mp3/你走(Demo).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/你走(Demo)-松紧先生(李宗锦)-歌词.lrc"},{"name":"晴天","artist":"周杰伦","url":"/music/mp3/晴天.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/晴天-周杰伦-歌词.lrc"},{"name":"不负众望","artist":"陈婉菁","url":"/music/mp3/不负众望.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/不负众望-陈婉菁-歌词.lrc"},{"name":"明天过后","artist":"张杰","url":"/music/mp3/明天过后.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/明天过后-张杰-歌词.lrc"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/mp3/春娇与志明.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/春娇与志明-街道办GDC;欧阳耀莹-歌词.lrc"},{"name":"蜚蜚","artist":"陈僖仪","url":"/music/mp3/蜚蜚.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/蜚蜚-陈僖仪-歌词.lrc"},{"name":"枫","artist":"周杰伦","url":"/music/mp3/枫.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/枫-周杰伦-歌词.lrc"},{"name":"海阔天空","artist":"Beyond","url":"/music/mp3/海阔天空.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/海阔天空-Beyond-歌词.lrc"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/mp3/偏偏喜欢你.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/偏偏喜欢你-陈百强-歌词.lrc"},{"name":"七里香","artist":"周杰伦","url":"/music/mp3/七里香.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/七里香-周杰伦-歌词.lrc"},{"name":"日落大道","artist":"梁博","url":"/music/mp3/日落大道.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/日落大道-梁博-歌词.lrc"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/mp3/身骑白马.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/身骑白马-徐佳莹-歌词.lrc"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/mp3/一生中最爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生中最爱-谭咏麟-歌词.lrc"},{"name":"萤火飞光","artist":"圈9","url":"/music/mp3/萤火飞光.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/萤火飞光-圈9-歌词.lrc"},{"name":"勇气","artist":"梁静茹","url":"/music/mp3/勇气.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/勇气-梁静茹-歌词.lrc"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: 3 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  <script>
+    window.CW_CONFIG = {
+      auto_locate: true,
+      city: "北京",
+      latitude: null,
+      longitude: null,
+      update_interval: 10,
+      qweather: {
+        key: "93537501860943b2938616e06693c491",
+        host: "nm6e4gxpfu.re.qweatherapi.com"
+      }
+    };
+  </script>
+  
+<script src="/js/calendar_weather.js" data-pjax></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>

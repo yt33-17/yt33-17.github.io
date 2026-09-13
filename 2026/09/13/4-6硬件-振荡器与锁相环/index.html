@@ -1,0 +1,796 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  data-theme-mode="auto">
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_ex15nbittbh';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.swPath = '/sw.js';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://yt33-17.github.io';window.REIMU_CONFIG.relative = '/';window.REIMU_CONFIG.dark_mode = {"button":true,"mode":"auto"};</script>
+  <title>
+    振荡器与锁相环 | 一叶知秋
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_ex15nbittbh.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="振荡器与锁相环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="振荡器与锁相环">
+<meta property="og:url" content="https://yt33-17.github.io/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="振荡器与锁相环">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-13T04:38:48.084Z">
+<meta property="article:author" content="梦衣柠">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/theme/favicon.png">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.3/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <img src="/images/theme/xielunyan.png" alt="loading" />
+      </div>
+      <div class="loading-word">查克拉流动中，请稍候……</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+  <div class="notification-wrapper">
+    <h1>发现新版本</h1>
+    <p>网站好像有新内容，是否更新(ﾟ⊿ﾟ)ﾂ？</p>
+    <div class="notification-btn">
+      <button id="notification-update-btn">更新</button>
+      <button id="notification-close-btn">取消</button>
+    </div>
+  </div>
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/home.svg" alt="home icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/archives.svg" alt="archives icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/about.svg" alt="about icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/friend.svg" alt="friend icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/tools">
+            <div class="main-nav-icon icon ">
+                  <img src="/images/tools.svg" alt="工具 icon" style="height: 1em;">
+            </div>
+          <span class="main-nav-link">工具</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/images/theme/6.png" alt="振荡器与锁相环">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">振荡器与锁相环</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+    <div id="calendar-weather" data-aos="fade-up">
+  <div class="cw-card">
+    <div class="cw-main">
+      <div class="cw-left">
+        <div class="cw-top">
+          <span class="cw-city">📍--</span>
+          <span class="cw-now">
+            <span class="cw-temp">--<span>°C</span></span>
+            <span class="cw-icon">🌡️</span>
+          </span>
+        </div>
+        <div class="cw-date-block">
+          <div class="cw-date"></div>
+          <div class="cw-sub">
+            <span class="cw-weekday"></span>
+            <span class="cw-lunar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cw-forecast"></div>
+    </div>
+    <div class="cw-stats">
+      <div class="cw-stat">
+        <span class="cw-stat-label">降水</span>
+        <span class="cw-stat-value cw-precip">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">风</span>
+        <span class="cw-stat-value cw-wind">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">湿度</span>
+        <span class="cw-stat-value cw-humidity">--</span>
+      </div>
+      <div class="cw-stat">
+        <span class="cw-stat-label">气压</span>
+        <span class="cw-stat-value cw-pressure">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E7%94%B5%E5%8E%8B%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7%E5%8F%82%E6%95%B0"><span class="toc-text">1**、请简述电压比较器的原理及主要特性参数**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E5%86%99%E5%87%BA-RC%E6%AD%A3%E5%BC%A6%E6%B3%A2%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E8%B5%B7%E6%8C%AF%E6%9D%A1%E4%BB%B6"><span class="toc-text">2**、写出 RC正弦波振荡器的工作原理与起振条件**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81RC-%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E6%9E%84%E6%88%90%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-text">3**、RC 振荡器的构成及原理**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E7%AE%80%E8%BF%B0%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E6%BF%80%E6%8C%AF%E8%8D%A1%EF%BC%8C%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%EF%BC%9F"><span class="toc-text">4**、简述什么是自激振荡，如何消除？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E3%80%81%E8%AF%B7%E4%BD%A0%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-LC-%E6%8C%AF%E8%8D%A1%E5%99%A8"><span class="toc-text">5**、请你简述一下 LC 振荡器**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%81%E6%AD%A3%E5%BC%A6%E6%B3%A2%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">6**、正弦波振荡电路的组成**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-RLC-%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF%E7%A7%B0%E4%B8%BA%E7%94%B5%E5%8E%8B%E8%B0%90%E6%8C%AF%E3%80%81%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%A7%B0%E4%B8%BA%E7%94%B5%E6%B5%81%E8%B0%90%E6%8C%AF"><span class="toc-text">7**、为什么 RLC 串联电路称为电压谐振、并联电路称为电流谐振**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E3%80%81%E9%94%81%E7%9B%B8%E7%8E%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-text">8**、锁相环的概念及原理**</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-4-6硬件-振荡器与锁相环" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">2026-09-13</time>
+    <time style="display: none;" id="post-update-time">2026-09-13</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="1-、请简述电压比较器的原理及主要特性参数"><a href="#1-、请简述电压比较器的原理及主要特性参数" class="headerlink" title="1**、请简述电压比较器的原理及主要特性参数**"></a>1**、请简述电压比较器的原理及主要特性参数**</h3><p>答：电压比较器是一种电子元件，广泛应用于模拟电路和数字电路中，其主要功能是比较两个输入电压的大小，并根据比较结果输出相应的电平信号。</p>
+<p><strong>1、定义与工作原理</strong></p>
+<p>定义：电压比较器是<strong>一种对输入信号进行鉴别与比较的电路</strong>，是<strong>组成非正弦波发生电路的基本单元电路。</strong></p>
+<p>工作原理：<strong>是将输入信号与一个参考电压进行比较，根据比较结果输出高电平或低电平的信号。<strong>比较器通常</strong>由一个差分放大器和一个输出级组成。差分放大器负责将输入信号进行放大，并输出一个与输入信号差值有关的电压；输出级则根据差分放大器的输出，通过控制开关和输出缓冲放大器，输出相应的高电平或低电平信号。</strong></p>
+<p><strong>2、关键参数与特性</strong></p>
+<p>（1）<strong>阈值电压</strong>：阈值电压是<strong>电压比较器开始输出特定电平</strong>（如高电平或低电平）的输入电压值。它是电压比较器的一个重要参数，<strong>决定了比较器的灵敏度和稳定性</strong>。</p>
+<p>（2）<strong>输出电平</strong>：电压比较器的<strong>输出电平</strong>通常分为<strong>高电平和低电平两种</strong>。<strong>高电平接近于电源电压，低电平接近于地电平。</strong></p>
+<p>（3）<strong>跃变方向</strong>：指的是<strong>比较器输出状态随输入电压变化而变化的趋势</strong>。当输入电压从低于阈值电压增加到高于阈值电压时，输出从低电平跃变至高电平；<strong>反之亦然</strong>。</p>
+<p>（4）<strong>非线性工作区</strong>：电压比较器在<strong>输入电压接近阈值电压时表现出明显的非线性特性</strong>。这是因为在这一区域内，输入电压的微小变化即可导致输出状态的显著变化。</p>
+<p>（5）<strong>工作电源电压</strong>：决定了其<strong>输出电平的范围和精度</strong>。通常情况下，<strong>工作电源电压越高，输出电平的范围和精度越高。</strong></p>
+<p>Tips：实际应用【扩展】</p>
+<p>1、模拟信号处理：用于<strong>检测信号的阈值</strong>、<strong>触发开关动作</strong>等任务。Eg：在音频处理中检测音频信号的峰值电平；在图像处理中检测像素值的阈值实现图像的二值化处理。</p>
+<p>2、开关电源：用于<strong>监测输出电压是否稳定在规定范围内，并在需要时触发保护机制</strong>。</p>
+<p>3、波形产生和变换：通过配置适当的参数和电路结构，电压比较器可以<strong>将正弦波等连续信号转换为方波或矩形波等离散信号。</strong></p>
+<p>4、模数转换：在<strong>模数转换器中作为比较器使用，将模拟信号转换为数字信号</strong>。</p>
+<p>5、保护电路：在电子系统中作为<strong>保护电路的一部分</strong>，用于<strong>检测异常电压并触发相应的保护措施</strong>。</p>
+<h3 id="2-、写出-RC正弦波振荡器的工作原理与起振条件"><a href="#2-、写出-RC正弦波振荡器的工作原理与起振条件" class="headerlink" title="2**、写出 RC正弦波振荡器的工作原理与起振条件**"></a>2**、写出 RC正弦波振荡器的工作原理与起振条件**</h3><p><strong>RC 正弦波振荡器</strong>是一种<strong>基于电阻（R）和电容（C）元件构成的振荡电路，能够产生稳定的正弦波信号</strong>。其<strong>工作原理主要依赖于正反馈机制与选频网络的共同作用</strong>。</p>
+<p><strong>（1）正反馈机制</strong></p>
+<p>在 RC 振荡电路中，<strong>正反馈是维持振荡的关键</strong>。正反馈意味着<strong>输出信号的一部分被反馈回输入端，并且与原始输入信号在相位上保持同相或接近同相，从而增强原始信号，形成持续的振荡。<strong>在 RC 振荡器中，这通常</strong>通过运算放大器（如反相放大器）实现</strong>，其中放大器的一部分输出通过 RC 网络反馈回其非反相输入端。</p>
+<p><strong>（2）选频网络：</strong></p>
+<p>RC 网络不仅作为<strong>反馈路径，还起着选频的作用</strong>。<strong>由于 RC 网络对不同频率信号的响应不同（主要表现为相位和幅度的变化）</strong>，因此它可以**选择性地放大某一特定频率的信号，从而确定振荡频率。**在理想情况下，RC 振荡器的振荡频率等于 RC 网络的自然频率， f &#x3D; 1&#x2F;2𝜋𝑅𝐶 其中 f 是振荡频率，R 是电阻值，C 是电容值。</p>
+<p><strong>RC振荡器能够稳定起振并持续振荡，必须满足以下几个条件：</strong></p>
+<p><strong>（1）相位条件：</strong></p>
+<p><strong>相位条件</strong>也被称为<strong>巴克豪森准则（Barkhausen Criterion）</strong>，它要求<strong>振荡器在振荡频率下，反馈信号的相位与输入信号的相位相同，即相位差为 0°或 360°的整数倍。<strong>在 RC 振荡器中，这通常</strong>通过调整反馈网络的参数（如电阻和电容的值）来实现</strong>。</p>
+<p><strong>（2）增益条件：</strong></p>
+<p><strong>增益条件要求电路在振荡频率下的闭环增益大于 1，以克服信号在振荡过程中的衰减。<strong>然而，在实际应用中，为了</strong>避免振荡器进入非线性区域而产生失真，闭环增益通常被设计得稍大于 1，并在起振后通过某种方式（如自动增益控制）稳定在这一水平</strong>。</p>
+<p><strong>（3）幅值稳定条件：</strong></p>
+<p>除了相位和增益条件外，RC 振荡器还需要<strong>满足幅值稳定条件</strong>，即<strong>振荡幅度在达到一定水平后能够保持稳定，不会无限增大或减小。<strong>这通常通过</strong>非线性元件（如二极管）的限幅作用或在电路中引入负反馈来实现。</strong></p>
+<h3 id="3-、RC-振荡器的构成及原理"><a href="#3-、RC-振荡器的构成及原理" class="headerlink" title="3**、RC 振荡器的构成及原理**"></a>3**、RC 振荡器的构成及原理**</h3><p><strong>1、基本构成</strong></p>
+<p>RC 振荡器是一种<strong>基于电阻 R 和电容 C 元件构成的电子振荡器</strong>，<strong>用于产生周期性变化的电压或电流信号。<strong>其</strong>基本构成</strong>包括<strong>一个放大器（通常为运算放大器）、正反馈网络（由电阻和电容组成）以及可能的相位补偿网络。在正反馈网络中，电阻和电容串联或并联，以形成振荡所需的相位移动和增益条件。</strong></p>
+<p><strong>2、关键元件：</strong></p>
+<ul>
+<li>放大器：提供必要的电压或电流增益，以补偿电路中的损耗。</li>
+<li>电阻 R：用于限制电流，并参与决定振荡频率和相位移动。</li>
+<li>电容 C：储存电荷，与电阻一起形成振荡所需的 RC 时间常数。</li>
+</ul>
+<p><strong>3、工作原理</strong></p>
+<p><strong>RC 振荡器</strong>的<strong>工作原理</strong>基于<strong>正反馈原理</strong>，即**放大器的一部分输出被反馈回其输入端，以维持振荡。**电阻和电容的组合提供了必要的相位移动，并通过放大器的增益维持振荡的幅度。</p>
+<p>为了产生<strong>稳定的振荡</strong>，电路必须满足两个基本条件：</p>
+<ul>
+<li>增益条件：闭环增益必须大于 1（但接近 1 避免失真），以确保信号能够不断放大。</li>
+<li>相位条件：正反馈网络必须提供足够的相位移动（通常是 180°），加上放大器本身 的相位移动（通常为 0°或 180°），使得总相位移动为 360°的整数倍， 从而维持振荡。</li>
+</ul>
+<p><strong>4、稳定性</strong></p>
+<p><strong>任何参数的变化</strong>（eg：电阻、电容的温漂或电源电压的波动）**都可能导致振荡频率的偏移甚至振荡的停止。**提高稳定性，可以采取以下措施：</p>
+<ul>
+<li>使用高精度、低温度系数的电阻和电容。</li>
+<li>设计合理的相位补偿网络，以减小因放大器内部相位移动引起的误差。</li>
+<li>采用稳压电源，减少电源电压波动对振荡器的影响。</li>
+</ul>
+<p><strong>5、常见应用领域</strong></p>
+<p>①<strong>时钟信号发生器</strong>：为<strong>数字电路</strong>提供<strong>稳定的时钟信号</strong>。</p>
+<p>②<strong>函数发生器</strong>：用于<strong>产生正弦波、方波等周期信号。</strong></p>
+<p>③<strong>音频信号发生器</strong>：在<strong>音乐设备</strong>中用于<strong>产生测试信号或音效</strong>。</p>
+<p>④<strong>传感器信号处理</strong>：在<strong>测量和控制系统</strong>中，用于<strong>产生参考信号或检测信号</strong>。</p>
+<p><strong>6、限制点</strong></p>
+<ul>
+<li>频率范围有限：由于 RC 时间常数的限制，RC 振荡器的振荡频率通常较低，不适用于高频应用。</li>
+<li>稳定性较差：易受外部环境（如温度、电源电压）和元件参数变化的影响。</li>
+<li>波形质量一般：产生的波形可能不是完美的正弦波，特别是在非专业设计的电路中。</li>
+</ul>
+<h3 id="4-、简述什么是自激振荡，如何消除？"><a href="#4-、简述什么是自激振荡，如何消除？" class="headerlink" title="4**、简述什么是自激振荡，如何消除？**"></a>4**、简述什么是自激振荡，如何消除？**</h3><p>答：<strong>自激振荡</strong>，又称为 self-excited oscillation，是<strong>指不外加激励信号而自行产生的恒稳和持续的振荡。在电路系统中，if 放大器的输入端不加输入信号，但其输出端仍有一定的幅值和频率的输出信号，这种现象就被称为自激振荡。</strong></p>
+<p>自激振荡的<strong>产生通常与系统中的正反馈机制有关</strong>。正反馈是指系统的输出作为输入的一部分，进而增强了输入信号。当正反馈过程变得足够强大时，系统就可能产生自激振荡。此外，<strong>相位延迟、驱动信号与系统的共振频率之间的匹配以及非线性元件的引入等也是自激振荡产生的常见原因。</strong></p>
+<p><strong>消除方法 ：（1）增加阻尼：</strong></p>
+<p>通过<strong>增大电路或系统的阻尼系数</strong>，可以<strong>减小自激振荡的幅度</strong>。常用的方法包括改变电路的负载阻抗、调整反馈网络中的元件数值等。</p>
+<p><strong>（2）添加衰减：</strong></p>
+<p>在<strong>电路或系统中添加合适的衰减器</strong>，可以<strong>有效地消除自激振荡的现象</strong>。<strong>衰减器一般是由阻抗、电感和电容等元件组成，可以通过调整元件的数值和连接方式来实现不同的衰减效果。</strong></p>
+<p><strong>（3）优化反馈网络：</strong></p>
+<p>反馈网络是导致自激振荡的重要因素之一。通过<strong>合理地设计反馈网络的拓扑结构和元件数值</strong>，可以<strong>使反馈信号的相位和幅度在某一频率范围内发生变化</strong>，从而实现自激振荡的消除。</p>
+<p><strong>（4）使用稳定的元件：</strong></p>
+<p>稳定的元件指的是<strong>具有良好的稳定性和线性性能的电子元件</strong>。<strong>Eg：在放大器电路中，选择具有低温漂移和低噪声的稳定性好的晶体管，可以减小自激振荡的可能性。</strong></p>
+<p><strong>（5）调整工作点：</strong></p>
+<p>通过<strong>调整电路或系统的工作点</strong>，可以<strong>改变其动态特性</strong>，从而减小自激振荡的幅度。在选择工作点时，需要综合考虑系统的稳定性、功耗和性能要求等因素。</p>
+<h3 id="5-、请你简述一下-LC-振荡器"><a href="#5-、请你简述一下-LC-振荡器" class="headerlink" title="5**、请你简述一下 LC 振荡器**"></a>5**、请你简述一下 LC 振荡器**</h3><p><strong>1、定义与工作原理</strong></p>
+<p>定义：<strong>LC 振荡器</strong>是一种<strong>正反馈放大器</strong>，通过<strong>电感和电容的组合形成闭合的振荡回路</strong>。 <strong>当给定一个输入信号时，放大器将信号进行放大，并通过反馈环节将放大后的信号反馈到输入端，从而形成一个正反馈闭环电路。</strong></p>
+<p>工作原理：在 LC 振荡器中，电感和电容是关键元件。电感具有阻止电流变化的特性，而电容具有允许电流变化的特性。<strong>当输入信号通过放大器时，电感和电容会进行能量交换，从而产生振荡信号。</strong></p>
+<p><strong>2、特点</strong></p>
+<p><strong>（1）高频特性：LC 振荡器</strong>主要用于<strong>产生高频信号</strong>，其<strong>工作频率通常在 1MHz 以上</strong>。这使得 LC 振荡器在<strong>高频通信、射频电路等领域</strong>具有重要的应用价值。</p>
+<p><strong>（2）频率可调：<strong>通过</strong>调整电感或电容的值</strong>，可以方便地<strong>改变 LC 振荡器的振荡频率</strong>。这种频率可调性使得 LC 振荡器能够适应不同的应用需求。</p>
+<p><strong>（3）波形质量好：LC 振荡器</strong>产生的<strong>振荡信号波形质量较好，接近正弦波，具有较小的谐波分量</strong>。这有助于<strong>减少信号传输和接收过程中的失真和干扰</strong>。</p>
+<p><strong>（4）易于集成：<strong>随着集成电路技术的发展，LC 振荡器已经可以实现</strong>小型化、集成化</strong>。这使得 LC 振荡器在<strong>便携式电子设备和微电子领域</strong>中具有广泛的应用前景。</p>
+<p><strong>3、分类</strong></p>
+<p><strong>LC 振荡器</strong>按其<strong>反馈网络</strong>的不同可分为多种类型，包括<strong>互感耦合振荡器、电感反馈式振荡器和电容反馈式振荡器</strong>等。这些不同类型的 LC 振荡器在电路结构和工作原理上有所不同，但<strong>都具有产生高频振荡信号的基本功能</strong>。</p>
+<p><strong>4、应用</strong></p>
+<p>LC 振荡器在多个领域都有广泛的应用。在<strong>通信系统</strong>中，LC 振荡器用于<strong>产生载波信号和调制信号</strong>；在<strong>广播和电视领域</strong>，LC 振荡器用于<strong>产生射频信号</strong>；在<strong>测量仪器</strong>中，LC 振荡器可用于<strong>频率计、示波器等设备的校准和测试</strong>；在<strong>音频处理领域</strong>，LC 振荡器可用于<strong>产生音频信号并进行放大和处理。</strong></p>
+<h3 id="6-、正弦波振荡电路的组成"><a href="#6-、正弦波振荡电路的组成" class="headerlink" title="6**、正弦波振荡电路的组成**"></a>6**、正弦波振荡电路的组成**</h3><p>正弦波振荡电路是一种能够<strong>产生稳定正弦波信号</strong>的电路。由<strong>放大电路、反馈网络、选频网络和稳幅环节四个部分组成</strong>。这四个部分相互协作，<strong>共同实现正弦波的振荡和稳定输出</strong>。</p>
+<p><strong>第一部分：放大电路</strong></p>
+<p>放大电路是正弦波振荡电路中的核心部分，其<strong>作用</strong>是<strong>将直流电源的能量转化为信号能量，并提供足够的增益以补偿电路中的损耗，从而维持振荡的持续进行。<strong>放大电路的性能</strong>直接影响到信号的稳定性和质量</strong>，因此在设计时需要<strong>仔细考虑其增益、带宽、噪声等参数</strong>。在实际应用中，放大电路通常采用晶体管、场效应管或集成运算放大器等器件构成。这些器件能够<strong>将微弱的振荡信号放大到足够的幅度</strong>，以满足后续电路的需要。</p>
+<p><strong>第二部分：反馈网络（或反馈电路）</strong></p>
+<p><strong>反馈网络负责将放大电路输出的一部分信号输送回其输入端，形成闭合回路。<strong>这种正反馈机制是产生</strong>振荡的必要条件之一</strong>，因为它<strong>提供了能量补充，以补偿振荡器和放大器中的能量损耗。<strong>需要</strong>确保反馈信号的相位与输入信号的相位相同，即满足相位平衡条件</strong>。 <strong>反馈网络</strong>通常由电阻器、电容器等元件组成，其值和排列方式决定了反馈信号的大小和相位。</p>
+<p><strong>第三部分：选频网络（或选频电路）</strong></p>
+<p><strong>选频网络</strong>用于<strong>确定振荡电路的振荡频率</strong>，它能够<strong>从放大电路的输出信号中选出满足振荡条件的特定频率的正弦波信号，并将其反馈回放大电路的输入端</strong>。在无线电通信中，选频网络的性能直接决定了接收机的选频能力和抗干扰能力。选频网络通常由电感、电容和电阻等元件构成，这些元件组合在一起可以<strong>形成谐振电路，从而选择出特定的频率。</strong></p>
+<p><strong>第四部分：稳幅环节（或稳幅电路）</strong></p>
+<p><strong>稳幅环节</strong>用于<strong>控制振荡电路的幅度，确保输出信号幅度的稳定性</strong>。∵电路元件的非线性、电源电压的波动以及环境温度的变化等因素，振荡电路的幅度往往会发生变化。因此，需要引入稳幅环节来**自动调整电路的工作状态，使输出信号的幅度保持稳定。**稳幅环节的实现方式有多种，eg：采用热敏电阻、二极管或集成稳幅电路等。这些稳幅元件能够根据输出信号的幅度变化自动调整电路的工作点，从而实现对幅度的稳定控制。</p>
+<h3 id="7-、为什么-RLC-串联电路称为电压谐振、并联电路称为电流谐振"><a href="#7-、为什么-RLC-串联电路称为电压谐振、并联电路称为电流谐振" class="headerlink" title="7**、为什么 RLC 串联电路称为电压谐振、并联电路称为电流谐振**"></a>7**、为什么 RLC 串联电路称为电压谐振、并联电路称为电流谐振**</h3><p>答：<strong>串联电路因其在谐振时电压显著放大而被称为电压谐振电路；并联电路则因其在谐振时支路电流显著放大而被称为电流谐振电路。</strong></p>
+<p><strong>在 RLC 串联电路中，当电路达到谐振状态时：</strong></p>
+<ul>
+<li>电压放大： 电感 L 与电容 C 上的电压大小都是外加电压 U 的 Q 倍（Q 为品质因数，当Q&gt;&gt;1 时），即在电感和电容两端会出现远远高于外加电压 U 的高电压，即过电压现象。因此，串联谐振电路因其能够显著放大电压而被称为电压谐振电路。</li>
+<li>电流与电压同相位： 在谐振状态下，电路的端电压和电路总电流同相位，电路呈纯电阻性，阻抗最小，电流最大。</li>
+</ul>
+<p><strong>在 RLC 并联电路中，当电路达到谐振状态时：</strong></p>
+<ul>
+<li>电流放大： 电感 L 与电容 C 上的电流大小都是输入总电流的 Q 倍，即支路电流远大于总电流。当 Q&gt;&gt;1 时，会在电感和电容中出现远远高于总电流的过电流，即过电流现象。因此，并联谐振电路因其支路电流显著放大而被称为电流谐振电路。</li>
+<li>总电流最小： 虽然支路电流被放大，but 谐振时电路的总电流实际上是最小的。∵电源提供的能量主要被电感和电容以无功功率的形式交换，而电阻消耗的有功功率相对较少。</li>
+<li>电源功率补偿： 并联谐振是一种完全的补偿状态，电源无需提供无功功率，只提供电阻所需要的有功功率。这种特性使得并联谐振在电力系统中具有一定的应用价值，如用于无功补偿等。</li>
+</ul>
+<h3 id="8-、锁相环的概念及原理"><a href="#8-、锁相环的概念及原理" class="headerlink" title="8**、锁相环的概念及原理**"></a>8**、锁相环的概念及原理**</h3><p>**基本概念：**能够比较输出与输入相位差的反馈系统，利用外部输入的参考信号控制环路内部振荡信号的相位，使振荡信号同步至参考信号。</p>
+<p><strong>组成原理：</strong></p>
+<p>1.**鉴相器：**检测输出信号和输入信号的相位差</p>
+<p>2.**环路滤波器：**滤除掉鉴相器输出电压Vd(t)中的高频成分和噪声分量，得到一个干净的组成原理控制电压 Vc(t)去控制压控振荡器的频率输出。</p>
+<p>3.**压控振荡器：**指输出频率与输入控制电压有对应关系的振荡电路，频率是输入信号电压的函数，振荡器的工作状态或振荡回路的元件参数受输入控制电压的控制，就可构成一个压控振荡器。</p>
+<p>**工作原理:**压控振荡器的输出经过采集并分频，和基准信号同时输入鉴相器，鉴相器通过比较上述两个信号的频率差，然后输出一个直流脉冲电压，经过环路滤波器滤除误差信号中的谐波和杂波成分，使VCO 频率改变，经过很短的时间，VCO 的输出就会稳定在某一期望值.</p>
+
+    </div>
+    <footer class="article-footer">
+        <div class="share-wrapper">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-6%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%258C%25AF%25E8%258D%25A1%25E5%2599%25A8%25E4%25B8%258E%25E9%2594%2581%25E7%259B%25B8%25E7%258E%25AF%2F" target="_blank" rel="noopener noreferrer" title="振荡器与锁相环">
+      <div class="share-icon icon icon-facebook">
+      </div>
+    </a>
+    <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-6%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%258C%25AF%25E8%258D%25A1%25E5%2599%25A8%25E4%25B8%258E%25E9%2594%2581%25E7%259B%25B8%25E7%258E%25AF%2F&amp;appkey=&amp;title=%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF&amp;pic=&amp;ralateUid=" target="_blank" rel="noopener noreferrer" title="振荡器与锁相环">
+      <div class="share-icon icon icon-weibo">
+      </div>
+    </a>
+    <a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fyt33-17.github.io%2F2026%2F09%2F13%2F4-6%25E7%25A1%25AC%25E4%25BB%25B6-%25E6%258C%25AF%25E8%258D%25A1%25E5%2599%25A8%25E4%25B8%258E%25E9%2594%2581%25E7%259B%25B8%25E7%258E%25AF%2F&amp;title=%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF&amp;desc=%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF&amp;source=https%3A%2F%2Fyt33-17.github.io" target="_blank" rel="noopener noreferrer" title="振荡器与锁相环">
+      <div class="share-icon icon icon-qq">
+      </div>
+    </a>
+</div>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag" title="硬件">硬件</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="放大电路中的反馈" class="lazyload">
+        <a href="/2026/09/13/4-5%E7%A1%AC%E4%BB%B6-%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E5%8F%8D%E9%A6%88/" aria-label="前一篇: 放大电路中的反馈" title="前一篇: 放大电路中的反馈"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            放大电路中的反馈
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="数字电路与逻辑设计" class="lazyload">
+      <a href="/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/" aria-label="后一篇: 数字电路与逻辑设计"  title="后一篇: 数字电路与逻辑设计"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          数字电路与逻辑设计
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2024-2026
+        <span class="footer-info-sep rotate"></span>
+      梦衣柠
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        75.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:38
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E8%AF%B7%E7%AE%80%E8%BF%B0%E7%94%B5%E5%8E%8B%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7%E5%8F%82%E6%95%B0"><span class="toc-text">1**、请简述电压比较器的原理及主要特性参数**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E5%86%99%E5%87%BA-RC%E6%AD%A3%E5%BC%A6%E6%B3%A2%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E8%B5%B7%E6%8C%AF%E6%9D%A1%E4%BB%B6"><span class="toc-text">2**、写出 RC正弦波振荡器的工作原理与起振条件**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81RC-%E6%8C%AF%E8%8D%A1%E5%99%A8%E7%9A%84%E6%9E%84%E6%88%90%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-text">3**、RC 振荡器的构成及原理**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E7%AE%80%E8%BF%B0%E4%BB%80%E4%B9%88%E6%98%AF%E8%87%AA%E6%BF%80%E6%8C%AF%E8%8D%A1%EF%BC%8C%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%EF%BC%9F"><span class="toc-text">4**、简述什么是自激振荡，如何消除？**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E3%80%81%E8%AF%B7%E4%BD%A0%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B-LC-%E6%8C%AF%E8%8D%A1%E5%99%A8"><span class="toc-text">5**、请你简述一下 LC 振荡器**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%81%E6%AD%A3%E5%BC%A6%E6%B3%A2%E6%8C%AF%E8%8D%A1%E7%94%B5%E8%B7%AF%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">6**、正弦波振荡电路的组成**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-RLC-%E4%B8%B2%E8%81%94%E7%94%B5%E8%B7%AF%E7%A7%B0%E4%B8%BA%E7%94%B5%E5%8E%8B%E8%B0%90%E6%8C%AF%E3%80%81%E5%B9%B6%E8%81%94%E7%94%B5%E8%B7%AF%E7%A7%B0%E4%B8%BA%E7%94%B5%E6%B5%81%E8%B0%90%E6%8C%AF"><span class="toc-text">7**、为什么 RLC 串联电路称为电压谐振、并联电路称为电流谐振**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E3%80%81%E9%94%81%E7%9B%B8%E7%8E%AF%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-text">8**、锁相环的概念及原理**</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="梦衣柠" class="lazyload">
+  <div class="sidebar-author-name">梦衣柠</div>
+  <div class="sidebar-description">天行健，君子以自强不息</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/yt33-17 itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1699950994 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/home.svg" alt="home icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/archives.svg" alt="archives icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/about.svg" alt="about icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/friend.svg" alt="friend icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/tools" aria-label="工具"></a>
+          <div class="sidebar-menu-icon icon ">
+                <img src="/images/tools.svg" alt="工具 icon" style="width: 1em;">
+          </div>
+        <div class="sidebar-menu-link">工具</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":25,"duration":[1300,1700],"shapeOptions":{"radius":[20,30],"alpha":[0,1]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":0,"duration":[1300,1700],"shapeOptions":{"radius":12,"alpha":[0.2,0.5],"lineWidth":3}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+  
+<script src="https://npm.webcache.cn/theme-shokax-pjax@0.0.3/dist/index.umd.js" integrity="sha384-xneY1WY8hOfUzswrE4CrYq35N4BdVcxqxwHPr9zawE&#x2F;jMSCxD+jAPU55x&#x2F;jj3wlf" crossorigin="anonymous"></script>
+
+  
+<script src="/js/pjax.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
+
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: 3000,
+      priority: true,
+      ignores: []
+    });
+  </script>
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "梦衣柠",
+          title: "振荡器与锁相环",
+          url: "https://yt33-17.github.io/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/",
+          excerpt: "",
+          description: "振荡器与锁相环",
+          stripContent: "1**、请简述电压比较器的原理及主要特性参数**答：电压比较器是一种电子元件，广泛应用于模拟电路和数字电路中，其主要功能是比较两个输入电压的大小，并根据比较结果输出相应的电平信号。 1、定义与工作原理 定义：电压比较器是一种对输入信号进行鉴别与比较的电路，是组成非正弦波发生电路的基本单元电路。 工作原理：是将输入信号与一个参考电压进行比较，根据比较结果输出高电平或低电平的信号。比较器通常由一个差分放大器和一个输出级组成。差分放大器负责将输入信号进行放大，并输出一个与输入信号差值有关的电压；输出级",
+          date: "Sun Sep 13 2026 00:00:00 GMT+0800",
+          updated: "Sun Sep 13 2026 12:38:48 GMT+0800",
+          cover: "/images/post-cover/7.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.6' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+  
+<script src="/js/service_worker.js"></script>
+
+
+
+    <script>
+    var setupAPlayer = () => {
+      if (!true || !window.matchMedia('(max-width: 768px)').matches) {
+        const isMobile = window.matchMedia('(max-width: 959px)').matches;
+        if (isMobile) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"一直很安静","artist":"阿桑","url":"/music/mp3/一直很安静.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一直很安静-阿桑-歌词.lrc"},{"name":"喜欢两个人","artist":"彭佳慧","url":"/music/mp3/喜欢两个人.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/喜欢两个人-彭佳慧-歌词.lrc"},{"name":"出现又离开(Live)","artist":"梁博","url":"/music/mp3/出现又离开(Live).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/出现又离开(Live)-梁博-歌词.lrc"},{"name":"一生所爱","artist":"卢冠廷;莫文蔚","url":"/music/mp3/一生所爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生所爱-卢冠廷;莫文蔚-歌词.lrc"},{"name":"你走(Demo)","artist":"松紧先生(李宗锦)","url":"/music/mp3/你走(Demo).mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/你走(Demo)-松紧先生(李宗锦)-歌词.lrc"},{"name":"晴天","artist":"周杰伦","url":"/music/mp3/晴天.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/晴天-周杰伦-歌词.lrc"},{"name":"不负众望","artist":"陈婉菁","url":"/music/mp3/不负众望.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/不负众望-陈婉菁-歌词.lrc"},{"name":"明天过后","artist":"张杰","url":"/music/mp3/明天过后.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/明天过后-张杰-歌词.lrc"},{"name":"春娇与志明","artist":"街道办GDC;欧阳耀莹","url":"/music/mp3/春娇与志明.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/春娇与志明-街道办GDC;欧阳耀莹-歌词.lrc"},{"name":"蜚蜚","artist":"陈僖仪","url":"/music/mp3/蜚蜚.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/蜚蜚-陈僖仪-歌词.lrc"},{"name":"枫","artist":"周杰伦","url":"/music/mp3/枫.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/枫-周杰伦-歌词.lrc"},{"name":"海阔天空","artist":"Beyond","url":"/music/mp3/海阔天空.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/海阔天空-Beyond-歌词.lrc"},{"name":"偏偏喜欢你","artist":"陈百强","url":"/music/mp3/偏偏喜欢你.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/偏偏喜欢你-陈百强-歌词.lrc"},{"name":"七里香","artist":"周杰伦","url":"/music/mp3/七里香.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/七里香-周杰伦-歌词.lrc"},{"name":"日落大道","artist":"梁博","url":"/music/mp3/日落大道.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/日落大道-梁博-歌词.lrc"},{"name":"身骑白马","artist":"徐佳莹","url":"/music/mp3/身骑白马.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/身骑白马-徐佳莹-歌词.lrc"},{"name":"一生中最爱","artist":"谭咏麟","url":"/music/mp3/一生中最爱.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/一生中最爱-谭咏麟-歌词.lrc"},{"name":"萤火飞光","artist":"圈9","url":"/music/mp3/萤火飞光.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/萤火飞光-圈9-歌词.lrc"},{"name":"勇气","artist":"梁静茹","url":"/music/mp3/勇气.mp3","cover":"/images/theme/nav-logo.png","lrc":"/music/lrc/勇气-梁静茹-歌词.lrc"}] || [],
+          fixed: isMobile ? true : (null || false),
+          autoplay: null || false,
+          loop: '' || 'all',
+          order: '' || 'list',
+          preload: '' || 'auto',
+          volume: 0.3 || 0.7,
+          mutex: null || true,
+          listFolded: null || false,
+          lrcType: 3 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+  <script>
+    window.CW_CONFIG = {
+      auto_locate: true,
+      city: "北京",
+      latitude: null,
+      longitude: null,
+      update_interval: 10,
+      qweather: {
+        key: "93537501860943b2938616e06693c491",
+        host: "nm6e4gxpfu.re.qweatherapi.com"
+      }
+    };
+  </script>
+  
+<script src="/js/calendar_weather.js" data-pjax></script>
+
+
+  
+<script src="https://npm.webcache.cn/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha384-HeUHqi0nVsPUm&#x2F;E0ss7OfnIV&#x2F;yD96JWB8ehZvUuoVax9DpNHL17jj9pdfXHzqDxm" crossorigin="anonymous" defer></script>
+
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+
+  </body>
+  </html>
