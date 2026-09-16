@@ -663,7 +663,6 @@ button {
   height: 100%;
   background: rgba(0,0,0,0.5);
   opacity: 1;
-  transition: opacity 0.2s;
 }
 #mask.hide {
   opacity: 0;
