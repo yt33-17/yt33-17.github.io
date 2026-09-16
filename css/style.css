@@ -43,9 +43,9 @@
   --highlight-deletion-bg: #ffeef0;
   --highlight-addition: #22863a;
   --highlight-addition-bg: #f0fff4;
-  --cursor-default: url("../images/cursor/cursor-default.svg"), auto;
-  --cursor-pointer: url("../images/cursor/cursor-pointer.svg"), pointer;
-  --cursor-text: url("../images/cursor/cursor-text.svg") 12 12, text;
+  --cursor-default: url("../images/cursor/cursor-default.cur"), auto;
+  --cursor-pointer: url("../images/cursor/cursor-pointer.cur"), pointer;
+  --cursor-text: url("../images/cursor/reimu-cursor-text.png") 12 12, text;
   --footer-icon: url("../images/theme/xielunyan.png");
   --sponsor-icon: url("../images/taichi.png");
   --top-icon: url("../images/theme/xielunyan.png");
