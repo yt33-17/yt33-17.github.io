@@ -663,6 +663,7 @@ button {
   height: 100%;
   background: rgba(0,0,0,0.3);
   opacity: 1;
+  will-change: opacity;
   transition: opacity 0.2s;
 }
 #mask::before {
@@ -3177,6 +3178,13 @@ pre .emphasis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.reimu-search-loading {
+  padding: 24px 0;
+  text-align: center;
+  color: var(--grey-9);
+  opacity: 0.7;
+  font-size: 14px;
 }
 .notification-wrapper {
   position: fixed;
