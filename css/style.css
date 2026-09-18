@@ -3619,6 +3619,7 @@ pre .emphasis {
 }
 #calendar-weather {
   margin-bottom: 16px;
+  flex-shrink: 0;
 }
 #calendar-weather .cw-card {
   background: var(--color-wrap);
@@ -3769,6 +3770,10 @@ pre .emphasis {
   transition: all 0.3s;
   font-family: 'Mulish','Noto Serif SC', '-apple-system','PingFang SC','Microsoft YaHei','sans-serif' !important;
   box-shadow: none !important;
+/* 防止目录很长时顶部播放器被 flex 压缩裁切 */
+}
+.sidebar-wrapper-container > .aplayer {
+  flex-shrink: 0;
 }
 .aplayer button:hover path,
 .aplayer .aplayer-icon:hover path {
