@@ -272,10 +272,10 @@
           <section id="main" aria-label="Main content"><div class="archives-outer-wrap" data-aos="fade-up">
     <div class="tag-wrap">
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
+      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/Git/">Git</a>
@@ -284,10 +284,10 @@
       <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
+      <a class="archives-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a>
+      <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/%E4%BD%9C%E6%96%87/">作文</a>
@@ -520,6 +520,34 @@
       cdnPath: "/live2d/",
       tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
     });
+    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
+    (() => {
+      const IDLE_MS = 30 * 1000;
+      let idleTimer = null;
+      const hideWaifu = () => {
+        const waifu = document.getElementById('waifu');
+        if (!waifu || waifu.style.display === 'none') return;
+        localStorage.setItem('waifu-display', Date.now());
+        waifu.style.bottom = '-500px';
+        setTimeout(() => {
+          waifu.style.display = 'none';
+          const toggle = document.getElementById('waifu-toggle');
+          if (toggle) toggle.classList.add('waifu-toggle-active');
+        }, 3000);
+      };
+      const resetIdle = () => {
+        clearTimeout(idleTimer);
+        const waifu = document.getElementById('waifu');
+        // 看板娘已隐藏时不启动计时
+        if (!waifu || waifu.style.display === 'none') return;
+        idleTimer = setTimeout(hideWaifu, IDLE_MS);
+      };
+      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
+        window.addEventListener(evt, resetIdle, { passive: true })
+      );
+      // 等待看板娘入场动画完成后再开始计时
+      setTimeout(resetIdle, 1000);
+    })();
   </script>
 
   

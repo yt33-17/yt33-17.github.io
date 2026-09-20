@@ -328,19 +328,19 @@
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/09/13/4-14%E7%A1%AC%E4%BB%B6-%E7%A1%AC%E4%BB%B6%E6%B5%8B%E8%AF%95/" aria-label="硬件测试" title="硬件测试"></a>
+      <a class="post-link" href="/2026/09/13/4-13%E7%A1%AC%E4%BB%B6-PCB_layout/" aria-label="PCB_layout" title="PCB_layout"></a>
     <div class="post-cover left">
-        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="硬件测试" class="lazyload">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="PCB_layout" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-09-13</span>
-        <span><span class="icon-pencil"></span>3.8k 字</span>
-        <span><span class="icon-clock"></span>13 分钟</span>
+        <span><span class="icon-pencil"></span>5.7k 字</span>
+        <span><span class="icon-clock"></span>20 分钟</span>
       </div>
-      <h2 class="post-title">硬件测试</h2>
+      <h2 class="post-title">PCB_layout</h2>
       <article class="post-article">
-          硬件测试
+          PCB_layout
       </article>
     </div>
   </div>
@@ -366,19 +366,19 @@
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/09/13/4-13%E7%A1%AC%E4%BB%B6-PCB_layout/" aria-label="PCB_layout" title="PCB_layout"></a>
+      <a class="post-link" href="/2026/09/13/4-12%E7%A1%AC%E4%BB%B6-%E9%80%9A%E4%BF%A1%E4%B8%8E%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE/" aria-label="通信与总线协议" title="通信与总线协议"></a>
     <div class="post-cover left">
-        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="PCB_layout" class="lazyload">
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="通信与总线协议" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-09-13</span>
-        <span><span class="icon-pencil"></span>5.7k 字</span>
-        <span><span class="icon-clock"></span>20 分钟</span>
+        <span><span class="icon-pencil"></span>2k 字</span>
+        <span><span class="icon-clock"></span>8 分钟</span>
       </div>
-      <h2 class="post-title">PCB_layout</h2>
+      <h2 class="post-title">通信与总线协议</h2>
       <article class="post-article">
-          PCB_layout
+          通信与总线协议
       </article>
     </div>
   </div>
@@ -585,6 +585,34 @@
       cdnPath: "/live2d/",
       tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
     });
+    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
+    (() => {
+      const IDLE_MS = 30 * 1000;
+      let idleTimer = null;
+      const hideWaifu = () => {
+        const waifu = document.getElementById('waifu');
+        if (!waifu || waifu.style.display === 'none') return;
+        localStorage.setItem('waifu-display', Date.now());
+        waifu.style.bottom = '-500px';
+        setTimeout(() => {
+          waifu.style.display = 'none';
+          const toggle = document.getElementById('waifu-toggle');
+          if (toggle) toggle.classList.add('waifu-toggle-active');
+        }, 3000);
+      };
+      const resetIdle = () => {
+        clearTimeout(idleTimer);
+        const waifu = document.getElementById('waifu');
+        // 看板娘已隐藏时不启动计时
+        if (!waifu || waifu.style.display === 'none') return;
+        idleTimer = setTimeout(hideWaifu, IDLE_MS);
+      };
+      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
+        window.addEventListener(evt, resetIdle, { passive: true })
+      );
+      // 等待看板娘入场动画完成后再开始计时
+      setTimeout(resetIdle, 1000);
+    })();
   </script>
 
   

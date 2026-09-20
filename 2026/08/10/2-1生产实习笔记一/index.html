@@ -575,6 +575,34 @@
       cdnPath: "/live2d/",
       tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
     });
+    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
+    (() => {
+      const IDLE_MS = 30 * 1000;
+      let idleTimer = null;
+      const hideWaifu = () => {
+        const waifu = document.getElementById('waifu');
+        if (!waifu || waifu.style.display === 'none') return;
+        localStorage.setItem('waifu-display', Date.now());
+        waifu.style.bottom = '-500px';
+        setTimeout(() => {
+          waifu.style.display = 'none';
+          const toggle = document.getElementById('waifu-toggle');
+          if (toggle) toggle.classList.add('waifu-toggle-active');
+        }, 3000);
+      };
+      const resetIdle = () => {
+        clearTimeout(idleTimer);
+        const waifu = document.getElementById('waifu');
+        // 看板娘已隐藏时不启动计时
+        if (!waifu || waifu.style.display === 'none') return;
+        idleTimer = setTimeout(hideWaifu, IDLE_MS);
+      };
+      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
+        window.addEventListener(evt, resetIdle, { passive: true })
+      );
+      // 等待看板娘入场动画完成后再开始计时
+      setTimeout(resetIdle, 1000);
+    })();
   </script>
 
   

@@ -272,10 +272,10 @@
           <section id="main" aria-label="Main content"><div class="archives-outer-wrap" data-aos="fade-up">
     <div class="tag-wrap">
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
+      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+      <a class="archives-tag-list-link" href="/tags/%E7%94%B5%E8%84%91/">电脑</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/Git/">Git</a>
@@ -284,10 +284,10 @@
       <a class="archives-tag-list-link" href="/tags/Linux/">Linux</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
+      <a class="archives-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
-      <a class="archives-tag-list-link" href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a>
+      <a class="archives-tag-list-link" href="/tags/STM32/">STM32</a>
     </div>
     <div class="archives-tag-list-item" data-aos="zoom-in">
       <a class="archives-tag-list-link" href="/tags/%E4%BD%9C%E6%96%87/">作文</a>
@@ -315,16 +315,7 @@
       <time class="dt-published" datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
     </span>
   </div>
-    <a class="archive-article-title" href="/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/">振荡器与锁相环</a>
-</li>
-
-            <li class="archive-article">
-  <div class="archive-article-date">
-    <span>
-      <time class="dt-published" datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
-    </span>
-  </div>
-    <a class="archive-article-title" href="/2026/09/13/4-4%E7%A1%AC%E4%BB%B6-%E5%A4%9A%E7%BA%A7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E5%92%8C%E5%8A%9F%E7%8E%87%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF/">多级放大电路和功率放大电路</a>
+    <a class="archive-article-title" href="/2026/09/13/4-5%E7%A1%AC%E4%BB%B6-%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E4%B8%AD%E7%9A%84%E5%8F%8D%E9%A6%88/">放大电路中的反馈</a>
 </li>
 
             <li class="archive-article">
@@ -342,6 +333,15 @@
       <time class="dt-published" datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
     </span>
   </div>
+    <a class="archive-article-title" href="/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/">数字电路与逻辑设计</a>
+</li>
+
+            <li class="archive-article">
+  <div class="archive-article-date">
+    <span>
+      <time class="dt-published" datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
+    </span>
+  </div>
     <a class="archive-article-title" href="/2026/09/13/4-9%E7%A1%AC%E4%BB%B6-%E6%A8%A1%E6%95%B0%E6%95%B0%E6%A8%A1%E8%BD%AC%E6%8D%A2%E4%B8%8E%E9%87%87%E6%A0%B7/">模数数模转换与采样</a>
 </li>
 
@@ -351,7 +351,7 @@
       <time class="dt-published" datetime="2026-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
     </span>
   </div>
-    <a class="archive-article-title" href="/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/">数字电路与逻辑设计</a>
+    <a class="archive-article-title" href="/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/">振荡器与锁相环</a>
 </li>
 
             <li class="archive-article">
@@ -604,6 +604,34 @@
       cdnPath: "/live2d/",
       tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
     });
+    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
+    (() => {
+      const IDLE_MS = 30 * 1000;
+      let idleTimer = null;
+      const hideWaifu = () => {
+        const waifu = document.getElementById('waifu');
+        if (!waifu || waifu.style.display === 'none') return;
+        localStorage.setItem('waifu-display', Date.now());
+        waifu.style.bottom = '-500px';
+        setTimeout(() => {
+          waifu.style.display = 'none';
+          const toggle = document.getElementById('waifu-toggle');
+          if (toggle) toggle.classList.add('waifu-toggle-active');
+        }, 3000);
+      };
+      const resetIdle = () => {
+        clearTimeout(idleTimer);
+        const waifu = document.getElementById('waifu');
+        // 看板娘已隐藏时不启动计时
+        if (!waifu || waifu.style.display === 'none') return;
+        idleTimer = setTimeout(hideWaifu, IDLE_MS);
+      };
+      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
+        window.addEventListener(evt, resetIdle, { passive: true })
+      );
+      // 等待看板娘入场动画完成后再开始计时
+      setTimeout(resetIdle, 1000);
+    })();
   </script>
 
   
