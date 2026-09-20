@@ -353,11 +353,11 @@
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="硬件测试" class="lazyload">
-      <a href="/2026/09/13/4-14%E7%A1%AC%E4%BB%B6-%E7%A1%AC%E4%BB%B6%E6%B5%8B%E8%AF%95/" aria-label="后一篇: 硬件测试"  title="后一篇: 硬件测试"></a>
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="基本元器件" class="lazyload">
+      <a href="/2026/09/13/4-1%E7%A1%AC%E4%BB%B6-%E5%9F%BA%E6%9C%AC%E5%85%83%E5%99%A8%E4%BB%B6/" aria-label="后一篇: 基本元器件"  title="后一篇: 基本元器件"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          硬件测试
+          基本元器件
       </h3>
     </div>
   </nav>
@@ -558,9 +558,21 @@
 
 
 
+  <link rel="stylesheet" href="/live2d/waifu.css">
   
-<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
+<script src="/live2d/live2d.min.js"></script>
 
+  
+<script src="/live2d/waifu-tips.js"></script>
+
+  <script>
+    // cdnPath 指向本地模型库，切换人物/服装不再走境外 CDN
+    initWidget({
+      waifuPath: "/live2d/waifu-tips.json",
+      cdnPath: "/live2d/",
+      tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+    });
+  </script>
 
   
 <script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>

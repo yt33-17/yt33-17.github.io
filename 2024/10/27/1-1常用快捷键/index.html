@@ -666,9 +666,21 @@
 
 
 
+  <link rel="stylesheet" href="/live2d/waifu.css">
   
-<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
+<script src="/live2d/live2d.min.js"></script>
 
+  
+<script src="/live2d/waifu-tips.js"></script>
+
+  <script>
+    // cdnPath 指向本地模型库，切换人物/服装不再走境外 CDN
+    initWidget({
+      waifuPath: "/live2d/waifu-tips.json",
+      cdnPath: "/live2d/",
+      tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+    });
+  </script>
 
   
 <script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
