@@ -404,19 +404,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="振荡器与锁相环" class="lazyload">
-        <a href="/2026/09/13/4-6%E7%A1%AC%E4%BB%B6-%E6%8C%AF%E8%8D%A1%E5%99%A8%E4%B8%8E%E9%94%81%E7%9B%B8%E7%8E%AF/" aria-label="前一篇: 振荡器与锁相环" title="前一篇: 振荡器与锁相环"></a>
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="多级放大电路和功率放大电路" class="lazyload">
+        <a href="/2026/09/13/4-4%E7%A1%AC%E4%BB%B6-%E5%A4%9A%E7%BA%A7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF%E5%92%8C%E5%8A%9F%E7%8E%87%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF/" aria-label="前一篇: 多级放大电路和功率放大电路" title="前一篇: 多级放大电路和功率放大电路"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            振荡器与锁相环
+            多级放大电路和功率放大电路
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="滤波器与信号处理" class="lazyload">
-      <a href="/2026/09/13/4-7%E7%A1%AC%E4%BB%B6-%E6%BB%A4%E6%B3%A2%E5%99%A8%E4%B8%8E%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" aria-label="后一篇: 滤波器与信号处理"  title="后一篇: 滤波器与信号处理"></a>
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="数字电路与逻辑设计" class="lazyload">
+      <a href="/2026/09/13/4-8%E7%A1%AC%E4%BB%B6-%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E4%B8%8E%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/" aria-label="后一篇: 数字电路与逻辑设计"  title="后一篇: 数字电路与逻辑设计"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          滤波器与信号处理
+          数字电路与逻辑设计
       </h3>
     </div>
   </nav>
@@ -617,49 +617,9 @@
 
 
 
-  <link rel="stylesheet" href="/live2d/waifu.css">
   
-<script src="/live2d/live2d.min.js"></script>
+<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
 
-  
-<script src="/live2d/waifu-tips.js"></script>
-
-  <script>
-    // cdnPath 指向本地模型库，切换人物/服装不再走境外 CDN
-    initWidget({
-      waifuPath: "/live2d/waifu-tips.json",
-      cdnPath: "/live2d/",
-      tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
-    });
-    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
-    (() => {
-      const IDLE_MS = 30 * 1000;
-      let idleTimer = null;
-      const hideWaifu = () => {
-        const waifu = document.getElementById('waifu');
-        if (!waifu || waifu.style.display === 'none') return;
-        localStorage.setItem('waifu-display', Date.now());
-        waifu.style.bottom = '-500px';
-        setTimeout(() => {
-          waifu.style.display = 'none';
-          const toggle = document.getElementById('waifu-toggle');
-          if (toggle) toggle.classList.add('waifu-toggle-active');
-        }, 3000);
-      };
-      const resetIdle = () => {
-        clearTimeout(idleTimer);
-        const waifu = document.getElementById('waifu');
-        // 看板娘已隐藏时不启动计时
-        if (!waifu || waifu.style.display === 'none') return;
-        idleTimer = setTimeout(hideWaifu, IDLE_MS);
-      };
-      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
-        window.addEventListener(evt, resetIdle, { passive: true })
-      );
-      // 等待看板娘入场动画完成后再开始计时
-      setTimeout(resetIdle, 1000);
-    })();
-  </script>
 
   
 <script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>

@@ -2933,13 +2933,6 @@ pre .emphasis {
 #waifu-toggle {
   z-index: 1;
 }
-#waifu #waifu-tips {
-  color: #333 !important;
-  opacity: 1 !important;
-}
-[data-theme="dark"] #waifu #waifu-tips {
-  color: #e6e6e6 !important;
-}
 .sidebar-top {
   position: fixed;
   bottom: 30px;

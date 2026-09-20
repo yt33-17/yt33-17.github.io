@@ -433,19 +433,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="嵌入式系统与MCU" class="lazyload">
-        <a href="/2026/09/13/4-11%E7%A1%AC%E4%BB%B6-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%B8%8EMCU/" aria-label="前一篇: 嵌入式系统与MCU" title="前一篇: 嵌入式系统与MCU"></a>
+          <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="通信与总线协议" class="lazyload">
+        <a href="/2026/09/13/4-12%E7%A1%AC%E4%BB%B6-%E9%80%9A%E4%BF%A1%E4%B8%8E%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE/" aria-label="前一篇: 通信与总线协议" title="前一篇: 通信与总线协议"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            嵌入式系统与MCU
+            通信与总线协议
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="硬件测试" class="lazyload">
-      <a href="/2026/09/13/4-14%E7%A1%AC%E4%BB%B6-%E7%A1%AC%E4%BB%B6%E6%B5%8B%E8%AF%95/" aria-label="后一篇: 硬件测试"  title="后一篇: 硬件测试"></a>
+        <img data-src="/images/post-cover/7.png" data-sizes="auto" alt="常规电子基础与理论" class="lazyload">
+      <a href="/2026/09/13/4-15%E5%B8%B8%E8%A7%84%E7%94%B5%E5%AD%90%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%90%86%E8%AE%BA/" aria-label="后一篇: 常规电子基础与理论"  title="后一篇: 常规电子基础与理论"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          硬件测试
+          常规电子基础与理论
       </h3>
     </div>
   </nav>
@@ -646,49 +646,9 @@
 
 
 
-  <link rel="stylesheet" href="/live2d/waifu.css">
   
-<script src="/live2d/live2d.min.js"></script>
+<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
 
-  
-<script src="/live2d/waifu-tips.js"></script>
-
-  <script>
-    // cdnPath 指向本地模型库，切换人物/服装不再走境外 CDN
-    initWidget({
-      waifuPath: "/live2d/waifu-tips.json",
-      cdnPath: "/live2d/",
-      tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
-    });
-    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
-    (() => {
-      const IDLE_MS = 30 * 1000;
-      let idleTimer = null;
-      const hideWaifu = () => {
-        const waifu = document.getElementById('waifu');
-        if (!waifu || waifu.style.display === 'none') return;
-        localStorage.setItem('waifu-display', Date.now());
-        waifu.style.bottom = '-500px';
-        setTimeout(() => {
-          waifu.style.display = 'none';
-          const toggle = document.getElementById('waifu-toggle');
-          if (toggle) toggle.classList.add('waifu-toggle-active');
-        }, 3000);
-      };
-      const resetIdle = () => {
-        clearTimeout(idleTimer);
-        const waifu = document.getElementById('waifu');
-        // 看板娘已隐藏时不启动计时
-        if (!waifu || waifu.style.display === 'none') return;
-        idleTimer = setTimeout(hideWaifu, IDLE_MS);
-      };
-      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
-        window.addEventListener(evt, resetIdle, { passive: true })
-      );
-      // 等待看板娘入场动画完成后再开始计时
-      setTimeout(resetIdle, 1000);
-    })();
-  </script>
 
   
 <script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>

@@ -175,49 +175,9 @@
 
 
 
-  <link rel="stylesheet" href="/live2d/waifu.css">
   
-<script src="/live2d/live2d.min.js"></script>
+<script src="https://npm.webcache.cn/live2d-widgets@0.9.0/autoload.js" integrity="sha384-poTN7wN&#x2F;SqNhQqo3jdFeX20ikddWeFGkUkDEzsKjgH&#x2F;ez8aQLn81oI0Cw6q5xNyB" crossorigin="anonymous"></script>
 
-  
-<script src="/live2d/waifu-tips.js"></script>
-
-  <script>
-    // cdnPath 指向本地模型库，切换人物/服装不再走境外 CDN
-    initWidget({
-      waifuPath: "/live2d/waifu-tips.json",
-      cdnPath: "/live2d/",
-      tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
-    });
-    // 无操作自动退下：复用 quit 的隐藏逻辑，交互时重置计时
-    (() => {
-      const IDLE_MS = 30 * 1000;
-      let idleTimer = null;
-      const hideWaifu = () => {
-        const waifu = document.getElementById('waifu');
-        if (!waifu || waifu.style.display === 'none') return;
-        localStorage.setItem('waifu-display', Date.now());
-        waifu.style.bottom = '-500px';
-        setTimeout(() => {
-          waifu.style.display = 'none';
-          const toggle = document.getElementById('waifu-toggle');
-          if (toggle) toggle.classList.add('waifu-toggle-active');
-        }, 3000);
-      };
-      const resetIdle = () => {
-        clearTimeout(idleTimer);
-        const waifu = document.getElementById('waifu');
-        // 看板娘已隐藏时不启动计时
-        if (!waifu || waifu.style.display === 'none') return;
-        idleTimer = setTimeout(hideWaifu, IDLE_MS);
-      };
-      ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) =>
-        window.addEventListener(evt, resetIdle, { passive: true })
-      );
-      // 等待看板娘入场动画完成后再开始计时
-      setTimeout(resetIdle, 1000);
-    })();
-  </script>
 
   
 <script src="https://npm.webcache.cn/quicklink@3.0.1/dist/quicklink.umd.js" integrity="sha384-caMDqvgav&#x2F;HWdEYQU1QRRHMLleigpL1YHAG0m371DhzfL8rRzUyOb+bEHtwlmYjD" crossorigin="anonymous"></script>
